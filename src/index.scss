@@ -1,0 +1,109 @@
+/* == FONT == */
+$app-font-family: "Courier New", Courier, monospace;
+$app-font-weigt--normal: 300;
+$app-font-weigt--bold: 600;
+
+/* == BUTTON == */
+/* positve */
+$button-bcg--positive: rgb(50, 50, 150);
+$button-border--positive: rgb(50, 50, 120);
+/* negative */
+$button-bcg--negative: rgb(150, 50, 50);
+$button-border--negative: rgb(120, 50, 50);
+/* neutral */
+$button-bcg--neutral: rgb(150, 150, 150);
+$button-border--neutral: rgb(120, 120, 120);
+/* other */
+$button-content-color-light: white;
+$button-content-color-dark: black;
+.button-group {
+  /* flex */
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  align-items: center;
+  &.nowrap {
+    flex-wrap: nowrap;
+  }
+  &.vertical {
+    flex-direction: column;
+  }
+  &.align {
+    &-centered {
+      justify-content: space-around;
+      align-items: center;
+    }
+    &-start {
+      justify-content: flex-start;
+      align-items: center;
+    }
+  }
+  /* scale */
+  box-sizing: border-box;
+  width: 100%;
+  min-width: min-content;
+  height: fit-content;
+  margin: 0;
+  padding: 0.5rem;
+  &.nofill {
+    width: fit-content;
+  }
+
+  .button {
+    /* font */
+    font-family: $app-font-family;
+    font-weight: $app-font-weigt--bold;
+    /* scale */
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0.5rem;
+    /* flex */
+    flex-basis: content;
+    flex-grow: 0;
+    flex-grow: 0;
+    /* border */
+    border-radius: 0.5rem;
+    transition: border ease-in-out 300ms;
+    border: 2px solid transparent;
+    &.positive {
+      background-color: $button-bcg--positive;
+      color: $button-content-color-light;
+      &:hover {
+        transition: all ease-in-out 300ms;
+        border: 2px solid $button-border--positive;
+      }
+    }
+    &.negative {
+      background-color: $button-bcg--negative;
+      color: $button-content-color-light;
+      &:hover {
+        transition: all ease-in-out 300ms;
+        border: 2px solid $button-border--negative;
+      }
+    }
+    &.neutral {
+      background-color: $button-bcg--neutral;
+      color: $button-content-color-dark;
+      &:hover {
+        transition: all ease-in-out 300ms;
+        border: 2px solid $button-border--neutral;
+      }
+    }
+  }
+}
+
+/* == RESPONSIVE */
+$layout-breakpoint-small: 700px;
+.only {
+  @media (min-width: $layout-breakpoint-small) {
+    &.small {
+      display: none;
+    }
+  }
+  @media (max-width: $layout-breakpoint-small) {
+    &.large {
+      display: none;
+    }
+  }
+}

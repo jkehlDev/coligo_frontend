@@ -8,7 +8,7 @@ import PropTypes from "prop-types";
 /* Pages components */
 
 /* Styles */
-import styles from '../../styles.scss';
+import styles from './button.scss';
 
 /**
  * @function Button Button design react component

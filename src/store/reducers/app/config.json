@@ -2,9 +2,9 @@
   "business": {
     "routeProtected": {
       "default": {
-        "exact": "false",
-        "sensitive": "false",
-        "strict": "false",
+        "exact": false,
+        "sensitive": false,
+        "strict": false,
         "redirectTo": "/"
       }
     }

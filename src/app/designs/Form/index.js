@@ -8,7 +8,7 @@ import PropTypes from "prop-types";
 /* Pages components */
 
 /* Styles */
-import styles from '../../styles.scss';
+import styles from './form.scss';
 
 /**
  * @function Form Form application design react component

@@ -6,7 +6,7 @@ import config from "./config.json";
 
 /* Reducer intiale storage state */
 const initialState = {
-  ...JSON.parse(config),
+  ...config,
 };
 
 /**
@@ -14,7 +14,7 @@ const initialState = {
  * @param {*} oldState
  * @param {*} action {type, *}
  */
-const reducer = (oldState = initialState.init, action = {}) => {
+const reducer = (oldState = initialState, action = {}) => {
   switch (action.type) {
     default:
       return { ...oldState };

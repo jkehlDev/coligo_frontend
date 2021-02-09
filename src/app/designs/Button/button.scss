@@ -1,0 +1,78 @@
+@use '../../../styles/vars';
+
+.button-group {
+  /* flex */
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  align-items: center;
+  &.nowrap {
+    flex-wrap: nowrap;
+  }
+  &.vertical {
+    flex-direction: column;
+  }
+  &.align {
+    &-centered {
+      justify-content: space-around;
+      align-items: center;
+    }
+    &-start {
+      justify-content: flex-start;
+      align-items: center;
+    }
+  }
+  /* scale */
+  box-sizing: border-box;
+  width: 100%;
+  min-width: min-content;
+  height: fit-content;
+  margin: 0;
+  padding: 0.5rem;
+  &.nofill {
+    width: fit-content;
+  }
+
+  .button {
+    /* font */
+    font-family: vars.$app-font-family;
+    font-weight: vars.$app-font-weigt--bold;
+    /* scale */
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0.5rem;
+    /* flex */
+    flex-basis: content;
+    flex-grow: 0;
+    flex-grow: 0;
+    /* border */
+    border-radius: 0.5rem;
+    transition: border ease-in-out 300ms;
+    border: 2px solid transparent;
+    &.positive {
+      background-color: vars.$button-bcg--positive;
+      color: vars.$button-content-color-light;
+      &:hover {
+        transition: all ease-in-out 300ms;
+        border: 2px solid vars.$button-border--positive;
+      }
+    }
+    &.negative {
+      background-color: vars.$button-bcg--negative;
+      color: vars.$button-content-color-light;
+      &:hover {
+        transition: all ease-in-out 300ms;
+        border: 2px solid vars.$button-border--negative;
+      }
+    }
+    &.neutral {
+      background-color: vars.$button-bcg--neutral;
+      color: vars.$button-content-color-dark;
+      &:hover {
+        transition: all ease-in-out 300ms;
+        border: 2px solid vars.$button-border--neutral;
+      }
+    }
+  }
+}

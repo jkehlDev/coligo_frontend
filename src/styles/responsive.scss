@@ -1,0 +1,16 @@
+@use 'vars';
+
+/* $layout-breakpoint-small: 700px; */
+/* == RESPONSIVE */
+.only {
+  @media (min-width: vars.$layout-breakpoint-small) {
+    &.small {
+      display: none;
+    }
+  }
+  @media (max-width: vars.$layout-breakpoint-small) {
+    &.large {
+      display: none;
+    }
+  }
+}

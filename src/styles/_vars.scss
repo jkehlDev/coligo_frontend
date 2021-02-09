@@ -1,0 +1,21 @@
+/* == FONT == */
+$app-font-family: "Courier New", Courier, monospace;
+$app-font-weigt--normal: 300;
+$app-font-weigt--bold: 600;
+
+/* == BUTTON == */
+/* positve */
+$button-bcg--positive: rgb(50, 50, 150);
+$button-border--positive: rgb(50, 50, 120);
+/* negative */
+$button-bcg--negative: rgb(150, 50, 50);
+$button-border--negative: rgb(120, 50, 50);
+/* neutral */
+$button-bcg--neutral: rgb(150, 150, 150);
+$button-border--neutral: rgb(120, 120, 120);
+/* other */
+$button-content-color-light: white;
+$button-content-color-dark: black;
+
+/* == RESPONSIVE */
+$layout-breakpoint-small: 700px;

@@ -1,5 +1,5 @@
-const STORAGE_STATE_KEY = 'state_save';
-const localStorage = {
+const STORAGE_STATE_KEY = 'stateSave';
+const local = {
   /**
    * @method loadState
    */
@@ -11,7 +11,6 @@ const localStorage = {
       }
       return JSON.parse(serializedState);
     } catch (error) {
-      console.error(error);
       return undefined;
     }
   },
@@ -29,4 +28,4 @@ const localStorage = {
     }
   },
 };
-export default localStorage;
+export default local;

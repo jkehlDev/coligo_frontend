@@ -1,6 +1,6 @@
 import { createStore, applyMiddleware } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
-import localStorage from "./localStorage";
+import local from "./localStorage";
 import { createBrowserHistory } from "history";
 import throttle from "lodash.throttle";
 import createRootReducer from "./reducers";
@@ -28,7 +28,7 @@ export default function configureStore(preloadedState) {
   store.subscribe(
     throttle(() => {
       const { profil } = store.getState();
-      localStorage.saveState({
+      local.saveState({
         profil,
       });
     }, 1500)

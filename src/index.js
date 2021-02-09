@@ -6,16 +6,16 @@ import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'connected-react-router';
 import configureStore, { history } from './store';
 /* LOCAL-STORAGE - ACCESSORS */
-import localStorage from './store/localStorage';
+import local from './store/localStorage';
 
 /* Design STYLES */
-import './styles.scss';
+import './styles/styles.scss';
 
 /* MAIN COMPONENT */
 import App from './app';
 
 /* Redux Store initial state */
-const store = configureStore(localStorage.loadState());
+const store = configureStore(local.loadState());
 
 const rootReactElement = (
   <Provider store={store}>

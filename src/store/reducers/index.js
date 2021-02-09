@@ -3,7 +3,7 @@ import { combineReducers } from 'redux';
 import { connectRouter } from 'connected-react-router';
 
 import app from './app';
-import profil from './user';
+import profil from './profil';
 import project from './project';
 
 const createRootReducer = (history) => combineReducers({

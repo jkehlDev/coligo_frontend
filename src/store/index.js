@@ -1,14 +1,14 @@
 import { createStore, applyMiddleware } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
-import localStorage from "src/store/localStorage";
+import localStorage from "./localStorage";
 import { createBrowserHistory } from "history";
 import throttle from "lodash.throttle";
-import createRootReducer from "src/store/reducers";
+import createRootReducer from "./reducers";
 import { routerMiddleware } from "connected-react-router";
 
 
 /* Application middlewares */
-import applicationMdl from "src/middlewares";
+import applicationMdl from "../middlewares";
 
 /* Browser history */
 export const history = createBrowserHistory();

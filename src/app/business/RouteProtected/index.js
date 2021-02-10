@@ -34,7 +34,7 @@ const RouteProtected = ({
 /* PropTypes definition */
 RouteProtected.propTypes = {
   path: PropTypes.string.isRequired,
-  component: PropTypes.any.isRequired,
+  component: PropTypes.node.isRequired,
   allowed: PropTypes.bool.isRequired,
   exact: PropTypes.bool.isRequired,
   sensitive: PropTypes.bool.isRequired,

@@ -1,7 +1,7 @@
 /* Applications middlewares */
-import appMdl from "./app";
-import profilMdl from "./profil";
-import projectMdl from "./project";
+import appMdl from "middlewares/app";
+import profilMdl from "middlewares/profil";
+import projectMdl from "middlewares/project";
 
 const applicationMdl = [
   appMdl,

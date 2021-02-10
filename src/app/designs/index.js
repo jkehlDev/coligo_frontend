@@ -1,11 +1,3 @@
-/* Imports application designs components */
-import Form from './Form';
-import Button from './Button';
-
-/* application Designs module*/
-const designs = {
-  Form,
-  Button,
-};
-
-export default designs;
+/* Agregate applciation designs react components */
+export {default as Form} from './Form';
+export {default as Button} from './Button';

@@ -1,14 +1,14 @@
-@use 'vars';
+@use 'styles/vars';
 
 /* $layout-breakpoint-small: 700px; */
 /* == RESPONSIVE */
 .only {
-  @media (min-width: vars.$layout-breakpoint-small) {
+  @media (min-width: $layout-breakpoint-small) {
     &.small {
       display: none;
     }
   }
-  @media (max-width: vars.$layout-breakpoint-small) {
+  @media (max-width: $layout-breakpoint-small) {
     &.large {
       display: none;
     }

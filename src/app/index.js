@@ -5,11 +5,11 @@ import PropTypes from "prop-types";
 import { Route, Switch } from "react-router-dom";
 
 /* Business components */
-import RouteProtected from "./business/RouteProtected";
+import RouteProtected from "app/business/RouteProtected";
 
 /* Pages components */
-import Home from "./pages/Home";
-import NotFound from "./pages/NotFound";
+import Home from "app/pages/Home";
+import NotFound from "app/pages/NotFound";
 
 /**
  * @function App Application main react component

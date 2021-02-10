@@ -1,4 +1,4 @@
-@use '../../../styles/vars';
+@import "styles/vars";
 
 .button-group {
   /* flex */
@@ -15,13 +15,24 @@
   }
   &.align {
     &-centered {
-      justify-content: space-around;
+      justify-content: center;
       align-items: center;
+      .button {
+        margin-left: 0.25rem;
+        margin-right: 0.25rem;
+      }
     }
     &-start {
       justify-content: flex-start;
       align-items: center;
+      .button {
+        margin: 0;
+        margin-right: 0.5rem;
+      }
     }
+  }
+  .button {
+    margin-left: 0.5rem;
   }
   /* scale */
   box-sizing: border-box;
@@ -29,50 +40,71 @@
   min-width: min-content;
   height: fit-content;
   margin: 0;
-  padding: 0.5rem;
+  padding: 0.5rem 0;
   &.nofill {
     width: fit-content;
   }
+}
+.button {
+  /* font */
+  font-family: $app-font-family;
+  font-weight: $app-font-weigt--bold;
+  /* scale */
+  box-sizing: border-box;
+  margin: 0rem;
+  padding: 0.5rem;
+  /* flex */
+  flex-basis: content;
+  flex-grow: 0;
+  flex-grow: 0;
+  /* border */
+  border-radius: 0.5rem;
+  transition: border ease-in-out 300ms;
+  border: 3px solid transparent;
+  /* TEXT */
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
 
-  .button {
-    /* font */
-    font-family: vars.$app-font-family;
-    font-weight: vars.$app-font-weigt--bold;
-    /* scale */
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0.5rem;
-    /* flex */
-    flex-basis: content;
-    flex-grow: 0;
-    flex-grow: 0;
-    /* border */
-    border-radius: 0.5rem;
-    transition: border ease-in-out 300ms;
-    border: 2px solid transparent;
-    &.positive {
-      background-color: vars.$button-bcg--positive;
-      color: vars.$button-content-color-light;
-      &:hover {
-        transition: all ease-in-out 300ms;
-        border: 2px solid vars.$button-border--positive;
-      }
+  &.positive {
+    background-color: $button-bcg--positive;
+    color: $button-content-color-light;
+    stroke: $button-content-color-light;
+    &:hover {
+      transition: all ease-in-out 300ms;
+      border: 3px solid $button-border--positive;
     }
-    &.negative {
-      background-color: vars.$button-bcg--negative;
-      color: vars.$button-content-color-light;
-      &:hover {
-        transition: all ease-in-out 300ms;
-        border: 2px solid vars.$button-border--negative;
-      }
+  }
+  &.negative {
+    background-color: $button-bcg--negative;
+    color: $button-content-color-light;
+    stroke: $button-content-color-light;
+    &:hover {
+      transition: all ease-in-out 300ms;
+      border: 3px solid $button-border--negative;
     }
-    &.neutral {
-      background-color: vars.$button-bcg--neutral;
-      color: vars.$button-content-color-dark;
-      &:hover {
-        transition: all ease-in-out 300ms;
-        border: 2px solid vars.$button-border--neutral;
-      }
+  }
+  &.neutral {
+    background-color: $button-bcg--neutral;
+    color: $button-content-color-dark;
+    stroke: $button-content-color-dark;
+    &:hover {
+      transition: all ease-in-out 300ms;
+      border: 3px solid $button-border--neutral;
+    }
+  }
+  > .icon {
+    width: 2em;
+    height: 2em;
+    display: inline-block;
+    padding-right: 0;
+    fill: none;
+    stroke: inherit;
+    stroke-width: 1.9px;
+    &.padded {
+      padding-right: 1em;
     }
   }
 }

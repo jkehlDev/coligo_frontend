@@ -1,31 +1,71 @@
 import React from "react";
 import PropTypes from "prop-types";
+import cx from "classnames";
 
-/* Externals react components */
-
-/* Business components */
-
-/* Pages components */
+/* Attached Design components */
+import BtGroup from "./BtGroup";
 
 /* Styles */
-import styles from './button.scss';
+import "./button.scss";
+/* Feather icon */
+import feather from "../feather-sprite.svg";
 
 /**
  * @function Button Button design react component
- * @param {*} props {}
+ * @param {*} props {title, type, onClick, positive, negative, neutral, icon, content}
  */
-const Button = (props) => (
-  <button className={styles.button}></button>
+const Button = ({
+  title,
+  type,
+  onClick,
+  positive,
+  negative,
+  icon,
+  content,
+}) => (
+  <button
+    title={`${title}`}
+    aria-label={icon ? `${title}` : ""}
+    type={`${type}`}
+    onClick={onClick}
+    className={cx("button", {
+      positive: positive,
+      negative: negative,
+      neutral: !(positive || negative),
+    })}
+  >
+    {icon && (
+      <svg className={cx("icon", { padded: content })}>
+        <use xlinkHref={`${feather}#${icon}`} />
+      </svg>
+    )}
+    {content && <span>{`${content}`}</span>}
+  </button>
 );
 
 /* PropTypes definition */
 Button.propTypes = {
-  props: PropTypes.object,
+  title: PropTypes.string.isRequired,
+  type: PropTypes.oneOf(["submit", "button"]),
+  onClick: PropTypes.func,
+  positive: PropTypes.bool,
+  negative: PropTypes.bool,
+  neutral: PropTypes.bool,
+  icon: PropTypes.string,
+  content: PropTypes.string,
 };
 
 /* Props default value definition */
 Button.defaultProps = {
-  props: {},
+  type: "button",
+  onClick: () => {},
+  positive: false,
+  negative: false,
+  icon: undefined,
+  content: undefined,
 };
+
+/* Attached Design react components */
+Button.Group = BtGroup;
 
 export default Button;

@@ -1,33 +1,28 @@
 import React from "react";
-import PropTypes from "prop-types";
 
 /* Externals react components */
 
 /* Business react components */
 
 /* Designs react components */
+import { Button } from "app/designs";
 
 /**
  * @function Home Home page react component
- * @param {*} props {}
  */
-const Home = (props) => (
+const Home = () => (
   <>
     <header></header>
-    <main></main>
+    <main>
+      <Button.Group align="centered">
+        <Button title="plop" content="plop" icon="alert-triangle"/>
+        <Button title="plop" content="plop2" positive icon="alert-circle"/>
+        <Button title="plop" negative icon="alert-octagon"/>
+      </Button.Group>
+    </main>
     <footer></footer>
   </>
 );
-
-/* PropTypes definition */
-Home.propTypes = {
-  props: PropTypes.object,
-};
-
-/* Props default value definition */
-Home.defaultProps = {
-  props: {},
-};
 
 // == Export
 export default Home;

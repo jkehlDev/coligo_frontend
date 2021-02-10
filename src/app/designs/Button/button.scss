@@ -49,6 +49,7 @@
   /* font */
   font-family: $app-font-family;
   font-weight: $app-font-weigt--bold;
+  font-size: 1em;
   /* scale */
   box-sizing: border-box;
   margin: 0rem;
@@ -106,5 +107,17 @@
     &.padded {
       padding-right: 1em;
     }
+  }
+  &[data-size="S"] {
+    font-size: 0.75em;
+  }
+  &[data-size="M"] {
+    font-size: 1em;
+  }
+  &[data-size="XL"] {
+    font-size: 1.5em;
+  }
+  &[data-size="XXL"] {
+    font-size: 2em;
   }
 }

@@ -21,6 +21,7 @@ const Button = ({
   positive,
   negative,
   icon,
+  size,
   content,
 }) => (
   <button
@@ -33,9 +34,10 @@ const Button = ({
       negative: negative,
       neutral: !(positive || negative),
     })}
+    data-size={`${size}`}
   >
     {icon && (
-      <svg className={cx("icon", { padded: content })}>
+      <svg className={cx("icon", { padded: content })} aria-hidden="true">
         <use xlinkHref={`${feather}#${icon}`} />
       </svg>
     )}
@@ -52,6 +54,7 @@ Button.propTypes = {
   negative: PropTypes.bool,
   neutral: PropTypes.bool,
   icon: PropTypes.string,
+  size: PropTypes.string,
   content: PropTypes.string,
 };
 
@@ -62,6 +65,7 @@ Button.defaultProps = {
   positive: false,
   negative: false,
   icon: undefined,
+  size: 'M',
   content: undefined,
 };
 

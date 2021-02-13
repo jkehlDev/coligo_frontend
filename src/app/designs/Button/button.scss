@@ -1,4 +1,5 @@
-@import "styles/vars";
+
+@import 'styles/_vars.scss';
 
 .button-group {
   /* flex */
@@ -17,7 +18,8 @@
     &-centered {
       justify-content: center;
       align-items: center;
-      .button {
+      margin: 0;
+      .button:not(:first-child):not(:last-child) {
         margin-left: 0.25rem;
         margin-right: 0.25rem;
       }
@@ -25,13 +27,13 @@
     &-start {
       justify-content: flex-start;
       align-items: center;
-      .button {
-        margin: 0;
+      margin: 0;
+      .button:not(:last-child)  {
         margin-right: 0.5rem;
       }
     }
   }
-  .button {
+  .button:not(:first-child) {
     margin-left: 0.5rem;
   }
   /* scale */
@@ -59,9 +61,10 @@
   flex-grow: 0;
   flex-grow: 0;
   /* border */
-  border-radius: 0.5rem;
-  transition: border ease-in-out 300ms;
-  border: 3px solid transparent;
+  border-radius: $button-border-radius;
+  transition: all ease-in-out 750ms;
+  border: $button-border transparent;
+  outline: none;
   /* TEXT */
   display: flex;
   flex-direction: row;
@@ -75,7 +78,7 @@
     stroke: $button-content-color-light;
     &:hover {
       transition: all ease-in-out 300ms;
-      border: 3px solid $button-border--positive;
+      border: $button-border $button-border--positive;
     }
   }
   &.negative {
@@ -84,7 +87,7 @@
     stroke: $button-content-color-light;
     &:hover {
       transition: all ease-in-out 300ms;
-      border: 3px solid $button-border--negative;
+      border: $button-border $button-border--negative;
     }
   }
   &.neutral {
@@ -93,7 +96,7 @@
     stroke: $button-content-color-dark;
     &:hover {
       transition: all ease-in-out 300ms;
-      border: 3px solid $button-border--neutral;
+      border: $button-border $button-border--neutral;
     }
   }
   > .icon {
@@ -108,16 +111,9 @@
       padding-right: 1em;
     }
   }
-  &[data-size="S"] {
-    font-size: 0.75em;
-  }
-  &[data-size="M"] {
-    font-size: 1em;
-  }
-  &[data-size="XL"] {
-    font-size: 1.5em;
-  }
-  &[data-size="XXL"] {
-    font-size: 2em;
-  }
+  &:hover {
+    animation: growing 500ms ease-in-out both;
+  }  
 }
+
+

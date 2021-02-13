@@ -5,14 +5,12 @@ import cx from "classnames";
 /* Attached Design components */
 import BtGroup from "./BtGroup";
 
-/* Styles */
-import "./button.scss";
-/* Feather icon */
-import feather from "../feather-sprite.svg";
+/* SVG icon asset */
+import icons from "app/designs/icon-sprite.svg";
 
 /**
  * @function Button Button design react component
- * @param {*} props {title, type, onClick, positive, negative, neutral, icon, content}
+ * @param {*} props {title, type, onClick, positive, negative, neutral, icon, size, content}
  */
 const Button = ({
   title,
@@ -21,7 +19,7 @@ const Button = ({
   positive,
   negative,
   icon,
-  size,
+  fontSize,
   content,
 }) => (
   <button
@@ -34,11 +32,11 @@ const Button = ({
       negative: negative,
       neutral: !(positive || negative),
     })}
-    data-size={`${size}`}
+    font-size={`${fontSize}`}
   >
     {icon && (
       <svg className={cx("icon", { padded: content })} aria-hidden="true">
-        <use xlinkHref={`${feather}#${icon}`} />
+        <use xlinkHref={`${icons}#${icon}`} />
       </svg>
     )}
     {content && <span>{`${content}`}</span>}
@@ -48,13 +46,13 @@ const Button = ({
 /* PropTypes definition */
 Button.propTypes = {
   title: PropTypes.string.isRequired,
-  type: PropTypes.oneOf(["submit", "button"]),
+  type: PropTypes.oneOf(['submit', 'button']),
   onClick: PropTypes.func,
   positive: PropTypes.bool,
   negative: PropTypes.bool,
   neutral: PropTypes.bool,
   icon: PropTypes.string,
-  size: PropTypes.string,
+  fontSize: PropTypes.string,
   content: PropTypes.string,
 };
 
@@ -65,7 +63,7 @@ Button.defaultProps = {
   positive: false,
   negative: false,
   icon: undefined,
-  size: 'M',
+  fontSize: 'M',
   content: undefined,
 };
 

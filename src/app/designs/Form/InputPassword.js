@@ -3,16 +3,16 @@ import PropTypes from "prop-types";
 import cx from "classnames";
 
 /**
- * @function TextArea TextArea design react component
- * @param {*} props {title, onChange, size, content}
+ * @function InputPassword InputPassword design react component
+ * @param {*} props {title, type, onChange, content}
  */
-const TextArea = (props) => (
+const InputPassword = (props) => (
   <></>
 );
 
 
 /* PropTypes definition */
-TextArea.propTypes = {
+InputPassword.propTypes = {
   title: PropTypes.string.isRequired,
   onChange: PropTypes.func,
   size: PropTypes.string,
@@ -20,10 +20,11 @@ TextArea.propTypes = {
 };
 
 /* Props default value definition */
-TextArea.defaultProps = {
+InputPassword.defaultProps = {
   onChange: () => {},
   size: 'M',
   content: undefined,
 };
 
-export default TextArea;
+export default InputPassword;
+

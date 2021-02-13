@@ -3,16 +3,16 @@ import PropTypes from "prop-types";
 import cx from "classnames";
 
 /**
- * @function TextArea TextArea design react component
+ * @function InputEmail InputEmail design react component
  * @param {*} props {title, onChange, size, content}
  */
-const TextArea = (props) => (
+const InputEmail = (props) => (
   <></>
 );
 
 
 /* PropTypes definition */
-TextArea.propTypes = {
+InputEmail.propTypes = {
   title: PropTypes.string.isRequired,
   onChange: PropTypes.func,
   size: PropTypes.string,
@@ -20,10 +20,11 @@ TextArea.propTypes = {
 };
 
 /* Props default value definition */
-TextArea.defaultProps = {
+InputEmail.defaultProps = {
   onChange: () => {},
   size: 'M',
   content: undefined,
 };
 
-export default TextArea;
+export default InputEmail;
+

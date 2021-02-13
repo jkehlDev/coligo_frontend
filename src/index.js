@@ -9,7 +9,7 @@ import configureStore, { history } from './store';
 import local from './store/localStorage';
 
 /* Design STYLES */
-import './styles/styles.scss';
+import 'styles/styles.scss';
 
 /* MAIN COMPONENT */
 import App from './app';

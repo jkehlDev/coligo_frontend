@@ -1,1 +1,158 @@
-@use '../../../styles/vars';
+@import "styles/_vars.scss";
+
+.form {
+  /* Displaying part */
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  width: $form-width;
+  /* margin / padding */
+  margin: $form-margin;
+  padding: $form-padding;
+
+  /* Background */
+  background-color: $form-bcg;
+  /* border / radius */
+  border: $form-border;
+  border-radius: $form-radius;
+  .form--field {
+    /* Displaying part */
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-shrink: 0;
+    flex-grow: 0;
+    width: fit-content;
+    /* Background */
+    background-color: inherit;
+    /* margin / padding */
+    &:not(:first-child) {
+      margin-top: $form--field-margin-top;
+    }
+    padding: $form--field-padding;
+
+    .form--field-box {
+      /* Displaying part */
+      display: flex;
+      flex-direction: column;
+      flex-wrap: nowrap;
+      justify-content: flex-start;
+      align-items: center;
+      flex-shrink: 0;
+      flex-grow: 0;
+      width: max-content;
+      /* Background */
+      background-color: inherit;
+      /* Transitions */
+      transition: transform ease-in-out 250ms;
+      &:focus-within {
+        transform: scale($field--input-focus-scale-transform);
+      }
+      &:hover {
+        transform: scale($field--input-focus-scale-transform);
+      }
+    }
+
+    .field--label {
+      /* Displaying part */
+      display: block;
+      flex-shrink: 0;
+      flex-grow: 0;
+      /* margin / padding */
+      margin: $field--label-margin;
+      padding: $field--label-padding;
+      /* Text font / transform */
+      text-align: center;
+      text-transform: capitalize;
+      font-weight: bold;
+      line-height: 1em;
+      word-break: keep-all;
+      /* Sizing */
+      box-sizing: border-box;
+      width: $field--label-width;
+      /* background */
+      background-color: inherit;
+      z-index: 1;
+    }
+
+    .field--input {
+      /* Displaying part */
+      display: block;
+      flex-shrink: 0;
+      flex-grow: 0;
+      box-sizing: border-box;
+      width: 100%;
+      /* margin / padding */
+      margin: $field--input-margin;
+      padding: $field--input-padding;
+      /* border / radius */
+      border: $field--input-border;
+      border-radius: $field--input-border-radius;
+      outline: none;
+      /* background */
+      background-color: inherit;
+      /* Transformation - transition */
+      transition: transform ease-in-out 250ms;
+      &:focus {
+        border: $field--input-border-focused;
+      }
+    }
+    /* Input State after label : indicate required / error / pending value */
+    .inputState-box {
+      display: inline-block;
+      flex-shrink: 0;
+      flex-grow: 0;
+      box-sizing: border-box;
+      position: relative;
+      box-sizing: border-box;
+      width: fit-content;
+      height: fit-content;
+
+      /* margin / padding */
+      padding: $field--input-state-padding;
+      margin: $field--input-state-margin;
+
+      border-bottom: $field--input-border-bottom;
+      cursor: help;
+
+      .inputState {
+        /* Displaying part */
+        width: $field--input-state-size;
+        height: $field--input-state-size;
+        /* Color */
+        fill: none;
+        stroke-width: 1.9px;
+
+        &.negative {
+          stroke: $field--input-state-color-negative;
+        }
+        &.positive {
+          stroke: $field--input-state-color-positive;
+        }
+        &.neutral {
+          stroke: $field--input-state-color-neutral;
+        }
+      }
+      &:hover::after {
+        content: attr(data-tips);
+        display: block;
+        z-index: 1;
+        position: absolute;
+        left: 0;
+        top: 2.5em;
+        min-width: 10em;
+        padding: 0.5em;
+        word-wrap: normal;
+        border-radius: $app-elmt-border-radius;
+        border: $app-elmt-border-size solid $color-neutral;
+        color: $color-dark;
+        background-color: $color-light;
+        text-align: center;
+      }
+    }
+  }
+}

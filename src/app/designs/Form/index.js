@@ -1,31 +1,47 @@
 import React from "react";
 import PropTypes from "prop-types";
+import cx from "classnames";
 
-/* Externals react components */
-
-/* Business components */
-
-/* Pages components */
-
-/* Styles */
-import styles from './form.scss';
+/* Attached Design components */
+import InputText from "./InputText";
+import InputPassword from "./InputPassword";
+import InputEmail from "./InputEmail";
+import InputDate from "./InputDate";
+import TextArea from "./TextArea";
 
 /**
- * @function Form Form application design react component
- * @param {*} props {handleSubmit}
+ * @function Form Form design react component
+ * @param {*} props {onSubmit, fontSize, children}
  */
-const Form = (props) => (
-  <form className={styles.form} {...props}></form>
+const Form = ({ onSubmit, fontSize, children }) => (
+  <form className="form" onSubmit={onSubmit} font-size={`${fontSize}`}>
+    {children}
+  </form>
 );
 
 /* PropTypes definition */
 Form.propTypes = {
-  props : PropTypes.shape({
-    handleSubmit: PropTypes.func.isRequired,
-  }).isRequired,
+  onSubmit: PropTypes.func,
+  fontSize: PropTypes.string,
+  children: PropTypes.oneOfType([
+    PropTypes.node,
+    PropTypes.arrayOf(PropTypes.node),
+  ]).isRequired,
 };
 
 /* Props default value definition */
-Form.defaultProps = {};
+Form.defaultProps = {
+  onSubmit: (event) => {
+    event.preventDefault();
+  },
+  fontSize: "M",
+};
+
+/* Attached Design react components */
+Form.InputText = InputText;
+Form.InputPassword = InputPassword;
+Form.InputEmail = InputEmail;
+Form.InputDate = InputDate;
+Form.TextArea = TextArea;
 
 export default Form;

@@ -1,3 +1,53 @@
-@use 'app/designs/Button/button';
-@use 'app/designs/Form/form';
-@use 'app/designs/responsive';
+@import 'app/designs/Button/button.scss';
+@import 'app/designs/Form/form.scss';
+@import 'app/designs/responsive.scss';
+
+/* Font-size keys definition*/
+[font-size="S"] {
+  font-size: 0.75em;
+}
+[font-size="M"] {
+  font-size: 1em;
+}
+[font-size="XL"] {
+  font-size: 1.5em;
+}
+[font-size="XXL"] {
+  font-size: 2em;
+}
+
+/* Animatios key frames */
+/* Shake animation */
+@keyframes shake {
+  10%, 90% {
+    transform: translate(0);
+  }
+  
+  20%, 80% {
+    transform: translate(2px);
+  }
+
+  30%, 50%, 70% {
+    transform: translate(-3px);
+  }
+
+  40%, 60% {
+    transform: translate(3px);
+  }
+}
+
+/* Growing animation */
+@keyframes growing {
+  10%, 90% {
+    transform: scale(1);
+  }
+  
+  20%, 80% {
+    transform: scale(1.02);
+  }
+
+  50% {
+    transform: scale(1.05);
+  }  
+}
+

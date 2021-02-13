@@ -2,14 +2,11 @@ import React from "react";
 import PropTypes from "prop-types";
 import cx from "classnames";
 
-/* Styles */
-import "./button.scss";
-
 /**
  * @function BtGroup Button Group design react component
  * @param {*} props {nowrap, vertical, align, nofill, children}
  */
-const BtGroup = ({ nowrap, vertical, align, nofill, children }) => (
+const BtGroup = ({ nowrap, vertical, align, nofill, fontSize, children }) => (
   <div
     className={cx("button-group", {
       nowrap: nowrap,
@@ -29,6 +26,7 @@ BtGroup.propTypes = {
   vertical: PropTypes.bool,
   nofill: PropTypes.bool,
   align: PropTypes.oneOf(["centered", "start", "end"]),
+  fontSize: PropTypes.string,
   children: PropTypes.oneOfType([
     PropTypes.node,
     PropTypes.arrayOf(PropTypes.node),
@@ -41,6 +39,7 @@ BtGroup.defaultProps = {
   vertical: false,
   nofill: false,
   align: "end",
+  fontSize: "M",
 };
 
 export default BtGroup;

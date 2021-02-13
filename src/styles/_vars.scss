@@ -3,7 +3,7 @@ $app-font-family: "Courier New", Courier, monospace;
 $app-font-weigt--normal: 300;
 $app-font-weigt--bold: 600;
 /* Border */
-$app-elmt-border-radius: 1.5em;
+$app-elmt-border-radius: 1em;
 $app-elmt-border-size: 4px;
 /* Colors */
 /* - action */
@@ -87,7 +87,7 @@ $field--input-state-color-negative: $color-negative;
 $field--input-state-color-positive: $color-positive;
 $field--input-state-color-neutral: $color-action--darker;
 /* == - Input state margin / padding */
-$field--input-state-margin: 0 0 0 1em;
+$field--input-state-margin: 0 1em 0 -1em;
 $field--input-state-padding: 0;
 /* == - Input state size */
 $field--input-state-size: 1em;

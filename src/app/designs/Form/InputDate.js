@@ -42,6 +42,7 @@ const InputDate = ({
   const validated = isValidate(value);
   return (
     <div className="form--field">
+      <InputState required={required} validated={validated} emptied={emptied} />
       <div className="form--field-box">
         <label
           className={cx("field--label", {
@@ -72,7 +73,7 @@ const InputDate = ({
           onChange={onChange}
         />
       </div>
-      <InputState required={required} validated={validated} emptied={emptied} />
+      
     </div>
   );
 };

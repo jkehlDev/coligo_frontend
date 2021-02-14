@@ -45,9 +45,9 @@ const InputState = ({ required, emptied, validated, toolTips }) => {
       ? toolTips
       : getDefaultToolTips(required, emptied, validated);
   return (
-    <div className="inputState-box" data-tips={`${toolTips}`}>
+    <div className="form--content--field--input-state" data-tips={`${toolTips}`}>
       <svg
-        className={cx("inputState", {
+        className={cx("form--content--field--input-state--icon", {
           negative: (!validated && !emptied) || (required && emptied),
           positive: (validated && !emptied),
           neutral: !required && emptied,

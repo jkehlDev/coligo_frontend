@@ -23,20 +23,20 @@ const GenericInput = (props) => {
   const emptied = value.trim() === "";
   const validated = isValidate(value);
   return (
-    <div className="form--field" data-fontsize={fontSize}>
+    <div className="form--content--field" data-fontsize={fontSize}>
       <InputState
         required={required}
         validated={validated.state}
         emptied={emptied}
         toolTips={validated.tips}
       />
-      <div className="form--field-box">
-        <label className="field--label" htmlFor={id}>
+      <div className="form--content--field--box">
+        <label className="form--content--field--box--label" htmlFor={id}>
           {`${label}`}
         </label>
         <input
           id={id}
-          className={cx("field--input", inputClassName)}
+          className={cx("form--content--field--box--input", inputClassName)}
           title={label}
           value={value}
           required={required}

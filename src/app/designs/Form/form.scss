@@ -1,158 +1,185 @@
 @import "styles/_vars.scss";
 
 .form {
-  /* Displaying part */
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  justify-content: flex-start;
-  align-items: center;
-  width: $form-width;
-  /* margin / padding */
-  margin: $form-margin;
-  padding: $form-padding;
-
-  /* Background */
-  background-color: $form-bcg;
-  /* border / radius */
-  border: $form-border;
-  border-radius: $form-radius;
-  .form--field {
+  &--section {
     /* Displaying part */
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     flex-wrap: nowrap;
     justify-content: flex-start;
-    align-items: flex-start;
+    align-items: center;
     flex-shrink: 0;
     flex-grow: 0;
-    width: fit-content;
-    /* Background */
-    background-color: inherit;
+    width: max-content;
     /* margin / padding */
-    &:not(:first-child) {
-      margin-top: $form--field-margin-top;
-    }
-    padding: $form--field-padding;
-
-    .form--field-box {
-      /* Displaying part */
-      display: flex;
-      flex-direction: column;
-      flex-wrap: nowrap;
-      justify-content: flex-start;
-      align-items: center;
-      flex-shrink: 0;
-      flex-grow: 0;
-      width: max-content;
+    margin: $form-margin;
+    padding: 0;
+    /* Background */
+    background-color: $form-bcg;
+    &--title {
+      /* margin / padding */
+      margin: $form--title-margin;
+      padding: $form--title-padding;
+      /* Text presentation */
+      line-height: 1.2em;
+      /* z-index */
+      z-index: 2;
       /* Background */
       background-color: inherit;
-      /* Transitions */
-      transition: transform ease-in-out 250ms;
-      &:focus-within {
-        transform: scale($field--input-focus-scale-transform);
-      }
-      &:hover {
-        transform: scale($field--input-focus-scale-transform);
-      }
-    }
-
-    .field--label {
-      /* Displaying part */
-      display: block;
-      flex-shrink: 0;
-      flex-grow: 0;
-      /* margin / padding */
-      margin: $field--label-margin;
-      padding: $field--label-padding;
-      /* Text font / transform */
-      text-align: center;
-      text-transform: capitalize;
-      font-weight: bold;
-      line-height: 1em;
-      word-break: keep-all;
-      /* Sizing */
-      box-sizing: border-box;
-      width: $field--label-width;
-      /* background */
-      background-color: inherit;
-      z-index: 1;
-    }
-
-    .field--input {
-      /* Displaying part */
-      display: block;
-      flex-shrink: 0;
-      flex-grow: 0;
-      box-sizing: border-box;
-      width: 100%;
-      /* margin / padding */
-      margin: $field--input-margin;
-      padding: $field--input-padding;
       /* border / radius */
-      border: $field--input-border;
-      border-radius: $field--input-border-radius;
-      outline: none;
-      /* background */
-      background-color: inherit;
-      /* Transformation - transition */
-      transition: transform ease-in-out 250ms;
-      &:focus {
-        border: $field--input-border-focused;
-      }
+      border: $form--title-border;
+      border-radius: $form--title-border-radius;
     }
-    /* Input State after label : indicate required / error / pending value */
-    .inputState-box {
-      display: inline-block;
+  }
+  &--content {
+    /* Displaying part */
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: $form-align-items;
+    width: $form-width;
+    /* margin / padding */
+    margin: 0;
+    padding: $form-padding;
+    /* Background */
+    background-color: inherit;
+    /* border / radius */
+    border: $form-border;
+    border-radius: $form-radius;
+    &--field {
+      /* Displaying part */
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      justify-content: flex-start;
+      align-items: flex-start;
       flex-shrink: 0;
       flex-grow: 0;
-      box-sizing: border-box;
-      position: relative;
-      box-sizing: border-box;
       width: fit-content;
-      height: fit-content;
-
+      /* Background */
+      background-color: inherit;
       /* margin / padding */
-      padding: $field--input-state-padding;
-      margin: $field--input-state-margin;
+      &:not(:first-child) {
+        margin-top: $form--field-margin-top;
+      }
+      padding: $form--field-padding;
 
-      border-bottom: $field--input-border-bottom;
-      cursor: help;
-
-      .inputState {
+      &--input-state {
         /* Displaying part */
-        width: $field--input-state-size;
-        height: $field--input-state-size;
-        /* Color */
-        fill: none;
-        stroke-width: 1.9px;
-
-        &.negative {
-          stroke: $field--input-state-color-negative;
+        display: inline-block;
+        flex-shrink: 0;
+        flex-grow: 0;
+        box-sizing: border-box;
+        position: relative;
+        box-sizing: border-box;
+        width: fit-content;
+        height: fit-content;
+        /* margin / padding */
+        padding: $field--input-state-padding;
+        margin: $field--input-state-margin;
+        /* Boder */
+        border-bottom: $field--input-border-bottom;
+        /* Cursor */
+        cursor: help;
+        &--icon {
+          /* Displaying part */
+          width: $field--input-state-size;
+          height: $field--input-state-size;
+          /* Color */
+          fill: none;
+          stroke-width: 1.9px;
+          &.negative {
+            stroke: $field--input-state-color-negative;
+          }
+          &.positive {
+            stroke: $field--input-state-color-positive;
+          }
+          &.neutral {
+            stroke: $field--input-state-color-neutral;
+          }
         }
-        &.positive {
-          stroke: $field--input-state-color-positive;
-        }
-        &.neutral {
-          stroke: $field--input-state-color-neutral;
+        &:hover::after {
+          content: attr(data-tips);
+          display: block;
+          z-index: 2;
+          position: absolute;
+          left: 0;
+          top: 2em;
+          min-width: 10em;
+          padding: 0.5em;
+          word-wrap: normal;
+          border-radius: $app-elmt-border-radius;
+          border: $app-elmt-border-size solid $color-neutral;
+          color: $color-dark;
+          background-color: $color-light;
+          text-align: center;
+          font-size: 1rem;
         }
       }
-      &:hover::after {
-        content: attr(data-tips);
-        display: block;
-        z-index: 2;
-        position: absolute;
-        left: 0;
-        top: 2em;
-        min-width: 10em;
-        padding: 0.5em;
-        word-wrap: normal;
-        border-radius: $app-elmt-border-radius;
-        border: $app-elmt-border-size solid $color-neutral;
-        color: $color-dark;
-        background-color: $color-light;
-        text-align: center;
-        font-size: 1rem;
+      &--box {
+        /* Displaying part */
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        align-items: center;
+        flex-shrink: 0;
+        flex-grow: 0;
+        width: max-content;
+        /* Background */
+        background-color: inherit;
+        /* Transitions */
+        transition: transform ease-in-out 250ms;
+        &:focus-within {
+          transform: scale($field--input-focus-scale-transform);
+        }
+        &:hover {
+          transform: scale($field--input-focus-scale-transform);
+        }
+        &--label {
+          /* Displaying part */
+          display: block;
+          flex-shrink: 0;
+          flex-grow: 0;
+          /* margin / padding */
+          margin: $field--label-margin;
+          padding: $field--label-padding;
+          /* Text font / transform */
+          text-align: center;
+          text-transform: capitalize;
+          font-weight: bold;
+          line-height: 1em;
+          word-break: keep-all;
+          /* Sizing */
+          box-sizing: border-box;
+          width: $field--label-width;
+          /* background */
+          background-color: inherit;
+          z-index: 1;
+        }
+        &--input {
+          /* Displaying part */
+          display: block;
+          flex-shrink: 0;
+          flex-grow: 0;
+          box-sizing: border-box;
+          width: 100%;
+          /* margin / padding */
+          margin: $field--input-margin;
+          padding: $field--input-padding;
+          /* border / radius */
+          border: $field--input-border;
+          border-radius: $field--input-border-radius;
+          outline: none;
+          /* background */
+          background-color: inherit;
+          /* Transformation - transition */
+          transition: transform ease-in-out 250ms;
+          &:focus {
+            border: $field--input-border-focused;
+          }
+        }
       }
     }
   }

@@ -44,20 +44,27 @@ $button-content-color-light: $color-light;
 $button-content-color-dark: $color-dark;
 
 /* = Form */
+/* = - Title part */
+$form--title-margin: 0 0 -0.80em 0;
+$form--title-padding: 0 1em;
+$form--title-border: $app-elmt-border-size solid $color-neutral;
+$form--title-border-radius: $app-elmt-border-radius;
+/* = - form displaying */
+$form-align-items: flex-start;
 /* = - form color */
 $form-bcg : $color-light;
 /* = - form width */
 $form-width : max-content;
 /* = - form margin / padding */
 $form-margin : 0;
-$form-padding : 1em;
+$form-padding : 2.5em 1em 2.5em 2em;
 /* = - form border / radius */
 $form-border : $app-elmt-border-size solid $color-neutral;
 $form-radius : $app-elmt-border-radius;
 
 /* == Form field */
 /* = - form field margin / padding */
-$form--field-margin-top : 1.5em;
+$form--field-margin-top : 2em;
 $form--field-padding : 0 1em;
 
 /* == Form field--label */
@@ -65,7 +72,7 @@ $form--field-padding : 0 1em;
 $field--label-required-after-color: red;
 /* == - Field label padding/margin/width */
 $field--label-margin: 0em 1.5em -0.5em 1.5em;
-$field--label-padding: 0 0.75em;
+$field--label-padding: 0 1em;
 $field--label-width: max-content;
 
 /* == Form field--input */
@@ -75,9 +82,9 @@ $field--input-focus-scale-transform: 1.05;
 $field--input-margin: 0;
 $field--input-padding: 0.75em 1.5em;
 /* == - Field input border /  radius */
-$field--input-border-radius: $app-elmt-border-radius;
 $field--input-border: $app-elmt-border-size solid $color-action;
 $field--input-border-focused: $app-elmt-border-size solid $color-action--darker;
+$field--input-border-radius: $app-elmt-border-radius;
 /* == - Field input color */
 $field--input-bcg: inherit;
 

@@ -14,7 +14,7 @@ import TextArea from "./TextArea";
  * @param {*} props {onSubmit, fontSize, children}
  */
 const Form = ({ onSubmit, fontSize, children }) => (
-  <form className="form" onSubmit={onSubmit} font-size={`${fontSize}`}>
+  <form className="form" onSubmit={onSubmit} data-fontsize={`${fontSize}`}>
     {children}
   </form>
 );

@@ -32,7 +32,7 @@ const Button = ({
       negative: negative,
       neutral: !(positive || negative),
     })}
-    font-size={`${fontSize}`}
+    data-fontsize={`${fontSize}`}
   >
     {icon && (
       <svg className={cx("icon", { padded: content })} aria-hidden="true">

@@ -43,6 +43,7 @@ const Home = () => {
         <Form fontSize="M">
           <InputDate
             type="date"
+            autoFocus
             required
             label="S"
             value={value}

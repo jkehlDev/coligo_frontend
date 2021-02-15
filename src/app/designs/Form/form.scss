@@ -182,6 +182,8 @@
           padding: $field--input-padding;
           /* border / radius */
           border: $field--input-border;
+          border-left: none;
+          border-right: none;
           border-radius: $field--input-border-radius;
           outline: none;
           /* text style */
@@ -192,17 +194,27 @@
           transition: transform ease-in-out 250ms, border ease-in-out 250ms;
           &.error {
             border: $field--input-border--error;
+            border-left: none;
+            border-right: none;
           }
           &.valide {
             border: $field--input-border--valide;
+            border-left: none;
+            border-right: none;
           }
           &:focus {
             border: $field--input-border--focused;
+            border-left: none;
+            border-right: none;
             &.error {
               border: $field--input-border--error--focused;
+              border-left: none;
+              border-right: none;
             }
             &.valide {
               border: $field--input-border--valide--focused;
+              border-left: none;
+              border-right: none;
             }
           }
         }

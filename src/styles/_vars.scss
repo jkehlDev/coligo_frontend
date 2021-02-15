@@ -3,8 +3,8 @@ $app-font-family: "Courier New", Courier, monospace;
 $app-font-weigt--normal: 300;
 $app-font-weigt--bold: 600;
 /* Border */
-$app-elmt-border-radius: 2em;
-$app-elmt-border-size: 4px;
+$app-elmt-border-radius: 1em;
+$app-elmt-border-size: 3.5px;
 /* Colors */
 /* - action */
 $color-action: rgb(60, 60, 240);
@@ -16,8 +16,8 @@ $color-positive--darker: rgb(30, 150, 30);
 $color-negative: rgb(240, 75, 75);
 $color-negative--darker: rgb(150, 75, 75);
 /* - neutral */
-$color-neutral: rgb(240, 240, 240);
-$color-neutral--darker: rgb(150, 150, 150);
+$color-neutral: rgb(180, 180, 180);
+$color-neutral--darker: rgb(140, 140, 140);
 /* - light / dark */
 $color-light: white;
 $color-dark: black;
@@ -50,19 +50,21 @@ $form--title-padding: 0 0.25em;
 $form--title-border: $app-elmt-border-size solid transparent;
 $form--title-border-radius: $app-elmt-border-radius;
 /* = - form displaying */
-$form-align-items: center;
+$form-align-items: flex-start;
 /* = - form color */
 $form-bcg: $color-light;
 /* = - form margin / padding */
 $form-margin: 2em 0;
-$form-padding: 1.75em 0.5em 1.75em .5em;
+$form-padding: 1.75em 0.5em 1.75em 0.5em;
 /* = - form border / radius */
 $form-border: $app-elmt-border-size solid $color-neutral;
 $form-border--focused: $app-elmt-border-size solid $color-neutral--darker;
 $form-border--invalid: $app-elmt-border-size solid $color-negative;
-$form-border--invalid--focused: $app-elmt-border-size solid $color-negative--darker;
+$form-border--invalid--focused: $app-elmt-border-size solid
+  $color-negative--darker;
 $form-border--valid: $app-elmt-border-size solid $color-positive;
-$form-border--valid--focused: $app-elmt-border-size solid $color-positive--darker;
+$form-border--valid--focused: $app-elmt-border-size solid
+  $color-positive--darker;
 $form-radius: $app-elmt-border-radius;
 
 /* == Form field */
@@ -74,7 +76,7 @@ $form--field-padding: 0 1em;
 /* == - Field label required stamp color */
 $field--label-required-after-color: red;
 /* == - Field label padding/margin/width */
-$field--label-margin: 0em 1em -0.5em 1em;
+$field--label-margin: 0em 2em -0.5em 2em;
 $field--label-padding: 0 1em;
 $field--label-width: max-content;
 
@@ -83,29 +85,29 @@ $field--label-width: max-content;
 $field--input-focus-scale-transform: 1.05;
 /* == - Field input margin / padding */
 $field--input-margin: 0;
-$field--input-padding: 0.75em 1.5em;
+$field--input-padding: 0.75em 1.5em 0.5em 1.5em;
 /* == - Field input border /  radius */
-$field--input-border: $app-elmt-border-size solid $color-action;
+$field--input-border: $app-elmt-border-size solid $color-neutral;
+$field--input-border--focused: $app-elmt-border-size solid $color-neutral--darker;
 $field--input-border--error: $app-elmt-border-size solid $color-negative;
 $field--input-border--error--focused: $app-elmt-border-size solid
   $color-negative--darker;
 $field--input-border--valide: $app-elmt-border-size solid $color-positive;
 $field--input-border--valide--focused: $app-elmt-border-size solid
   $color-positive--darker;
-$field--input-border--focused: $app-elmt-border-size solid $color-action--darker;
 $field--input-border-radius: $app-elmt-border-radius;
 /* == - Field input color */
 $field--input-bcg: inherit;
 
 /* == Form input State */
 /* == - Input state color */
-$field--input-state-color-negative: $color-negative;
-$field--input-state-color-positive: $color-positive;
+$field--input-state-color-negative: $color-negative--darker;
+$field--input-state-color-positive: $color-positive--darker;
 $field--input-state-color-neutral: $color-action--darker;
 /* == - Input state margin / padding */
-$field--input-state-margin: 0 1em 0 -1em;
+$field--input-state-margin: 0 1.5em 0 0;
 $field--input-state-padding: 0;
 /* == - Input state size */
-$field--input-state-size: 1em;
+$field--input-state-size: 1.25em;
 /* == - Input state border bottom */
 $field--input-border-bottom: $app-elmt-border-size dotted $color-action;

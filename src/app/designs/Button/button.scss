@@ -92,8 +92,8 @@
   }
   &.neutral {
     background-color: $button-bcg--neutral;
-    color: $button-content-color-dark;
-    stroke: $button-content-color-dark;
+    color: $button-content-color-light;
+    stroke: $button-content-color-light;
     &:hover {
       transition: all ease-in-out 300ms;
       border: $button-border $button-border--neutral;

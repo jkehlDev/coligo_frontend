@@ -4,24 +4,32 @@
   &--section {
     /* Displaying part */
     display: flex;
+    box-sizing: border-box;
     flex-direction: column;
     flex-wrap: nowrap;
     justify-content: flex-start;
     align-items: center;
-    flex-shrink: 0;
-    flex-grow: 0;
-    width: max-content;
+    width: auto;
+    max-width: max-content;
     /* margin / padding */
     margin: $form-margin;
     padding: 0;
     /* Background */
     background-color: $form-bcg;
     &--title {
+      display: block;
+      box-sizing: border-box;
+      width: auto;
+      max-width: max-content;
+      flex-shrink: 0;
+      flex-grow: 0;
       /* margin / padding */
       margin: $form--title-margin;
       padding: $form--title-padding;
       /* Text presentation */
       line-height: 1.2em;
+      word-wrap: break-word;
+      text-align: center;
       /* z-index */
       z-index: 2;
       /* Background */
@@ -34,11 +42,14 @@
   &--content {
     /* Displaying part */
     display: flex;
+    box-sizing: border-box;
     flex-direction: column;
     flex-wrap: nowrap;
     justify-content: flex-start;
     align-items: $form-align-items;
-    width: $form-width;
+    flex-shrink: 1;
+    flex-grow: 0;
+    width: 100%;
     /* margin / padding */
     margin: 0;
     padding: $form-padding;
@@ -53,8 +64,8 @@
       flex-direction: row;
       flex-wrap: nowrap;
       justify-content: flex-start;
-      align-items: flex-start;
-      flex-shrink: 0;
+      align-items: center;
+      flex-shrink: 1;
       flex-grow: 0;
       width: fit-content;
       /* Background */
@@ -124,7 +135,7 @@
         flex-wrap: nowrap;
         justify-content: flex-start;
         align-items: center;
-        flex-shrink: 0;
+        flex-shrink: 1;
         flex-grow: 0;
         width: max-content;
         /* Background */
@@ -153,7 +164,8 @@
           word-break: keep-all;
           /* Sizing */
           box-sizing: border-box;
-          width: $field--label-width;
+          width: 100%;
+          max-width: max-content;
           /* background */
           background-color: inherit;
           z-index: 1;
@@ -172,15 +184,38 @@
           border: $field--input-border;
           border-radius: $field--input-border-radius;
           outline: none;
+          /* text style */
+          text-align: center;
           /* background */
           background-color: inherit;
           /* Transformation - transition */
           transition: transform ease-in-out 250ms;
+          &.error {
+            border: $field--input-border--error;
+          }
+          &.valide {
+            border: $field--input-border--valide;
+          }
           &:focus {
-            border: $field--input-border-focused;
+            border: $field--input-border--focused;
+            &.error {
+              border: $field--input-border--error--focused;
+            }
+            &.valide {
+              border: $field--input-border--valide--focused;
+            }
           }
         }
       }
     }
+    &:invalid{
+      border: $form-border--error;
+    }
+    &:focus-within {
+      border: $form-border--focused;
+      &:invalid{
+        border: $form-border--error--focused;
+      }
+    }    
   }
 }

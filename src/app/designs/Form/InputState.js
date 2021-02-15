@@ -20,30 +20,12 @@ function getState(required, emptied, validated) {
     : "x-circle";
 }
 
-function getDefaultToolTips(required, emptied, validated) {
-  return required
-    ? emptied
-      ? "Saisie obligatoire, veuillez compléter."
-      : validated
-      ? "Votre saisie est correcte."
-      : "Votre saisie est incorrecte. Veuillez corriger."
-    : emptied
-    ? "Saisie non obligatoire, vous pouvez compléter si necessaire"
-    : validated
-    ? "Votre saisie est correcte."
-    : "Votre saisie est incorrecte, veuillez corriger.";
-}
-
 /**
  * @function InputState InputState design react component
  * @param {*} props {}
  */
 const InputState = ({ required, emptied, validated, toolTips }) => {
   const state = getState(required, emptied, validated);
-  toolTips =
-    toolTips !== undefined
-      ? toolTips
-      : getDefaultToolTips(required, emptied, validated);
   return (
     <div className="form--content--field--input-state" data-tips={`${toolTips}`}>
       <svg
@@ -66,7 +48,7 @@ InputState.propTypes = {
   required: PropTypes.bool,
   emptied: PropTypes.bool,
   validated: PropTypes.bool,
-  toolTips: PropTypes.string,
+  toolTips: PropTypes.string.isRequired,
 };
 
 /* Props default value definition */
@@ -74,7 +56,6 @@ InputState.defaultProps = {
   required: false,
   emptied: true,
   validated: false,
-  toolTips: undefined,
 };
 
 export default InputState;

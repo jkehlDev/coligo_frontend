@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import cx from "classnames";
 
 /* Attached Design components */
 import InputText from "./InputText";
@@ -13,14 +12,18 @@ import TextArea from "./TextArea";
  * @function Form Form design react component
  * @param {*} props {onSubmit, fontSize, children}
  */
-const Form = ({ onSubmit, fontSize, children }) => (
-  <section className="form--section">
-  <h1 className="form--section--title">My form</h1>
-  <form className="form--content" onSubmit={onSubmit} data-fontsize={`${fontSize}`}>
-    {children}
-  </form>
-  </section> 
-);
+const Form = ({ onSubmit, fontSize, children }) => {
+
+  return (
+  <section className="form--section" data-fontsize={`${fontSize}`}>
+    <h1 className="form--section--title">
+      My super long title for my super form
+    </h1>
+    <form className="form--content" onSubmit={onSubmit} >
+      {children}
+    </form>
+  </section>
+)};
 
 /* PropTypes definition */
 Form.propTypes = {

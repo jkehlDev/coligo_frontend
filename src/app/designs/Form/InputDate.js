@@ -22,7 +22,7 @@ function getSize(type) {
 
 /**
  * @function InputDate InputDate design react component
- * @param {*} props {type, label, autocomplete, autofocus, required, min, max, fontSize, value, onChange, isValidate}
+ * @param {*} props {type, label, autocomplete, autofocus, required, min, max, fontSize, value, onChange, validate}
  */
 const InputDate = ({
   type,
@@ -35,7 +35,8 @@ const InputDate = ({
   fontSize,
   value,
   onChange,
-  isValidate,
+  validation,
+  validate,
 }) => {
   const id = camelCase(label);
   let size = getSize(type);
@@ -62,7 +63,8 @@ const InputDate = ({
     size,
     value,
     onChange,
-    isValidate,
+    validation,
+    validate,
   };
   return <GenericInput {...genInputProps} />;
 };
@@ -79,7 +81,11 @@ InputDate.propTypes = {
   fontSize: PropTypes.string,
   value: PropTypes.string.isRequired,
   onChange: PropTypes.func,
-  isValidate: PropTypes.func,
+  validation: PropTypes.shape({
+    state : PropTypes.bool.isRequired,
+    tips: PropTypes.string,
+  }),
+  validate: PropTypes.func,
 };
 
 /* Props default value definition */
@@ -91,8 +97,9 @@ InputDate.defaultProps = {
   min: undefined,
   max: undefined,
   fontSize: "M",
-  onChange: () => {},
-  isValidate: () => true,
+  onChange: undefined,
+  validation: undefined,
+  validate: undefined,
 };
 
 export default InputDate;

@@ -1,9 +1,35 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import cx from "classnames";
 
 /* Attached Design components */
 import InputState from "./InputState";
+
+/* Tools */
+function getDefaultToolTips(required, emptied, validated) {
+  return required
+    ? emptied
+      ? "Saisie obligatoire, veuillez compléter."
+      : validated
+      ? "Votre saisie est correcte."
+      : "Votre saisie est incorrecte. Veuillez corriger."
+    : emptied
+    ? "Saisie non obligatoire, vous pouvez compléter si necessaire"
+    : validated
+    ? "Votre saisie est correcte."
+    : "Votre saisie est incorrecte, veuillez corriger.";
+}
+
+function isValid(value, required, emptied, validate, validation) {
+  const validated = validation === undefined ? validate(value) : validation;
+  return {
+    state: validated.state,
+    tips:
+      validated.tips === undefined
+        ? getDefaultToolTips(required, emptied, validated.state)
+        : validated.tips,
+  };
+}
 
 /**
  * @function GenericInput GenericInput design react component
@@ -17,11 +43,13 @@ const GenericInput = (props) => {
     required,
     fontSize,
     value,
-    isValidate,
+    validation,
+    validate,
+    onChange,
     ...othersProps
   } = props;
   const emptied = value.trim() === "";
-  const validated = isValidate(value);
+  const validated = isValid(value, required, emptied, validate, validation);
   return (
     <div className="form--content--field" data-fontsize={fontSize}>
       <InputState
@@ -36,9 +64,32 @@ const GenericInput = (props) => {
         </label>
         <input
           id={id}
-          className={cx("form--content--field--box--input", inputClassName)}
+          onChange={(event) => {
+            const targetValue = event.target.value;
+            const targetEmptied = targetValue.trim() === "";
+            const targetValidated = isValid(
+              targetValue,
+              required,
+              targetEmptied,
+              validate,
+              undefined
+            );
+            if (!targetValidated.state && !targetEmptied) {
+              event.target.setCustomValidity(targetValidated.tips);
+            } else {
+              event.target.setCustomValidity("");
+            }
+            onChange(event);
+          }}
+          className={cx("form--content--field--box--input", inputClassName, {
+            error: !validated.state && !emptied,
+            valide: validated.state && !emptied,
+          })}
           title={label}
           value={value}
+          aria-required={required}
+          aria-invalid={!validated.state && !emptied}
+          aria-errormessage={validated.tips}
           required={required}
           {...othersProps}
         />
@@ -66,7 +117,11 @@ GenericInput.propTypes = {
   size: PropTypes.number,
   value: PropTypes.string.isRequired,
   onChange: PropTypes.func,
-  isValidate: PropTypes.func,
+  validation: PropTypes.shape({
+    state: PropTypes.bool.isRequired,
+    tips: PropTypes.string,
+  }),
+  validate: PropTypes.func,
 };
 
 /* Props default value definition */
@@ -83,7 +138,8 @@ GenericInput.defaultProps = {
   required: false,
   size: undefined,
   onChange: () => {},
-  isValidate: () => true,
+  validation: undefined,
+  validate: () => ({ state: true }),
 };
 
 export default GenericInput;

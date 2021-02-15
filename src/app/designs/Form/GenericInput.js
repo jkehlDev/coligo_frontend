@@ -14,7 +14,7 @@ function getDefaultToolTips(required, emptied, validated) {
       ? "Votre saisie est correcte."
       : "Votre saisie est incorrecte. Veuillez corriger."
     : emptied
-    ? "Saisie non obligatoire, vous pouvez compléter si necessaire"
+    ? "Saisie facultative, vous pouvez compléter si nécessaire"
     : validated
     ? "Votre saisie est correcte."
     : "Votre saisie est incorrecte, veuillez corriger.";

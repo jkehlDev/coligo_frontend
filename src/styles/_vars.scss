@@ -3,7 +3,7 @@ $app-font-family: "Courier New", Courier, monospace;
 $app-font-weigt--normal: 300;
 $app-font-weigt--bold: 600;
 /* Border */
-$app-elmt-border-radius: 1em;
+$app-elmt-border-radius: 2em;
 $app-elmt-border-size: 4px;
 /* Colors */
 /* - action */
@@ -46,7 +46,7 @@ $button-content-color-dark: $color-dark;
 /* = Form */
 /* = - Title part */
 $form--title-margin: 0 1em -0.8em 1em;
-$form--title-padding: 0 0.5em;
+$form--title-padding: 0 0.25em;
 $form--title-border: $app-elmt-border-size solid transparent;
 $form--title-border-radius: $app-elmt-border-radius;
 /* = - form displaying */
@@ -55,12 +55,14 @@ $form-align-items: center;
 $form-bcg: $color-light;
 /* = - form margin / padding */
 $form-margin: 2em 0;
-$form-padding: 1.5em 0.5em 1.5em 1.5em;
+$form-padding: 1.75em 0.5em 1.75em .5em;
 /* = - form border / radius */
 $form-border: $app-elmt-border-size solid $color-neutral;
 $form-border--focused: $app-elmt-border-size solid $color-neutral--darker;
-$form-border--error: $app-elmt-border-size solid $color-negative;
-$form-border--error--focused: $app-elmt-border-size solid $color-negative--darker;
+$form-border--invalid: $app-elmt-border-size solid $color-negative;
+$form-border--invalid--focused: $app-elmt-border-size solid $color-negative--darker;
+$form-border--valid: $app-elmt-border-size solid $color-positive;
+$form-border--valid--focused: $app-elmt-border-size solid $color-positive--darker;
 $form-radius: $app-elmt-border-radius;
 
 /* == Form field */

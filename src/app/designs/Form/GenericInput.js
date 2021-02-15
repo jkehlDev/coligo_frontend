@@ -82,8 +82,8 @@ const GenericInput = (props) => {
             onChange(event);
           }}
           className={cx("form--content--field--box--input", inputClassName, {
-            error: !validated.state && !emptied,
-            valide: validated.state && !emptied,
+            error: !validated.state || (emptied && required),
+            valide: !emptied && validated.state,
           })}
           title={label}
           value={value}

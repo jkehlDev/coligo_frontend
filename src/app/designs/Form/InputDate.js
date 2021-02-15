@@ -22,7 +22,7 @@ function getSize(type) {
 
 /**
  * @function InputDate InputDate design react component
- * @param {*} props {type, label, autocomplete, autofocus, required, min, max, fontSize, value, onChange, validate}
+ * @param {*} props 
  */
 const InputDate = ({
   type,
@@ -82,8 +82,13 @@ InputDate.propTypes = {
   value: PropTypes.string.isRequired,
   onChange: PropTypes.func,
   validation: PropTypes.shape({
-    state : PropTypes.bool.isRequired,
+    state: PropTypes.bool.isRequired,
     tips: PropTypes.string,
+    structuredTips:PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.node,
+      PropTypes.arrayOf(PropTypes.node),
+    ]),
   }),
   validate: PropTypes.func,
 };

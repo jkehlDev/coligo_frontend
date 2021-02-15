@@ -87,15 +87,16 @@ $field--input-focus-scale-transform: 1.05;
 $field--input-margin: 0;
 $field--input-padding: 0.75em 1.5em 0.5em 1.5em;
 /* == - Field input border /  radius */
-$field--input-border: $app-elmt-border-size solid $color-neutral;
-$field--input-border--focused: $app-elmt-border-size solid $color-neutral--darker;
-$field--input-border--error: $app-elmt-border-size solid $color-negative;
-$field--input-border--error--focused: $app-elmt-border-size solid
+$field--input-border-size: 2px;
+$field--input-border: $field--input-border-size solid $color-neutral;
+$field--input-border--focused: $field--input-border-size solid $color-neutral--darker;
+$field--input-border--error: $field--input-border-size solid $color-negative;
+$field--input-border--error--focused: $field--input-border-size solid
   $color-negative--darker;
-$field--input-border--valide: $app-elmt-border-size solid $color-positive;
-$field--input-border--valide--focused: $app-elmt-border-size solid
+$field--input-border--valide: $field--input-border-size solid $color-positive;
+$field--input-border--valide--focused: $field--input-border-size solid
   $color-positive--darker;
-$field--input-border-radius: $app-elmt-border-radius;
+$field--input-border-radius: 0.5em;
 /* == - Field input color */
 $field--input-bcg: inherit;
 
@@ -105,9 +106,9 @@ $field--input-state-color-negative: $color-negative--darker;
 $field--input-state-color-positive: $color-positive--darker;
 $field--input-state-color-neutral: $color-action--darker;
 /* == - Input state margin / padding */
-$field--input-state-margin: 0 1.5em 0 0;
+$field--input-state-margin: 1.25em 2em 0 0;
 $field--input-state-padding: 0;
 /* == - Input state size */
 $field--input-state-size: 1.25em;
 /* == - Input state border bottom */
-$field--input-border-bottom: $app-elmt-border-size dotted $color-action;
+$field--input-state-border-bottom: $app-elmt-border-size dotted $color-action;

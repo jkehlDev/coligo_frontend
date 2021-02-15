@@ -17,7 +17,7 @@ const Form = ({ onSubmit, fontSize, children }) => {
   return (
   <section className="form--section" data-fontsize={`${fontSize}`}>
     <h1 className="form--section--title">
-      My super long title for my super form
+      My tiny form
     </h1>
     <form className="form--content" onSubmit={onSubmit} >
       {children}

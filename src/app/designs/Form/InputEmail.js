@@ -8,7 +8,7 @@ import GenericInput from "./GenericInput";
 
 /**
  * @function InputEmail InputEmail design react component
- * @param {*} props {type, label, autocomplete, autofocus, required, min, max, fontSize, value, onChange, validate}
+ * @param {*} props 
  */
 const InputEmail = ({
   label,
@@ -53,7 +53,7 @@ const InputEmail = ({
 /* PropTypes definition */
 InputEmail.propTypes = {
   label: PropTypes.string.isRequired,
-  autoComplete: PropTypes.oneOf(["off", "bday", "bday-month"]),
+  autoComplete: PropTypes.oneOf(["off", "email", "username"]),
   autoFocus: PropTypes.bool,
   required: PropTypes.bool,
   minLength: PropTypes.number,
@@ -66,13 +66,18 @@ InputEmail.propTypes = {
   validation: PropTypes.shape({
     state: PropTypes.bool.isRequired,
     tips: PropTypes.string,
+    structuredTips:PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.node,
+      PropTypes.arrayOf(PropTypes.node),
+    ]),
   }),
   validate: PropTypes.func,
 };
 
 /* Props default value definition */
 InputEmail.defaultProps = {
-  autoComplete: "off",
+  autoComplete: undefined,
   autoFocus: false,
   required: false,
   minLength: undefined,

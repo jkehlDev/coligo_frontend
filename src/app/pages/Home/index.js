@@ -52,7 +52,7 @@ const Home = () => {
           <Button title="plop" negative icon="alert-octagon" fontSize="XXL" />
         </Button.Group>
         <Form
-          fontSize="S"
+          fontSize="M"
           onSubmit={(event) => {
             event.preventDefault();
             console.log('submit');

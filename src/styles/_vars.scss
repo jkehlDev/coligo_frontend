@@ -113,3 +113,28 @@ $field--input-state-padding: 0;
 $field--input-state-size: 1.25em;
 /* == - Input state border bottom */
 $field--input-state-border-bottom: $app-elmt-border-size dotted $color-action;
+
+@mixin flex-column-start-center {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  flex-shrink: 0;
+  flex-grow: 0;
+}
+@mixin flex-column-start-start {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  align-items: flex-end;
+  flex-shrink: 0;
+  flex-grow: 0;
+}
+@mixin flex-column-start-end {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  align-items: flex-end;
+  flex-shrink: 0;
+  flex-grow: 0;
+}

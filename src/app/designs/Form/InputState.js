@@ -24,20 +24,20 @@ function getIconId(required, emptied, validated) {
  * @function InputState InputState design react component
  * @param {*} props {}
  */
-const InputState = ({ required, emptied, validated, toolTips }) => {
-  const [hidedToolTips, setHidedToolTips] = useState(true);
+const InputState = ({ required, emptied, validated, onMouseEnter, onMouseLeave }) => {
+ 
   const [iconId, setIconId] = useState(getIconId(required, emptied, validated));
   useEffect(() => {
     setIconId(getIconId(required, emptied, validated));
   }, [required, emptied, validated]);
   return (
     <div
-      className="form--content--field--input-state"
-      onMouseEnter={() => setHidedToolTips(false)}
-      onMouseLeave={() => setHidedToolTips(true)}
+      className="form--content--field--box--state"
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
     >
       <svg
-        className={cx('form--content--field--input-state--icon', {
+        className={cx('form--content--field--box--state--icon', {
           negative: (!validated && !emptied) || (required && emptied),
           positive: validated && !emptied,
           neutral: !required && emptied,
@@ -46,13 +46,6 @@ const InputState = ({ required, emptied, validated, toolTips }) => {
       >
         <use xlinkHref={`${icons}#${iconId}`} />
       </svg>
-      <aside
-        className={cx('tool-tips', {
-          hide: hidedToolTips,
-        })}
-      >
-        {toolTips}
-      </aside>
     </div>
   );
 };
@@ -62,11 +55,8 @@ InputState.propTypes = {
   required: PropTypes.bool,
   emptied: PropTypes.bool,
   validated: PropTypes.bool,
-  toolTips: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.node,
-    PropTypes.arrayOf(PropTypes.node),
-  ]).isRequired,
+  onMouseEnter: PropTypes.func.isRequired, 
+  onMouseLeave: PropTypes.func.isRequired,
 };
 
 /* Props default value definition */

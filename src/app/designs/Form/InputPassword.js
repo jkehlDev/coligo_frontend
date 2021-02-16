@@ -113,7 +113,7 @@ const InputPassword = ({
   return (
     <>
       <GenericInput {...genInputProps}>
-        <details>
+        <details className="password-description">
           <summary
             className={cx('password-strength', strength.class)}
           >{`Force du mot de passe: ${strength.quality} (${strength.value} bits)`}</summary>

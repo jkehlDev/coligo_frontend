@@ -22,10 +22,13 @@ function getDefaultToolTips(required, emptied, validated) {
 
 function isValid(value, required, emptied, validate, validation) {
   const validated = validation === undefined ? validate(value) : validation;
-  const defaultTips = getDefaultToolTips(required, emptied, validated.state);
+  const defaultTips =
+    validated.tips === undefined
+      ? getDefaultToolTips(required, emptied, validated.state)
+      : validated.tips;
   return {
     state: validated.state,
-    tips: validated.tips === undefined ? defaultTips : validated.tips,
+    tips: defaultTips,
     structuredTips:
       validated.structuredTips === undefined
         ? defaultTips
@@ -56,57 +59,72 @@ const GenericInput = (props) => {
     () => isValid(value, required, emptied, validate, validation),
     [value, required, emptied, validate, validation]
   );
+  const [hidedToolTips, setHidedToolTips] = useState(true);
   return (
-    <div className="form--content--field" data-fontsize={fontSize}>
-      <InputState
-        required={required}
-        validated={validated.state}
-        emptied={emptied}
-        toolTips={validated.structuredTips}
-      />
-      <div className="form--content--field--box">
-        <label className="form--content--field--box--label" htmlFor={id}>
+    <>
+      <div className="form--content--field" data-fontsize={fontSize}>
+        <label className="form--content--field--label" htmlFor={id}>
           {`${label}`}
         </label>
-        <input
-          id={id}
-          className={cx('form--content--field--box--input', inputClassName, {
-            error: !validated.state || (emptied && required),
-            valide: !emptied && validated.state,
+        <div
+          className={cx('form--content--field--box', {
+            invalid: !validated.state || (emptied && required),
+            valid: !emptied && validated.state,
           })}
-          title={label}
-          value={value}
-          onFocus={(event) =>
-            event.target.setCustomValidity(
-              !validated.state && !emptied ? validated.tips : ''
-            )
-          }
-          onChange={(event) => {
-            const targetValue = event.target.value;
-            const targetEmptied = targetValue.trim() === '';
-            const targetValidated = isValid(
-              targetValue,
-              required,
-              targetEmptied,
-              validate,
-              undefined
-            );
-            event.target.setCustomValidity(
-              !targetValidated.state && !targetEmptied
-                ? targetValidated.tips
-                : ''
-            );
-            onChange(event);
-          }}
-          aria-required={required}
-          aria-invalid={!validated.state && !emptied}
-          aria-errormessage={validated.tips}
-          required={required}
-          {...othersProps}
-        />
+        >
+          <InputState
+            required={required}
+            validated={validated.state}
+            emptied={emptied}
+            onMouseEnter={() => setHidedToolTips(false)}
+            onMouseLeave={() => setHidedToolTips(true)}
+          />
+          <input
+            id={id}
+            className={cx('form--content--field--box--input', inputClassName)}
+            title={label}
+            value={value}
+            onFocus={(event) =>
+              event.target.setCustomValidity(
+                !validated.state && !emptied ? validated.tips : ''
+              )
+            }
+            onChange={(event) => {
+              const targetValue = event.target.value;
+              const targetEmptied = targetValue.trim() === '';
+              const targetValidated = isValid(
+                targetValue,
+                required,
+                targetEmptied,
+                validate,
+                undefined
+              );
+              event.target.setCustomValidity(
+                !targetValidated.state && !targetEmptied
+                  ? targetValidated.tips
+                  : ''
+              );
+              onChange(event);
+            }}
+            aria-required={required}
+            aria-invalid={!validated.state && !emptied}
+            aria-errormessage={validated.tips}
+            required={required}
+            {...othersProps}
+          />
+        </div>
         {children}
       </div>
-    </div>
+      <aside className={'tool-tips-box'}>
+        <article
+          className={cx('tool-tips', {
+            show: !hidedToolTips,
+          })}
+        >
+          {validated.structuredTips}
+        </article>
+      </aside>
+    </>
   );
 };
 

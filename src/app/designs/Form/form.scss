@@ -1,247 +1,73 @@
-@import "styles/_vars.scss";
+@import 'styles/_vars.scss';
 
 .form {
   &--section {
-    /* Displaying part */
+    /* Flow rendering */
     display: flex;
-    box-sizing: border-box;
-    flex-direction: column;
-    flex-wrap: nowrap;
+    position: static;
+    flex-flow: column nowrap;
     justify-content: flex-start;
     align-items: center;
-    width: auto;
+    flex-shrink: 0;
+    flex-grow: 0;
+    /* size rendering param */
+    box-sizing: border-box;
+    padding: 0.75em;
+    margin: 0;
+    width: min-content;
+    height: fit-content;
     max-width: max-content;
-    /* margin / padding */
-    margin: $form-margin;
-    padding: 0;
-    /* Background */
+    min-width: min-content;
+    /* Border rendering */
+    border: none;
+    /* Font, color, bckg */
     background-color: $form-bcg;
+    /* Sub elements */
     &--title {
+      /* Flow rendering */
       display: block;
-      box-sizing: border-box;
-      width: auto;
-      max-width: max-content;
+      position: static;
       flex-shrink: 0;
       flex-grow: 0;
-      /* margin / padding */
-      margin: $form--title-margin;
-      padding: $form--title-padding;
-      /* Text presentation */
+      z-index: 1;
+      /* size rendering param */
+      box-sizing: border-box;
+      padding: 0;
+      margin: 0 0 -0.5em 0;
+      width: auto;
+      height: fit-content;
+      max-width: max-content;
+      min-width: min-content;
+      /* Border rendering */
+      border: none;
+      border-radius: 0;
+      /* Font, color, bckg */
+      background-color: inherit;
       line-height: 1.2em;
       word-wrap: break-word;
       text-align: center;
-      /* z-index */
-      z-index: 2;
-      /* Background */
-      background-color: inherit;
-      /* border / radius */
-      border: $form--title-border;
-      border-radius: $form--title-border-radius;
     }
   }
+  /* Sub elements */
   &--content {
-    /* Displaying part */
+    /* Flow rendering */
     display: flex;
-    box-sizing: border-box;
-    flex-direction: column;
-    flex-wrap: nowrap;
+    position: static;
+    flex-flow: column nowrap;
     justify-content: flex-start;
-    align-items: $form-align-items;
+    align-items: center;
     flex-shrink: 0;
     flex-grow: 0;
-    width: 100%;
-    /* margin / padding */
+    /* size rendering param */
+    box-sizing: border-box;
+    padding: 1.5em;
     margin: 0;
-    padding: $form-padding;
-    /* Background */
-    background-color: inherit;
-    border-radius: $form-radius;
-    /* Transitions */
-    transition: border ease-in-out 250ms;
-    &--field {
-      /* Displaying part */
-      display: flex;
-      box-sizing: border-box;
-      flex-direction: row;
-      flex-wrap: nowrap;
-      justify-content: flex-start;
-      align-items: flex-start;
-      flex-shrink: 1;
-      flex-grow: 0;
-      min-width: max-content;
-      width: 100%;
-      /* Background */
-      background-color: inherit;
-      /* margin / padding */
-      &:not(:first-child) {
-        margin-top: $form--field-margin-top;
-      }
-      padding: $form--field-padding;
-
-      &--input-state {
-        /* Displaying part */
-        display: inline-block;
-        flex-shrink: 0;
-        flex-grow: 0;
-        box-sizing: border-box;
-        position: relative;
-        box-sizing: border-box;
-        width: fit-content;
-        height: fit-content;
-        /* margin / padding */
-        padding: $field--input-state-padding;
-        margin: $field--input-state-margin;
-        /* Boder */
-        border-bottom: $field--input-state-border-bottom;
-        /* Cursor */
-        cursor: help;
-        &--icon {
-          /* Displaying part */
-          width: $field--input-state-size;
-          height: $field--input-state-size;
-          /* Color */
-          fill: none;
-          stroke-width: 1.9px;
-          &.negative {
-            stroke: $field--input-state-color-negative;
-          }
-          &.positive {
-            stroke: $field--input-state-color-positive;
-          }
-          &.neutral {
-            stroke: $field--input-state-color-neutral;
-          }
-        }
-        .tool-tips {
-          display: block;
-          position: absolute;
-          left: 0;
-          top: 2em;
-          z-index: 2;
-          max-width: 40em;
-          min-width: 20em;
-          width: fit-content;
-          padding: 0.5em;
-          border: 1px solid $color-neutral;
-          color: $color-dark;
-          background-color: $color-light;
-          text-align: justify;
-          font-size: 1em;
-          &.hide {
-            display: none;
-          }
-        }
-      }
-      &--box {
-        /* Displaying part */
-        display: flex;
-        flex-direction: column;
-        flex-wrap: nowrap;
-        justify-content: flex-start;
-        align-items: center;
-        flex-shrink: 1;
-        flex-grow: 0;
-        min-width: max-content;
-        width: 100%;
-        /* Background */
-        background-color: inherit;
-        /* Transitions */
-        transition: transform ease-in-out 250ms;
-        &:focus-within {
-          transform: scale($field--input-focus-scale-transform);
-        }
-        &:hover {
-          transform: scale($field--input-focus-scale-transform);
-        }
-        &--label {
-          /* Displaying part */
-          display: block;
-          flex-shrink: 0;
-          flex-grow: 0;
-          /* margin / padding */
-          margin: $field--label-margin;
-          padding: $field--label-padding;
-          /* Text font / transform */
-          text-align: center;
-          text-transform: capitalize;
-          font-weight: bold;
-          line-height: 1em;
-          word-break: keep-all;
-          /* Sizing */
-          box-sizing: border-box;
-          width: 100%;
-          max-width: max-content;
-          /* background */
-          background-color: inherit;
-          z-index: 1;
-        }
-        &--input {
-          /* Displaying part */
-          display: block;
-          flex-shrink: 0;
-          flex-grow: 0;
-          box-sizing: border-box;
-          width: 100%;
-          /* margin / padding */
-          margin: $field--input-margin;
-          padding: $field--input-padding;
-          /* border / radius */
-          border: $field--input-border;
-          border-left: none;
-          border-right: none;
-          border-radius: $field--input-border-radius;
-          outline: none;
-          /* text style */
-          text-align: center;
-          /* background */
-          background-color: inherit;
-          /* Transformation - transition */
-          transition: transform ease-in-out 250ms, border ease-in-out 250ms;
-          &.error {
-            border: $field--input-border--error;
-            border-left: none;
-            border-right: none;
-          }
-          &.valide {
-            border: $field--input-border--valide;
-            border-left: none;
-            border-right: none;
-          }
-          &:focus {
-            border: $field--input-border--focused;
-            border-left: none;
-            border-right: none;
-            &.error {
-              border: $field--input-border--error--focused;
-              border-left: none;
-              border-right: none;
-            }
-            &.valide {
-              border: $field--input-border--valide--focused;
-              border-left: none;
-              border-right: none;
-            }
-          }
-          +*{
-            margin-top: 1em;
-          }
-        }
-        .password-strength {
-          &.bad {
-            color: $color-negative;
-          }
-          &.good {
-            color: $color-dark;
-          }
-          &.strong {
-            color: $color-positive--darker;
-          }
-          &.very-strong {
-            color: $color-positive--darker;
-          }
-        }
-      }
-    }
+    width: 100%;
+    height: fit-content;
+    max-width: none;
+    min-width: max-content;
+    /* Border rendering */
+    outline: none;
     &:invalid {
       border: $form-border--invalid;
       border-top: none;
@@ -262,6 +88,256 @@
         border: $form-border--valid--focused;
         border-top: none;
         border-bottom: none;
+      }
+    }
+    border-radius: $form-radius;
+    /* Font, color, bckg */
+    background-color: inherit;
+    /* Animation / Transitions rendering */
+    transition: border ease-in-out 250ms;
+    /* Sub elements */
+    &--field {
+      /* Flow rendering */
+      display: flex;
+      position: static;
+      flex-flow: column nowrap;
+      justify-content: flex-start;
+      align-items: center;
+      flex-shrink: 0;
+      flex-grow: 0;
+      /* size rendering param */
+      box-sizing: border-box;
+      padding: 0.25em;
+      margin: 0;
+      &:not(:first-child) {
+        margin-top: $form--field-margin-top;
+      }
+      width: 100%;
+      height: fit-content;
+      max-width: none;
+      min-width: max-content;
+      /* Border rendering */
+      border: none;
+      outline: none;
+      /* Font, color, bckg */
+      background-color: inherit;
+      /* Sub elements */
+      &--label {
+        /* Flow rendering */
+        display: block;
+        position: static;
+        flex-shrink: 0;
+        flex-grow: 0;
+        z-index: 1;
+        /* size rendering param */
+        box-sizing: border-box;
+        padding: 0 1em;
+        margin: 0 0 -0.5em 0;
+        width: fit-content;
+        height: fit-content;
+        max-width: none;
+        min-width: max-content;
+        /* Border rendering */
+        border: none;
+        outline: none;
+        /* Font, color, bckg */
+        text-align: center;
+        text-transform: capitalize;
+        font-weight: bold;
+        line-height: 1em;
+        word-break: keep-all;
+        background-color: inherit;
+      }
+
+      &--box {
+        /* Flow rendering */
+        display: flex;
+        position: static;
+        flex-flow: row nowrap;
+        justify-content: space-around;
+        align-items: center;
+        flex-shrink: 0;
+        flex-grow: 0;
+        /* size rendering param */
+        box-sizing: border-box;
+        padding: 0.75em 0.5em;
+        margin: 0;
+        width: 100%;
+        height: fit-content;
+        max-width: none;
+        min-width: max-content;
+        /* Border rendering */
+        border: $field--input-border;
+        border-left: none;
+        border-right: none;
+        border-radius: $field--input-border-radius;
+        &.invalid {
+          border: $field--input-border--error;
+          border-left: none;
+          border-right: none;
+          &:focus-within {
+            border: $field--input-border--error--focused;
+            border-left: none;
+            border-right: none;
+          }
+        }
+        &.valid {
+          border: $field--input-border--valide;
+          border-left: none;
+          border-right: none;
+          &:focus-within {
+            border: $field--input-border--valide--focused;
+            border-left: none;
+            border-right: none;
+          }
+        }
+        /* Font, color, bckg */
+        background-color: inherit;
+        /* Animation / Transitions rendering */
+        transition: transform ease-in-out 250ms, border ease-in-out 250ms;
+        &:focus-within {
+          transform: scale($field--input-focus-scale-transform);
+        }
+        &:hover {
+          transform: scale($field--input-focus-scale-transform);
+        }
+        /* Sub elements */
+        &--state {
+          /* Displaying part */
+          display: block;
+          position: static;
+          flex-shrink: 0;
+          flex-grow: 0;
+          z-index: 1;
+          /* size rendering param */
+          box-sizing: border-box;
+          padding: 0;
+          margin: 0;
+          width: fit-content;
+          height: fit-content;
+          /* Border rendering */
+          /* border-bottom: $field--input-state-border-bottom; */
+          /* Cursor */
+          cursor: help;
+          &--icon {
+            /* Displaying part */
+            display: block;
+            position: static;
+            /* size rendering param */
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+            width: $field--input-state-size;
+            height: $field--input-state-size;
+            /* Color */
+            fill: none;
+            stroke-width: 1.9px;
+            &.negative {
+              stroke: $field--input-state-color-negative;
+            }
+            &.positive {
+              stroke: $field--input-state-color-positive;
+            }
+            &.neutral {
+              stroke: $field--input-state-color-neutral;
+            }
+          }
+        }
+
+        &--input {
+          /* Flow rendering */
+          display: block;
+          flex-shrink: 0;
+          flex-grow: 1;
+          z-index: 0;
+          /* size rendering param */
+          box-sizing: border-box;
+          padding: 0 1em;
+          margin: 0 0 0 -1em;
+          height: fit-content;
+          max-width: none;
+          min-width: max-content;
+          /* Border rendering */
+          border: none;
+          outline: none;
+          /* Font, color, bckg */
+          text-align: center;
+          background-color: inherit;
+        }
+      }
+      .password-description {
+        position: static;
+        margin-top: 0.5em;
+        .password-strength {
+          &.bad {
+            color: $color-negative;
+          }
+          &.good {
+            color: $color-dark;
+          }
+          &.strong {
+            color: $color-positive--darker;
+          }
+          &.very-strong {
+            color: $color-positive--darker;
+          }
+        }
+      }
+    }
+    .tool-tips-box {
+      /* Displaying part */
+      display: block;
+      position: relative;
+      /* size rendering param */
+      box-sizing: border-box;
+      padding: 0;
+      margin: 0;
+      width: 100%;
+      height: fit-content;
+      transition: all ease-in-out 1000ms;
+      .tool-tips {
+        /* Flow rendering */
+        display: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 2;
+        flex-shrink: 0;
+        flex-grow: 0;
+        /* size rendering param */
+        box-sizing: border-box;
+        padding: 1em;
+        margin: 0;
+        width: 100%;
+        height: fit-content;
+        max-width: none;
+        min-width: min-content;
+        /* Border rendering */
+        border-radius: 0.5em;
+        /* Font, color, bckg*/
+        background-color: rgba(255, 255, 240, 0.95);
+        box-shadow: 0px 2px 5px black;
+
+        color: $color-dark;
+        text-align: justify;
+        font-size: 1em;
+        word-wrap: break-word;
+        font-weight: bolder;
+        &.show {
+          display: block;
+          animation: 50ms ease-out 250ms both poping;
+        }
+        &::before {
+          content: '';
+          position: absolute;
+          top: -10px;
+          left: calc(50% - 10px);
+          width: 0;
+          height: 0;
+          border-bottom: 10px solid rgba(255, 255, 240, 1);
+          border-left: 10px solid transparent;
+          border-right: 10px solid transparent;
+        }
       }
     }
   }

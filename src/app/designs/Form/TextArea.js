@@ -1,15 +1,12 @@
-import React from "react";
-import PropTypes from "prop-types";
-import cx from "classnames";
+import React from 'react';
+import PropTypes from 'prop-types';
+import cx from 'classnames';
 
 /**
  * @function TextArea TextArea design react component
  * @param {*} props {title, onChange, size, content}
  */
-const TextArea = (props) => (
-  <></>
-);
-
+const TextArea = (props) => <></>;
 
 /* PropTypes definition */
 TextArea.propTypes = {

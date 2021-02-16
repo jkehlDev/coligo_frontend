@@ -1,29 +1,29 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
 /* Externals react components */
 
 /* Business react components */
 
 /* Designs react components */
-import { Button, Form } from "app/designs";
-import InputDate from "app/designs/Form/InputDate";
-import InputEmail from "app/designs/Form/InputEmail";
-import InputPassword from "app/designs/Form/InputPassword";
+import { Button, Form } from 'app/designs';
+import InputDate from 'app/designs/Form/InputDate';
+import InputEmail from 'app/designs/Form/InputEmail';
+import InputPassword from 'app/designs/Form/InputPassword';
 
 /**
  * @function Home Home page react component
  */
 const Home = () => {
-  const [email, setEmail] = useState("plop@plop.pop");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState('plop@plop.pop');
+  const [password, setPassword] = useState('');
   const [emailValidation, setEmailValidation] = useState({
     state: false,
-    tips: "Email déjà existant veuillez recommencer avec un autre",
+    tips: 'Email déjà existant veuillez recommencer avec un autre',
   });
-  const [date, setDate] = useState("");
-  const [month, setMonth] = useState("");
-  const [week, setWeek] = useState("");
-  const [time, setTime] = useState("");
+  const [date, setDate] = useState('');
+  const [month, setMonth] = useState('');
+  const [week, setWeek] = useState('');
+  const [time, setTime] = useState('');
   return (
     <>
       <header></header>
@@ -55,7 +55,7 @@ const Home = () => {
           fontSize="S"
           onSubmit={(event) => {
             event.preventDefault();
-            console.log("submit");
+            console.log('submit');
           }}
         >
           <InputEmail

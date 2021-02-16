@@ -15,10 +15,10 @@ const local = {
     }
   },
 
-/**
- * @method saveState
- * @param {Object} state : Target object to save inner local storage state index
- */
+  /**
+   * @method saveState
+   * @param {Object} state : Target object to save inner local storage state index
+   */
   saveState: (state) => {
     try {
       const serializedState = JSON.stringify(state);

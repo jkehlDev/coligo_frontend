@@ -1,5 +1,5 @@
 /* == FONT == */
-$app-font-family: "Courier New", Courier, monospace;
+$app-font-family: 'Courier New', Courier, monospace;
 $app-font-weigt--normal: 300;
 $app-font-weigt--bold: 600;
 /* Border */
@@ -89,7 +89,8 @@ $field--input-padding: 0.75em 1.5em 0.5em 1.5em;
 /* == - Field input border /  radius */
 $field--input-border-size: 2px;
 $field--input-border: $field--input-border-size solid $color-neutral;
-$field--input-border--focused: $field--input-border-size solid $color-neutral--darker;
+$field--input-border--focused: $field--input-border-size solid
+  $color-neutral--darker;
 $field--input-border--error: $field--input-border-size solid $color-negative;
 $field--input-border--error--focused: $field--input-border-size solid
   $color-negative--darker;

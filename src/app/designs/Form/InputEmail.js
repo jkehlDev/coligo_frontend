@@ -1,14 +1,14 @@
-import React from "react";
-import PropTypes from "prop-types";
-import camelCase from "camelcase";
-import emailValidator from "email-validator";
+import React, { useMemo } from 'react';
+import PropTypes from 'prop-types';
+import camelCase from 'camelcase';
+import emailValidator from 'email-validator';
 
 /* Attached Design components */
-import GenericInput from "./GenericInput";
+import GenericInput from './GenericInput';
 
 /**
  * @function InputEmail InputEmail design react component
- * @param {*} props 
+ * @param {*} props
  */
 const InputEmail = ({
   label,
@@ -25,35 +25,53 @@ const InputEmail = ({
   validation,
   validate,
 }) => {
-  const id = camelCase(label);
-  const genInputProps = {
-    type: "email",
-    id,
-    name: id,
-    label,
-    autoComplete,
-    autoFocus,
-    inputClassName: "",
-    min: undefined,
-    minLength,
-    max: undefined,
-    maxLength,
-    placeholder,
-    fontSize,
-    required,
-    size,
-    value,
-    onChange,
-    validation,
-    validate,
-  };
+  const id = useMemo(() => camelCase(label), [label]);
+  const genInputProps = useMemo(
+    () => ({
+      type: 'email',
+      id,
+      name: id,
+      label,
+      autoComplete,
+      autoFocus,
+      inputClassName: '',
+      min: undefined,
+      minLength,
+      max: undefined,
+      maxLength,
+      placeholder,
+      fontSize,
+      required,
+      size,
+      value,
+      onChange,
+      validation,
+      validate,
+    }),
+    [
+      autoComplete,
+      autoFocus,
+      fontSize,
+      id,
+      label,
+      maxLength,
+      minLength,
+      onChange,
+      placeholder,
+      required,
+      size,
+      validate,
+      validation,
+      value,
+    ]
+  );
   return <GenericInput {...genInputProps} />;
 };
 
 /* PropTypes definition */
 InputEmail.propTypes = {
   label: PropTypes.string.isRequired,
-  autoComplete: PropTypes.oneOf(["off", "email", "username"]),
+  autoComplete: PropTypes.oneOf(['off', 'email', 'username']),
   autoFocus: PropTypes.bool,
   required: PropTypes.bool,
   minLength: PropTypes.number,
@@ -66,7 +84,7 @@ InputEmail.propTypes = {
   validation: PropTypes.shape({
     state: PropTypes.bool.isRequired,
     tips: PropTypes.string,
-    structuredTips:PropTypes.oneOfType([
+    structuredTips: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.node,
       PropTypes.arrayOf(PropTypes.node),
@@ -83,14 +101,14 @@ InputEmail.defaultProps = {
   minLength: undefined,
   maxLength: undefined,
   size: undefined,
-  fontSize: "M",
+  fontSize: 'M',
   onChange: undefined,
   validation: undefined,
   validate: (value) => {
     const state = emailValidator.validate(value);
     return {
       state,
-      tips: state ? undefined : "Veuillez saisir une adresse email valide.",
+      tips: state ? undefined : 'Veuillez saisir une adresse email valide.',
     };
   },
 };

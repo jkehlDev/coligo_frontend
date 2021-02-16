@@ -1,15 +1,12 @@
-import React from "react";
-import PropTypes from "prop-types";
-import cx from "classnames";
+import React from 'react';
+import PropTypes from 'prop-types';
+import cx from 'classnames';
 
 /**
  * @function InputText InputText design react component
  * @param {*} props {title, onChange, size, content}
  */
-const InputText = (props) => (
-  <></>
-);
-
+const InputText = (props) => <></>;
 
 /* PropTypes definition */
 InputText.propTypes = {
@@ -27,4 +24,3 @@ InputText.defaultProps = {
 };
 
 export default InputText;
-

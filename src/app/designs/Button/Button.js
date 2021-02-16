@@ -1,12 +1,12 @@
-import React from "react";
-import PropTypes from "prop-types";
-import cx from "classnames";
+import React from 'react';
+import PropTypes from 'prop-types';
+import cx from 'classnames';
 
 /* Attached Design components */
-import BtGroup from "./BtGroup";
+import BtGroup from './BtGroup';
 
 /* SVG icon asset */
-import icons from "app/designs/icon-sprite.svg";
+import icons from 'app/designs/icon-sprite.svg';
 
 /**
  * @function Button Button design react component
@@ -24,10 +24,10 @@ const Button = ({
 }) => (
   <button
     title={`${title}`}
-    aria-label={icon ? `${title}` : ""}
+    aria-label={icon ? `${title}` : ''}
     type={`${type}`}
     onClick={onClick}
-    className={cx("button", {
+    className={cx('button', {
       positive: positive,
       negative: negative,
       neutral: !(positive || negative),
@@ -35,7 +35,7 @@ const Button = ({
     data-fontsize={`${fontSize}`}
   >
     {icon && (
-      <svg className={cx("icon", { padded: content })} aria-hidden="true">
+      <svg className={cx('icon', { padded: content })} aria-hidden="true">
         <use xlinkHref={`${icons}#${icon}`} />
       </svg>
     )}
@@ -58,7 +58,7 @@ Button.propTypes = {
 
 /* Props default value definition */
 Button.defaultProps = {
-  type: "button",
+  type: 'button',
   onClick: () => {},
   positive: false,
   negative: false,

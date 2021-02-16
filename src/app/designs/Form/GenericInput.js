@@ -1,23 +1,23 @@
-import React from "react";
-import PropTypes from "prop-types";
-import cx from "classnames";
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import PropTypes from 'prop-types';
+import cx from 'classnames';
 
 /* Attached Design components */
-import InputState from "./InputState";
+import InputState from './InputState';
 
 /* Tools */
 function getDefaultToolTips(required, emptied, validated) {
   return required
     ? emptied
-      ? "Saisie obligatoire, veuillez compléter."
+      ? 'Saisie obligatoire, veuillez compléter.'
       : validated
-      ? "Votre saisie est correcte."
-      : "Votre saisie est incorrecte. Veuillez corriger."
+      ? 'Votre saisie est correcte.'
+      : 'Votre saisie est incorrecte. Veuillez corriger.'
     : emptied
-    ? "Saisie facultative, vous pouvez compléter si nécessaire"
+    ? 'Saisie facultative, vous pouvez compléter si nécessaire'
     : validated
-    ? "Votre saisie est correcte."
-    : "Votre saisie est incorrecte, veuillez corriger.";
+    ? 'Votre saisie est correcte.'
+    : 'Votre saisie est incorrecte, veuillez corriger.';
 }
 
 function isValid(value, required, emptied, validate, validation) {
@@ -25,10 +25,7 @@ function isValid(value, required, emptied, validate, validation) {
   const defaultTips = getDefaultToolTips(required, emptied, validated.state);
   return {
     state: validated.state,
-    tips:
-      validated.tips === undefined
-        ? defaultTips
-        : validated.tips,
+    tips: validated.tips === undefined ? defaultTips : validated.tips,
     structuredTips:
       validated.structuredTips === undefined
         ? defaultTips
@@ -54,8 +51,11 @@ const GenericInput = (props) => {
     children,
     ...othersProps
   } = props;
-  const emptied = value.trim() === "";
-  const validated = isValid(value, required, emptied, validate, validation);
+  const emptied = useMemo(() => value.trim() === '', [value]);
+  const validated = useMemo(
+    () => isValid(value, required, emptied, validate, validation),
+    [value, required, emptied, validate, validation]
+  );
   return (
     <div className="form--content--field" data-fontsize={fontSize}>
       <InputState
@@ -70,16 +70,20 @@ const GenericInput = (props) => {
         </label>
         <input
           id={id}
-          className={cx("form--content--field--box--input", inputClassName, {
+          className={cx('form--content--field--box--input', inputClassName, {
             error: !validated.state || (emptied && required),
             valide: !emptied && validated.state,
           })}
           title={label}
           value={value}
-          onFocus= {(event) => event.target.setCustomValidity((!validated.state && !emptied) ? validated.tips : '')}
+          onFocus={(event) =>
+            event.target.setCustomValidity(
+              !validated.state && !emptied ? validated.tips : ''
+            )
+          }
           onChange={(event) => {
             const targetValue = event.target.value;
-            const targetEmptied = targetValue.trim() === "";
+            const targetEmptied = targetValue.trim() === '';
             const targetValidated = isValid(
               targetValue,
               required,
@@ -87,7 +91,11 @@ const GenericInput = (props) => {
               validate,
               undefined
             );
-            event.target.setCustomValidity((!targetValidated.state && !targetEmptied) ? targetValidated.tips : '');
+            event.target.setCustomValidity(
+              !targetValidated.state && !targetEmptied
+                ? targetValidated.tips
+                : ''
+            );
             onChange(event);
           }}
           aria-required={required}
@@ -124,7 +132,7 @@ GenericInput.propTypes = {
   validation: PropTypes.shape({
     state: PropTypes.bool.isRequired,
     tips: PropTypes.string,
-    structuredTips:PropTypes.oneOfType([
+    structuredTips: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.node,
       PropTypes.arrayOf(PropTypes.node),
@@ -141,13 +149,13 @@ GenericInput.propTypes = {
 GenericInput.defaultProps = {
   autoComplete: 'off',
   autoFocus: undefined,
-  inputClassName: "",
+  inputClassName: '',
   min: undefined,
   minLength: undefined,
   max: undefined,
   maxLength: undefined,
   placeholder: undefined,
-  fontSize: "M",
+  fontSize: 'M',
   required: false,
   size: undefined,
   onChange: () => {},

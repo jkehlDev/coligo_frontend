@@ -1,23 +1,23 @@
-import React, { useEffect, useState } from "react";
-import PropTypes from "prop-types";
-import cx from "classnames";
+import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
+import cx from 'classnames';
 
 /* SVG icon asset */
-import icons from "app/designs/icon-sprite.svg";
+import icons from 'app/designs/icon-sprite.svg';
 
 /* Utils */
 function getIconId(required, emptied, validated) {
   return required
     ? emptied
-      ? "stop-circle"
+      ? 'stop-circle'
       : validated
-      ? "check-circle"
-      : "x-circle"
+      ? 'check-circle'
+      : 'x-circle'
     : emptied
-    ? "help-circle"
+    ? 'help-circle'
     : validated
-    ? "check-circle"
-    : "x-circle";
+    ? 'check-circle'
+    : 'x-circle';
 }
 
 /**
@@ -37,7 +37,7 @@ const InputState = ({ required, emptied, validated, toolTips }) => {
       onMouseLeave={() => setHidedToolTips(true)}
     >
       <svg
-        className={cx("form--content--field--input-state--icon", {
+        className={cx('form--content--field--input-state--icon', {
           negative: (!validated && !emptied) || (required && emptied),
           positive: validated && !emptied,
           neutral: !required && emptied,
@@ -47,7 +47,7 @@ const InputState = ({ required, emptied, validated, toolTips }) => {
         <use xlinkHref={`${icons}#${iconId}`} />
       </svg>
       <aside
-        className={cx("tool-tips", {
+        className={cx('tool-tips', {
           hide: hidedToolTips,
         })}
       >

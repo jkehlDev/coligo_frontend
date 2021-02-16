@@ -1,8 +1,8 @@
 /* State actions define */
-import actions from "./actions";
+import actions from './actions';
 
 /* State configuration */
-import config from "./config.json";
+import config from './config.json';
 
 /* Reducer intiale storage state */
 const initialState = {

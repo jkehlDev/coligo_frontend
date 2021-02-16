@@ -1,13 +1,13 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 /* Externals react components */
 
 /* Business react components */
 
 /* Designs react components */
-import { Form } from "../../designs";
+import { Form } from '../../designs';
 
 /**
  * @function SearchProjects Search projects business react component

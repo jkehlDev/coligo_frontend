@@ -1,19 +1,19 @@
-import React from "react";
-import PropTypes from "prop-types";
-import camelCase from "camelcase";
-import cx from "classnames";
+import React, { useMemo } from 'react';
+import PropTypes from 'prop-types';
+import camelCase from 'camelcase';
+import cx from 'classnames';
 
 /* Attached Design components */
-import GenericInput from "./GenericInput";
+import GenericInput from './GenericInput';
 
 /* Utils */
 function getSize(type) {
   switch (type) {
-    case "month":
+    case 'month':
       return 7;
-    case "week":
+    case 'week':
       return 8;
-    case "time":
+    case 'time':
       return 5;
     default:
       return 10;
@@ -22,7 +22,7 @@ function getSize(type) {
 
 /**
  * @function InputDate InputDate design react component
- * @param {*} props 
+ * @param {*} props
  */
 const InputDate = ({
   type,
@@ -38,42 +38,60 @@ const InputDate = ({
   validation,
   validate,
 }) => {
-  const id = camelCase(label);
-  let size = getSize(type);
-  const genInputProps = {
-    type,
-    id,
-    name: id,
-    label,
-    autoComplete,
-    autoFocus,
-    inputClassName: cx({
-      date: type === "date",
-      month: type === "month",
-      week: type === "week",
-      time: type === "time",
+  const id = useMemo(() => camelCase(label), [label]);
+  let size = useMemo(() => getSize(type), [type]);
+  const genInputProps = useMemo(
+    () => ({
+      type,
+      id,
+      name: id,
+      label,
+      autoComplete,
+      autoFocus,
+      inputClassName: cx({
+        date: type === 'date',
+        month: type === 'month',
+        week: type === 'week',
+        time: type === 'time',
+      }),
+      min,
+      minLength: undefined,
+      max,
+      maxLength: undefined,
+      placeholder: undefined,
+      fontSize,
+      required,
+      size,
+      value,
+      onChange,
+      validation,
+      validate,
     }),
-    min,
-    minLength: undefined,
-    max,
-    maxLength: undefined,
-    placeholder: undefined,
-    fontSize,
-    required,
-    size,
-    value,
-    onChange,
-    validation,
-    validate,
-  };
+    [
+      autoComplete,
+      autoFocus,
+      fontSize,
+      id,
+      label,
+      max,
+      min,
+      onChange,
+      required,
+      size,
+      type,
+      validate,
+      validation,
+      value,
+    ]
+  );
   return <GenericInput {...genInputProps} />;
 };
 
 /* PropTypes definition */
 InputDate.propTypes = {
-  type: PropTypes.oneOf(["date", "month", "week", "time"]),
+  type: PropTypes.oneOf(['date', 'month', 'week', 'time']),
   label: PropTypes.string.isRequired,
-  autoComplete: PropTypes.oneOf(["off", "bday", "bday-month"]),
+  autoComplete: PropTypes.oneOf(['off', 'bday', 'bday-month']),
   autoFocus: PropTypes.bool,
   required: PropTypes.bool,
   min: PropTypes.string,
@@ -84,7 +102,7 @@ InputDate.propTypes = {
   validation: PropTypes.shape({
     state: PropTypes.bool.isRequired,
     tips: PropTypes.string,
-    structuredTips:PropTypes.oneOfType([
+    structuredTips: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.node,
       PropTypes.arrayOf(PropTypes.node),
@@ -95,13 +113,13 @@ InputDate.propTypes = {
 
 /* Props default value definition */
 InputDate.defaultProps = {
-  type: "date",
-  autoComplete: "off",
+  type: 'date',
+  autoComplete: 'off',
   autoFocus: undefined,
   required: false,
   min: undefined,
   max: undefined,
-  fontSize: "M",
+  fontSize: 'M',
   onChange: undefined,
   validation: undefined,
   validate: undefined,

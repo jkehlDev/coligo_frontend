@@ -1,9 +1,9 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 /* Externals react components */
-import { Redirect, Route } from "react-router-dom";
+import { Redirect, Route } from 'react-router-dom';
 
 /* Business react components */
 

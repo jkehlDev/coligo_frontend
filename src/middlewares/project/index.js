@@ -1,4 +1,4 @@
-import actions from "./actions";
+import actions from './actions';
 const middleware = (store) => (next) => (action) => {
   switch (action.type) {
     default:

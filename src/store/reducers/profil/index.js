@@ -1,5 +1,5 @@
 /* State actions define */
-import actions from "./actions";
+import actions from './actions';
 
 /* Reducer intiale storage state */
 const initialState = {
@@ -11,7 +11,7 @@ const initialState = {
 
 /**
  * @function reducer Profil reducer implemantion
- * @param {*} oldState 
+ * @param {*} oldState
  * @param {*} action {type, *}
  */
 const reducer = (oldState = initialState.init, action = {}) => {

@@ -1,8 +1,6 @@
 const actions = {
   /* Actions type implementation */
-  types: {
-
-  },
+  types: {},
   /* Actions object implementation */
 };
 

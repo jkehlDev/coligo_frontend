@@ -84,8 +84,8 @@ const InputPassword = ({
   placeholder,
   value,
   onChange,
-  validation,
-  validate,
+  extValidityState,
+  validator,
 }) => {
   const strength = getPasswordStrength(value);
   const id = camelCase(label);
@@ -107,8 +107,8 @@ const InputPassword = ({
     size,
     value,
     onChange,
-    validation,
-    validate,
+    extValidityState,
+    validator,
   };
   return (
     <>
@@ -145,7 +145,7 @@ InputPassword.propTypes = {
   placeholder: PropTypes.string,
   value: PropTypes.string.isRequired,
   onChange: PropTypes.func,
-  validation: PropTypes.shape({
+  extValidityState: PropTypes.shape({
     state: PropTypes.bool.isRequired,
     tips: PropTypes.string,
     structuredTips: PropTypes.oneOfType([
@@ -154,7 +154,7 @@ InputPassword.propTypes = {
       PropTypes.arrayOf(PropTypes.node),
     ]),
   }),
-  validate: PropTypes.func,
+  validator: PropTypes.func,
 };
 
 /* Props default value definition */
@@ -167,8 +167,8 @@ InputPassword.defaultProps = {
   size: 25,
   fontSize: 'M',
   onChange: undefined,
-  validation: undefined,
-  validate: (value) => isValidPassword(value),
+  extValidityState: undefined,
+  validator: (value) => isValidPassword(value),
 };
 
 export default InputPassword;

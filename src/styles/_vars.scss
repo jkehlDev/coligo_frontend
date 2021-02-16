@@ -1,140 +1,206 @@
+$global--bordering-size: 3.5px;
+
 /* == FONT == */
 $app-font-family: 'Courier New', Courier, monospace;
 $app-font-weigt--normal: 300;
 $app-font-weigt--bold: 600;
 /* Border */
-$app-elmt-border-radius: 1em;
-$app-elmt-border-size: 3.5px;
+$global--bordering-radius: 1em;
+/* Margin */
+$global--margin: 1em;
+
 /* Colors */
 /* - action */
-$color-action: rgb(60, 60, 240);
-$color-action--darker: rgb(30, 30, 150);
+$global--color--action: rgb(60, 60, 240);
+$global--color--action--darker: rgb(30, 30, 150);
 /* - positve */
-$color-positive: rgb(50, 240, 50);
-$color-positive--darker: rgb(30, 150, 30);
+$global--color--valid: rgb(50, 240, 50);
+$global--color--valid--darker: rgb(30, 150, 30);
 /* - negative */
-$color-negative: rgb(240, 75, 75);
-$color-negative--darker: rgb(150, 75, 75);
+$global--color--invalid: rgb(240, 75, 75);
+$global--color--invalid--darker: rgb(150, 75, 75);
 /* - neutral */
-$color-neutral: rgb(180, 180, 180);
-$color-neutral--darker: rgb(140, 140, 140);
+$global--color--neutral: rgb(180, 180, 180);
+$global--color--neutral--darker: rgb(140, 140, 140);
+
 /* - light / dark */
-$color-light: white;
-$color-dark: black;
+$global--color--light: white;
+$global--color--dark: black;
 
 /* Responsive parameter */
 $layout-breakpoint-small: 700px;
 
 /* == BUTTON == */
 /* border size */
-$button-border: $app-elmt-border-size solid;
+$button-border: $global--bordering-size solid;
 /* border radius */
-$button-border-radius: $app-elmt-border-radius;
+$button-border-radius: $global--bordering-radius;
 /* positve */
-$button-bcg--positive: $color-action;
-$button-border--positive: $color-positive--darker;
+$button-bcg--positive: $global--color--action;
+$button-border--positive: $global--color--valid--darker;
 /* negative */
-$button-bcg--negative: $color-negative;
-$button-border--negative: $color-negative--darker;
+$button-bcg--negative: $global--color--invalid;
+$button-border--negative: $global--color--invalid--darker;
 /* neutral */
-$button-bcg--neutral: $color-neutral;
-$button-border--neutral: $color-neutral--darker;
+$button-bcg--neutral: $global--color--neutral;
+$button-border--neutral: $global--color--neutral--darker;
 /* other */
-$button-content-color-light: $color-light;
-$button-content-color-dark: $color-dark;
+$button-content-color-light: $global--color--light;
+$button-content-color-dark: $global--color--dark;
 
 /* = Form */
-/* = - Title part */
-$form--title-margin: 0 1em -0.8em 1em;
-$form--title-padding: 0 0.25em;
-$form--title-border: $app-elmt-border-size solid transparent;
-$form--title-border-radius: $app-elmt-border-radius;
-/* = - form displaying */
-$form-align-items: flex-start;
-/* = - form color */
-$form-bcg: $color-light;
-/* = - form margin / padding */
-$form-margin: 2em 0;
-$form-padding: 2.5em 0.5em 1.75em 0.5em;
-/* = - form border / radius */
-$form-border: $app-elmt-border-size solid $color-neutral;
-$form-border--focused: $app-elmt-border-size solid $color-neutral--darker;
-$form-border--invalid: $app-elmt-border-size solid $color-negative;
-$form-border--invalid--focused: $app-elmt-border-size solid
-  $color-negative--darker;
-$form-border--valid: $app-elmt-border-size solid $color-positive;
-$form-border--valid--focused: $app-elmt-border-size solid
-  $color-positive--darker;
-$form-radius: $app-elmt-border-radius;
+$form--bordering-size: $global--bordering-size;
+$form--bordering-radius: $global--bordering-radius;
+$form--bordering-color--invalid: $global--color--invalid;
+$form--bordering-color--invalid-focused: $global--color--invalid--darker;
+$form--bordering-color--valid: $global--color--valid;
+$form--bordering-color--valid-focused: $global--color--valid--darker;
 
-/* == Form field */
-/* = - form field margin / padding */
-$form--field-margin-top: 2em;
-$form--field-padding: 0 1em;
+/* = Form Input*/
+$input--bordering-size: $global--bordering-size;
+$input--bordering-radius: $global--bordering-radius;
+$input--bordering-color--neutral: $global--color--neutral;
+$input--bordering-color--neutral-focused: $global--color--neutral--darker;
+$input--bordering-color--invalid: $global--color--invalid;
+$input--bordering-color--invalid-focused: $global--color--invalid--darker;
+$input--bordering-color--valid: $global--color--valid;
+$input--bordering-color--valid-focused: $global--color--valid--darker;
+$input--animate-scale: 1.05;
 
-/* == Form field--label */
-/* == - Field label required stamp color */
-$field--label-required-after-color: red;
-/* == - Field label padding/margin/width */
-$field--label-margin: 0em 2em -0.5em 2em;
-$field--label-padding: 0 1em;
-$field--label-width: max-content;
+/* Form Input State */
+$input-state--stroke-invalid: $global--color--invalid;
+$input-state--stroke-valid: $global--color--valid;
+$input-state--stroke-neutral: $global--color--neutral--darker;
 
-/* == Form field--input */
-/* == - Field input scale transform on focus */
-$field--input-focus-scale-transform: 1.05;
-/* == - Field input margin / padding */
-$field--input-margin: 0;
-$field--input-padding: 0.75em 1.5em 0.5em 1.5em;
-/* == - Field input border /  radius */
-$field--input-border-size: 2px;
-$field--input-border: $field--input-border-size solid $color-neutral;
-$field--input-border--focused: $field--input-border-size solid
-  $color-neutral--darker;
-$field--input-border--error: $field--input-border-size solid $color-negative;
-$field--input-border--error--focused: $field--input-border-size solid
-  $color-negative--darker;
-$field--input-border--valide: $field--input-border-size solid $color-positive;
-$field--input-border--valide--focused: $field--input-border-size solid
-  $color-positive--darker;
-$field--input-border-radius: 0.5em;
-/* == - Field input color */
-$field--input-bcg: inherit;
-
-/* == Form input State */
-/* == - Input state color */
-$field--input-state-color-negative: $color-negative--darker;
-$field--input-state-color-positive: $color-positive--darker;
-$field--input-state-color-neutral: $color-action--darker;
-/* == - Input state margin / padding */
-$field--input-state-margin: 1.25em 2em 0 0;
-$field--input-state-padding: 0;
-/* == - Input state size */
-$field--input-state-size: 1.25em;
-/* == - Input state border bottom */
-$field--input-state-border-bottom: $app-elmt-border-size dotted $color-action;
-
-@mixin flex-column-start-center {
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: flex-start;
-  align-items: center;
-  flex-shrink: 0;
-  flex-grow: 0;
+@mixin margin-top--notFirstChild {
+  &:not(:first-child) {
+    margin-top: $global--margin;
+  }
 }
-@mixin flex-column-start-start {
+
+@mixin flexFlow(
+  $flx-direction: column,
+  $flx-wrap: nowrap,
+  $flx-main: flex-start,
+  $flx-cross: flex-start,
+  $flx-shrink: 0,
+  $flx-grow: 0
+) {
   display: flex;
-  flex-flow: column nowrap;
-  justify-content: flex-start;
-  align-items: flex-end;
-  flex-shrink: 0;
-  flex-grow: 0;
+  position: relative;
+  flex-direction: $flx-direction;
+  flex-wrap: $flx-wrap;
+  justify-content: $flx-main;
+  align-items: $flx-cross;
+  flex-shrink: $flx-shrink;
+  flex-grow: $flx-grow;
 }
-@mixin flex-column-start-end {
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: flex-start;
-  align-items: flex-end;
+
+@mixin sizing(
+  $padding: 0,
+  $margin: 0,
+  $width: 100%,
+  $max-width: max-content,
+  $min-width: min-content,
+  $height: fit-content,
+  $box-sizing: border-box
+) {
+  box-sizing: $box-sizing;
+  padding: $padding;
+  margin: $margin;
+  width: $width;
+  height: $height;
+  max-width: $max-width;
+  min-width: $min-width;
+}
+
+@mixin bordering(
+  $size: 1px,
+  $color: transparent,
+  $radius: 0,
+  $top: true,
+  $right: true,
+  $bottom: true,
+  $left: true
+) {
+  border: $size solid $color;
+  @if $top!=true {
+    border-top: none;
+  }
+  @if $right!=true {
+    border-right: none;
+  }
+  @if $bottom!=true {
+    border-bottom: none;
+  }
+  @if $left!=true {
+    border-left: none;
+  }
+  border-radius: $radius;
+  outline: none;
+}
+
+@mixin animate-scale-onHoverNdFocus($scale) {
+  transition: transform ease-in-out 250ms, border ease-in-out 250ms;
+  &:focus-within {
+    transform: scale($scale);
+  }
+  &:hover {
+    transform: scale($scale);
+  }
+}
+
+@mixin icon($size, $z-index, $stroke) {
+  /* Displaying part */
+  position: relative;
+  z-index: $z-index;
+  /* size rendering param */
+  width: $size;
+  height: $size;
+  /* Color */
+  fill: none;
+  stroke-width: 1.9px;
+  stroke: $stroke;
+}
+
+@mixin tool-tips() {
+  /* Flow rendering */
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
   flex-shrink: 0;
   flex-grow: 0;
+  /* size rendering param */
+  box-sizing: border-box;
+  width: 100%;
+  padding: 1em;
+  /* Border rendering */
+  border-radius: $global--bordering-radius;
+  box-shadow: 0px 2px 5px black;
+  /* Font, color, bckg*/
+  background-color: rgba(255, 255, 240, 0.95);
+  color: $global--color--dark;
+  text-align: left;
+  font-size: 1em;
+  font-weight: bold;
+  word-wrap: break-word;
+  
+  &.show {
+    display: block;
+    animation: 50ms ease-out 250ms both poping;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: calc(50% - 10px);
+    width: 0;
+    height: 0;
+    border-bottom: 10px solid rgba(0, 0, 0, 0.50);
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+  }
 }

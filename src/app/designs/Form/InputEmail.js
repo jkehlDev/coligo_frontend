@@ -22,8 +22,8 @@ const InputEmail = ({
   placeholder,
   value,
   onChange,
-  validation,
-  validate,
+  extValidityState,
+  validator,
 }) => {
   const id = useMemo(() => camelCase(label), [label]);
   const genInputProps = useMemo(
@@ -45,8 +45,8 @@ const InputEmail = ({
       size,
       value,
       onChange,
-      validation,
-      validate,
+      extValidityState,
+      validator,
     }),
     [
       autoComplete,
@@ -60,8 +60,8 @@ const InputEmail = ({
       placeholder,
       required,
       size,
-      validate,
-      validation,
+      validator,
+      extValidityState,
       value,
     ]
   );
@@ -81,7 +81,7 @@ InputEmail.propTypes = {
   placeholder: PropTypes.string,
   value: PropTypes.string.isRequired,
   onChange: PropTypes.func,
-  validation: PropTypes.shape({
+  extValidityState: PropTypes.shape({
     state: PropTypes.bool.isRequired,
     tips: PropTypes.string,
     structuredTips: PropTypes.oneOfType([
@@ -90,7 +90,7 @@ InputEmail.propTypes = {
       PropTypes.arrayOf(PropTypes.node),
     ]),
   }),
-  validate: PropTypes.func,
+  validator: PropTypes.func,
 };
 
 /* Props default value definition */
@@ -103,8 +103,8 @@ InputEmail.defaultProps = {
   size: undefined,
   fontSize: 'M',
   onChange: undefined,
-  validation: undefined,
-  validate: (value) => {
+  extValidityState: undefined,
+  validator: (value) => {
     const state = emailValidator.validate(value);
     return {
       state,

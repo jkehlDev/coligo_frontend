@@ -1,46 +1,19 @@
 @import 'styles/_vars.scss';
-
 .form {
   &--section {
     /* Flow rendering */
-    display: flex;
-    position: static;
-    flex-flow: column nowrap;
-    justify-content: flex-start;
-    align-items: center;
-    flex-shrink: 0;
-    flex-grow: 0;
+    @include flexFlow($flx-cross: center);
     /* size rendering param */
-    box-sizing: border-box;
-    padding: 0.75em;
-    margin: 0;
-    width: min-content;
-    height: fit-content;
-    max-width: max-content;
-    min-width: min-content;
-    /* Border rendering */
-    border: none;
+    @include sizing(0.75em, 0, min-content);
     /* Font, color, bckg */
-    background-color: $form-bcg;
+    background-color: white;
     /* Sub elements */
     &--title {
       /* Flow rendering */
-      display: block;
-      position: static;
-      flex-shrink: 0;
-      flex-grow: 0;
+      @include flexFlow();
       z-index: 1;
       /* size rendering param */
-      box-sizing: border-box;
-      padding: 0;
-      margin: 0 0 -0.5em 0;
-      width: auto;
-      height: fit-content;
-      max-width: max-content;
-      min-width: min-content;
-      /* Border rendering */
-      border: none;
-      border-radius: 0;
+      @include sizing(0 1em, 0 0 -0.5em 0);
       /* Font, color, bckg */
       background-color: inherit;
       line-height: 1.2em;
@@ -51,46 +24,47 @@
   /* Sub elements */
   &--content {
     /* Flow rendering */
-    display: flex;
-    position: static;
-    flex-flow: column nowrap;
-    justify-content: flex-start;
-    align-items: center;
-    flex-shrink: 0;
-    flex-grow: 0;
+    @include flexFlow($flx-cross: center);
     /* size rendering param */
-    box-sizing: border-box;
-    padding: 1.5em;
-    margin: 0;
-    width: 100%;
-    height: fit-content;
-    max-width: none;
-    min-width: max-content;
+    @include sizing(1.5em, 0, 100%, none, max-content);
     /* Border rendering */
     outline: none;
     &:invalid {
-      border: $form-border--invalid;
-      border-top: none;
-      border-bottom: none;
+      @include bordering(
+        $form--bordering-size,
+        $form--bordering-color--invalid,
+        $form--bordering-radius,
+        $top: false,
+        $bottom: false
+      );
+      &:focus-within {
+        @include bordering(
+          $form--bordering-size,
+          $form--bordering-color--invalid-focused,
+          $form--bordering-radius,
+          $top: false,
+          $bottom: false
+        );
+      }
     }
     &:valid {
-      border: $form-border--valid;
-      border-top: none;
-      border-bottom: none;
-    }
-    &:focus-within {
-      &:invalid {
-        border: $form-border--invalid--focused;
-        border-top: none;
-        border-bottom: none;
+      @include bordering(
+        $form--bordering-size,
+        $form--bordering-color--valid,
+        $form--bordering-radius,
+        $top: false,
+        $bottom: false
+      );
+      &:focus-within {
+        @include bordering(
+          $form--bordering-size,
+          $form--bordering-color--valid-focused,
+          $form--bordering-radius,
+          $top: false,
+          $bottom: false
+        );
       }
-      &:valid {
-        border: $form-border--valid--focused;
-        border-top: none;
-        border-bottom: none;
-      }
     }
-    border-radius: $form-radius;
     /* Font, color, bckg */
     background-color: inherit;
     /* Animation / Transitions rendering */
@@ -98,48 +72,19 @@
     /* Sub elements */
     &--field {
       /* Flow rendering */
-      display: flex;
-      position: static;
-      flex-flow: column nowrap;
-      justify-content: flex-start;
-      align-items: center;
-      flex-shrink: 0;
-      flex-grow: 0;
+      @include flexFlow($flx-cross: center);
       /* size rendering param */
-      box-sizing: border-box;
-      padding: 0.25em;
-      margin: 0;
-      &:not(:first-child) {
-        margin-top: $form--field-margin-top;
-      }
-      width: 100%;
-      height: fit-content;
-      max-width: none;
-      min-width: max-content;
-      /* Border rendering */
-      border: none;
-      outline: none;
+      @include sizing(0.25em, 0, 100%, none, max-content);
+      @include margin-top--notFirstChild;
       /* Font, color, bckg */
       background-color: inherit;
       /* Sub elements */
       &--label {
         /* Flow rendering */
-        display: block;
-        position: static;
-        flex-shrink: 0;
-        flex-grow: 0;
+        @include flexFlow();
         z-index: 1;
         /* size rendering param */
-        box-sizing: border-box;
-        padding: 0 1em;
-        margin: 0 0 -0.5em 0;
-        width: fit-content;
-        height: fit-content;
-        max-width: none;
-        min-width: max-content;
-        /* Border rendering */
-        border: none;
-        outline: none;
+        @include sizing(0 1em, 0 0 -0.5em 0, fit-content, none, max-content);
         /* Font, color, bckg */
         text-align: center;
         text-transform: capitalize;
@@ -151,112 +96,94 @@
 
       &--box {
         /* Flow rendering */
-        display: flex;
-        position: static;
-        flex-flow: row nowrap;
-        justify-content: space-around;
-        align-items: center;
-        flex-shrink: 0;
-        flex-grow: 0;
+        @include flexFlow(row, $flx-cross: center);
         /* size rendering param */
-        box-sizing: border-box;
-        padding: 0.75em 0.5em;
-        margin: 0;
-        width: 100%;
-        height: fit-content;
-        max-width: none;
-        min-width: max-content;
-        /* Border rendering */
-        border: $field--input-border;
-        border-left: none;
-        border-right: none;
-        border-radius: $field--input-border-radius;
-        &.invalid {
-          border: $field--input-border--error;
-          border-left: none;
-          border-right: none;
-          &:focus-within {
-            border: $field--input-border--error--focused;
-            border-left: none;
-            border-right: none;
-          }
-        }
-        &.valid {
-          border: $field--input-border--valide;
-          border-left: none;
-          border-right: none;
-          &:focus-within {
-            border: $field--input-border--valide--focused;
-            border-left: none;
-            border-right: none;
-          }
-        }
+        @include sizing(0.75em 0.5em, 0, 100%, none, min-content);
         /* Font, color, bckg */
         background-color: inherit;
         /* Animation / Transitions rendering */
-        transition: transform ease-in-out 250ms, border ease-in-out 250ms;
+        @include animate-scale-onHoverNdFocus($input--animate-scale);
+        /* Border rendering */
+        @include bordering(
+          $input--bordering-size,
+          $input--bordering-color--neutral,
+          $input--bordering-radius,
+          $right: false,
+          $left: false
+        );
         &:focus-within {
-          transform: scale($field--input-focus-scale-transform);
+          @include bordering(
+            $input--bordering-size,
+            $input--bordering-color--neutral-focused,
+            $input--bordering-radius,
+            $right: false,
+            $left: false
+          );
         }
-        &:hover {
-          transform: scale($field--input-focus-scale-transform);
+        &.invalid {
+          @include bordering(
+            $input--bordering-size,
+            $input--bordering-color--invalid,
+            $input--bordering-radius,
+            $right: false,
+            $left: false
+          );
+          &:focus-within {
+            @include bordering(
+              $input--bordering-size,
+              $input--bordering-color--invalid-focused,
+              $input--bordering-radius,
+              $right: false,
+              $left: false
+            );
+          }
         }
+        &.valid {
+          @include bordering(
+            $input--bordering-size,
+            $input--bordering-color--valid,
+            $input--bordering-radius,
+            $right: false,
+            $left: false
+          );
+          &:focus-within {
+            @include bordering(
+              $input--bordering-size,
+              $input--bordering-color--valid-focused,
+              $input--bordering-radius,
+              $right: false,
+              $left: false
+            );
+          }
+        }
+
         /* Sub elements */
         &--state {
           /* Displaying part */
-          display: block;
-          position: static;
-          flex-shrink: 0;
-          flex-grow: 0;
-          z-index: 1;
+          @include flexFlow();
           /* size rendering param */
-          box-sizing: border-box;
-          padding: 0;
-          margin: 0;
-          width: fit-content;
-          height: fit-content;
-          /* Border rendering */
-          /* border-bottom: $field--input-state-border-bottom; */
+          @include sizing();
           /* Cursor */
           cursor: help;
           &--icon {
-            /* Displaying part */
-            display: block;
-            position: static;
-            /* size rendering param */
-            box-sizing: border-box;
-            padding: 0;
-            margin: 0;
-            width: $field--input-state-size;
-            height: $field--input-state-size;
-            /* Color */
-            fill: none;
-            stroke-width: 1.9px;
-            &.negative {
-              stroke: $field--input-state-color-negative;
+            @include icon(1em, 1, $input-state--stroke-neutral);
+            &.invalid {
+              stroke: $input-state--stroke-invalid;
             }
-            &.positive {
-              stroke: $field--input-state-color-positive;
+            &.valid {
+              stroke: $input-state--stroke-valid;
             }
             &.neutral {
-              stroke: $field--input-state-color-neutral;
+              stroke: $input-state--stroke-neutral;
             }
           }
         }
 
         &--input {
           /* Flow rendering */
-          display: block;
-          flex-shrink: 0;
-          flex-grow: 1;
-          z-index: 0;
+          @include flexFlow($flx-direction: row, $flx-grow: 1);
           /* size rendering param */
-          box-sizing: border-box;
-          padding: 0 1em;
-          margin: 0 0 0 -1em;
-          height: fit-content;
-          max-width: none;
-          min-width: max-content;
+          @include sizing(0 1em, 0 0 0 -1em, auto, none, max-content);
           /* Border rendering */
           border: none;
           outline: none;
@@ -266,20 +193,22 @@
         }
       }
       .password-description {
-        position: static;
-        margin-top: 0.5em;
+        /* Displaying part */
+        @include flexFlow();
+        /* size rendering param */
+        @include sizing(0, 0.5em 0 0 0, 100%);
         .password-strength {
           &.bad {
-            color: $color-negative;
+            color: $global--color--invalid;
           }
           &.good {
-            color: $color-dark;
+            color: $global--color--dark;
           }
           &.strong {
-            color: $color-positive--darker;
+            color: $global--color--valid--darker;
           }
           &.very-strong {
-            color: $color-positive--darker;
+            color: $global--color--valid--darker;
           }
         }
       }
@@ -288,56 +217,10 @@
       /* Displaying part */
       display: block;
       position: relative;
-      /* size rendering param */
-      box-sizing: border-box;
-      padding: 0;
-      margin: 0;
       width: 100%;
-      height: fit-content;
-      transition: all ease-in-out 1000ms;
+      /* Sub element */
       .tool-tips {
-        /* Flow rendering */
-        display: none;
-        position: absolute;
-        top: 0;
-        left: 0;
-        z-index: 2;
-        flex-shrink: 0;
-        flex-grow: 0;
-        /* size rendering param */
-        box-sizing: border-box;
-        padding: 1em;
-        margin: 0;
-        width: 100%;
-        height: fit-content;
-        max-width: none;
-        min-width: min-content;
-        /* Border rendering */
-        border-radius: 0.5em;
-        /* Font, color, bckg*/
-        background-color: rgba(255, 255, 240, 0.95);
-        box-shadow: 0px 2px 5px black;
-
-        color: $color-dark;
-        text-align: justify;
-        font-size: 1em;
-        word-wrap: break-word;
-        font-weight: bolder;
-        &.show {
-          display: block;
-          animation: 50ms ease-out 250ms both poping;
-        }
-        &::before {
-          content: '';
-          position: absolute;
-          top: -10px;
-          left: calc(50% - 10px);
-          width: 0;
-          height: 0;
-          border-bottom: 10px solid rgba(255, 255, 240, 1);
-          border-left: 10px solid transparent;
-          border-right: 10px solid transparent;
-        }
+        @include tool-tips;
       }
     }
   }

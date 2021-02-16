@@ -35,8 +35,8 @@ const InputDate = ({
   fontSize,
   value,
   onChange,
-  validation,
-  validate,
+  extValidityState,
+  validator,
 }) => {
   const id = useMemo(() => camelCase(label), [label]);
   let size = useMemo(() => getSize(type), [type]);
@@ -64,8 +64,8 @@ const InputDate = ({
       size,
       value,
       onChange,
-      validation,
-      validate,
+      validator,
+      extValidityState,
     }),
     [
       autoComplete,
@@ -79,8 +79,8 @@ const InputDate = ({
       required,
       size,
       type,
-      validate,
-      validation,
+      validator,
+      extValidityState,
       value,
     ]
   );
@@ -99,7 +99,7 @@ InputDate.propTypes = {
   fontSize: PropTypes.string,
   value: PropTypes.string.isRequired,
   onChange: PropTypes.func,
-  validation: PropTypes.shape({
+  extValidityState: PropTypes.shape({
     state: PropTypes.bool.isRequired,
     tips: PropTypes.string,
     structuredTips: PropTypes.oneOfType([
@@ -108,7 +108,7 @@ InputDate.propTypes = {
       PropTypes.arrayOf(PropTypes.node),
     ]),
   }),
-  validate: PropTypes.func,
+  validator: PropTypes.func,
 };
 
 /* Props default value definition */
@@ -121,8 +121,8 @@ InputDate.defaultProps = {
   max: undefined,
   fontSize: 'M',
   onChange: undefined,
-  validation: undefined,
-  validate: undefined,
+  extValidityState: undefined,
+  validator: undefined,
 };
 
 export default InputDate;

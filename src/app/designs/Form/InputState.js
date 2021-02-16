@@ -38,8 +38,8 @@ const InputState = ({ required, emptied, validated, onMouseEnter, onMouseLeave }
     >
       <svg
         className={cx('form--content--field--box--state--icon', {
-          negative: (!validated && !emptied) || (required && emptied),
-          positive: validated && !emptied,
+          invalid: (!validated && !emptied) || (required && emptied),
+          valid: validated && !emptied,
           neutral: !required && emptied,
         })}
         aria-hidden="true"

@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 
@@ -20,8 +20,15 @@ function getDefaultToolTips(required, emptied, validated) {
     : 'Votre saisie est incorrecte, veuillez corriger.';
 }
 
-function isValid(value, required, emptied, validate, validation) {
-  const validated = validation === undefined ? validate(value) : validation;
+function getValidityState(
+  value,
+  required,
+  emptied,
+  validate,
+  extValidityState
+) {
+  const validated =
+    extValidityState === undefined ? validate(value) : extValidityState;
   const defaultTips =
     validated.tips === undefined
       ? getDefaultToolTips(required, emptied, validated.state)
@@ -48,16 +55,17 @@ const GenericInput = (props) => {
     required,
     fontSize,
     value,
-    validation,
-    validate,
+    extValidityState,
+    validator,
     onChange,
     children,
     ...othersProps
   } = props;
   const emptied = useMemo(() => value.trim() === '', [value]);
   const validated = useMemo(
-    () => isValid(value, required, emptied, validate, validation),
-    [value, required, emptied, validate, validation]
+    () =>
+      getValidityState(value, required, emptied, validator, extValidityState),
+    [value, required, emptied, validator, extValidityState]
   );
   const [hidedToolTips, setHidedToolTips] = useState(true);
   return (
@@ -92,11 +100,11 @@ const GenericInput = (props) => {
             onChange={(event) => {
               const targetValue = event.target.value;
               const targetEmptied = targetValue.trim() === '';
-              const targetValidated = isValid(
+              const targetValidated = validator(
                 targetValue,
                 required,
                 targetEmptied,
-                validate,
+                validator,
                 undefined
               );
               event.target.setCustomValidity(
@@ -147,7 +155,7 @@ GenericInput.propTypes = {
   size: PropTypes.number,
   value: PropTypes.string.isRequired,
   onChange: PropTypes.func,
-  validation: PropTypes.shape({
+  extValidityState: PropTypes.shape({
     state: PropTypes.bool.isRequired,
     tips: PropTypes.string,
     structuredTips: PropTypes.oneOfType([
@@ -156,7 +164,7 @@ GenericInput.propTypes = {
       PropTypes.arrayOf(PropTypes.node),
     ]),
   }),
-  validate: PropTypes.func,
+  validator: PropTypes.func,
   children: PropTypes.oneOfType([
     PropTypes.node,
     PropTypes.arrayOf(PropTypes.node),
@@ -177,8 +185,8 @@ GenericInput.defaultProps = {
   required: false,
   size: undefined,
   onChange: () => {},
-  validation: undefined,
-  validate: () => ({ state: true }),
+  extValidityState: undefined,
+  validator: () => ({ state: true }),
   children: undefined,
 };
 

@@ -1,8 +1,4 @@
-@use 'styles/vars';
-
-/* $layout-breakpoint-small: 700px; */
 /* == RESPONSIVE */
-
 @media (min-width: $global--layout-breakpoint-small) {
   .only {
     &.small {

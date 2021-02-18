@@ -6,7 +6,7 @@ import cx from 'classnames';
 import BtGroup from './BtGroup';
 
 /* SVG icon asset */
-import icons from 'app/designs/icon-sprite.svg';
+import icons from 'app/designs/images/icon-sprite.svg';
 
 /**
  * @function Button Button design react component

@@ -4,7 +4,7 @@ import camelCase from 'camelcase';
 import cx from 'classnames';
 
 /* Label dictionnary */
-import labelsFr from 'app/designs/labels_fr.json';
+import labelsFr from 'labels_fr.json';
 
 /* Attached Design components */
 import InputState from './InputState';

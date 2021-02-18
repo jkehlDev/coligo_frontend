@@ -1,6 +1,8 @@
-@import 'app/designs/Button/button.scss';
-@import 'app/designs/Form/form.scss';
-@import 'app/designs/responsive.scss';
+@import 'styles/_vars.scss';
+@import 'app/designs/styles/_mixins.scss';
+@import 'app/designs/styles/button.scss';
+@import 'app/designs/styles/form.scss';
+@import 'app/designs/styles/responsive.scss';
 
 /* Font-size keys definition*/
 [data-fontsize='S'] {

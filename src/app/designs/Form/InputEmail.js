@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import emailValidator from 'email-validator';
 
 /* Label dictionnary */
-import labelsFr from 'app/designs/labels_fr.json';
+import labelsFr from 'labels_fr.json';
 
 /* Attached Design components */
 import GenericInput from './GenericInput';

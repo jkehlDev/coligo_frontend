@@ -2,27 +2,28 @@ $global--layout-breakpoint-small: 700px;
 $global--font-weigt--normal: 300;
 $global--font-weigt--bold: 600;
 $global--animate-scale: 1.05;
-$global--bordering-radius: 0.5em;
+$global--bordering-radius: 0.25em;
 $global--bordering-size: 3.5px;
-$global--margin: 1.5em;
+$global--margin: 3em;
 $global--margin--hovering-title: 0 2em -0.5em 2em;
 $global--padding: 2em;
 $global--padding--hovering-title: 0 1em;
+
 $global--color--action: rgb(60, 60, 240);
 $global--color--action--darker: rgb(30, 30, 150);
-$global--color--valid: rgb(50, 240, 50);
-$global--color--valid--darker: rgb(30, 150, 30);
-$global--color--invalid: rgb(240, 75, 75);
-$global--color--invalid--darker: rgb(150, 75, 75);
+$global--color--valid: rgb(65, 179, 65);
+$global--color--valid--darker: rgb(40, 207, 40);
+$global--color--invalid: rgb(173, 62, 62);
+$global--color--invalid--darker: rgb(240, 75, 75);
 $global--color--neutral: rgb(180, 180, 180);
 $global--color--neutral--darker: rgb(140, 140, 140);
-$global--color--light: white;
+$global--color--light: rgb(223, 223, 223);
 $global--color--dark: black;
 
 $global--font-family: monospace, Courier, sans-serif;
-$global--font-color: $global--color--dark;
-$global--background-color: $global--color--light;
-$global--bordering-color: $global--color--dark;
+$global--font-color: $global--color--light;
+$global--background-color: $global--color--dark;
+$global--bordering-color: $global--color--light;
 
 $global--font-size-S: 0.75em;
 $global--font-size-M: 1em;
@@ -83,143 +84,3 @@ $input-state--stroke-invalid: $global--color--invalid;
 $input-state--stroke-valid: $global--color--valid;
 $input-state--stroke-neutral: $global--color--neutral--darker;
 $input-side--size: 1.25em;
-
-@mixin margin-top--notFirstChild {
-  &:not(:first-child) {
-    margin-top: $global--margin;
-  }
-}
-
-@mixin flexFlow(
-  $flx-direction: column,
-  $flx-wrap: nowrap,
-  $flx-main: flex-start,
-  $flx-cross: flex-start,
-  $flx-shrink: 0,
-  $flx-grow: 0
-) {
-  display: flex;
-  position: relative;
-  flex-direction: $flx-direction;
-  flex-wrap: $flx-wrap;
-  justify-content: $flx-main;
-  align-items: $flx-cross;
-  flex-shrink: $flx-shrink;
-  flex-grow: $flx-grow;
-}
-
-@mixin sizing(
-  $padding: 0,
-  $margin: 0,
-  $width: 100%,
-  $max-width: max-content,
-  $min-width: min-content,
-  $height: fit-content,
-  $box-sizing: border-box
-) {
-  box-sizing: $box-sizing;
-  padding: $padding;
-  margin: $margin;
-  width: $width;
-  height: $height;
-  max-width: $max-width;
-  min-width: $min-width;
-}
-
-@mixin sizing--hovering-title(
-  $margin: $global--margin--hovering-title,
-  $padding: $global--padding--hovering-title
-) {
-  @include sizing($padding, $margin, min-content, none, max-content);
-}
-
-@mixin bordering(
-  $size: 1px,
-  $color: transparent,
-  $radius: 0,
-  $top: true,
-  $right: true,
-  $bottom: true,
-  $left: true
-) {
-  border: $size solid $color;
-  @if $top!=true {
-    border-top: none;
-  }
-  @if $right!=true {
-    border-right: none;
-  }
-  @if $bottom!=true {
-    border-bottom: none;
-  }
-  @if $left!=true {
-    border-left: none;
-  }
-  border-radius: $radius;
-  outline: none;
-}
-
-@mixin animate-scale-onHoverNdFocus($scale) {
-  transition: transform ease-in-out 250ms 100ms;
-  &:focus-within {
-    transform: scale($scale);
-  }
-  &:hover {
-    transform: scale($scale);
-  }
-}
-
-@mixin icon($size, $z-index, $stroke) {
-  /* Displaying part */
-  position: relative;
-  z-index: $z-index;
-  /* size rendering param */
-  width: $size;
-  height: $size;
-  /* Color */
-  fill: none;
-  stroke-width: 1.9px;
-  stroke: $stroke;
-}
-
-@mixin tool-tips($bordering-color, $background-color, $font-color) {
-  /* Flow rendering */
-  display: none;
-  position: absolute;
-  top: 0.25em;
-  left: 0;
-  z-index: 2;
-  flex-shrink: 0;
-  flex-grow: 0;
-  /* size rendering param */
-  box-sizing: border-box;
-  width: 100%;
-  padding: 1em;
-  /* Border rendering */
-  border-radius: $global--bordering-radius;
-  box-shadow: 0px 0px 5px $bordering-color;
-  /* Font, color, bckg*/
-  background-color: $background-color;
-  color: $font-color;
-  text-align: left;
-  font-size: 1em;
-  font-weight: bold;
-  word-wrap: break-word;
-
-  &.show {
-    display: block;
-    animation: 50ms ease-out 250ms both poping;
-  }
-
-  &::before {
-    content: '';
-    position: absolute;
-    top: -10px;
-    left: calc(50% - 10px);
-    width: 0;
-    height: 0;
-    border-bottom: 10px solid $bordering-color;
-    border-left: 10px solid transparent;
-    border-right: 10px solid transparent;
-  }
-}

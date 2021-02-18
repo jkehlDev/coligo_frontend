@@ -1,6 +1,3 @@
-@import 'styles/_vars.scss';
-@import 'app/designs/Form/inputPassword.scss';
-
 .form {
   /* Form Section rendering  */
   &--section {
@@ -24,6 +21,7 @@
       line-height: 1.2em;
       word-wrap: break-word;
       text-align: center;
+      font-size: 1.25em;
     }
   }
   /* Form content childs rendering */
@@ -92,7 +90,8 @@
         $input--bordering-color--neutral,
         $input--bordering-radius,
         $right: false,
-        $left: false
+        $left: false,
+        $bottom: false
       );
       &:focus-within {
         @include bordering(
@@ -100,7 +99,8 @@
           $input--bordering-color--neutral-focused,
           $input--bordering-radius,
           $right: false,
-          $left: false
+          $left: false,
+          $bottom: false
         );
       }
       /* Valid input field rendering case */
@@ -110,7 +110,8 @@
           $input--bordering-color--invalid,
           $input--bordering-radius,
           $right: false,
-          $left: false
+          $left: false,
+          $bottom: false
         );
         &:focus-within {
           @include bordering(
@@ -118,7 +119,8 @@
             $input--bordering-color--invalid-focused,
             $input--bordering-radius,
             $right: false,
-            $left: false
+            $left: false,
+            $bottom: false
           );
         }
       }
@@ -129,7 +131,8 @@
           $input--bordering-color--valid,
           $input--bordering-radius,
           $right: false,
-          $left: false
+          $left: false,
+          $bottom: false
         );
         &:focus-within {
           @include bordering(
@@ -137,7 +140,8 @@
             $input--bordering-color--valid-focused,
             $input--bordering-radius,
             $right: false,
-            $left: false
+            $left: false,
+            $bottom: false
           );
         }
       }
@@ -184,11 +188,7 @@
           /* Cursor */
           cursor: help;
           &--icon {
-            @include icon(
-              $input-side--size,
-              1,
-              $input-state--stroke-neutral
-            );
+            @include icon($input-side--size, 1, $input-state--stroke-neutral);
             &.invalid {
               stroke: $input-state--stroke-invalid;
             }
@@ -213,18 +213,48 @@
           background-color: inherit;
           color: $global--font-color;
           text-align: center;
-          &::-webkit-calendar-picker-indicator {
-            border-radius: 50%;
-            background-color: white;
-            height: $input-side--size;
-            width: $input-side--size;
-            padding: 0.25em;
-            /* Cursor */
-            cursor: pointer;
+          @include datePicker();
+          &[type='time'] {
+            @include datePicker(true);
           }
           /* Specifics rendering for Input Password */
           &--password {
-            @include inputPassword;
+            /* Input Password eye icon rendering */
+            &--eye-icon {
+              @include icon(1.25em, auto, $global--font-color);
+            }
+            /* Input password rules description rendering */
+            &--description {
+              font-size: 0.75em;
+              /* Displaying part */
+              @include flexFlow();
+              display: inline-block;
+              /* size rendering param */
+              @include sizing(0, 0.5em 0 0 0, 100%);
+              /* Password icon rendering */
+              .password-icon {
+                @include icon(1em, auto, $global--color--dark);
+                padding: 0 0.25em;
+                &.weak {
+                  stroke: $input--password--color--weak;
+                }
+                &.medium {
+                  stroke: $input--password--color--medium;
+                }
+                &.strong {
+                  stroke: $input--password--color--strong;
+                }
+                &.very-strong {
+                  stroke: $input--password--color--veryStrong;
+                }
+              }
+              /* Rules structured list rendering*/
+              .password-rules {
+                /* Font, color, bckg */
+                background-color: inherit;
+                color: inherit;
+              }
+            }
           }
         }
         /* Generic Input option (boxed right side element) */
@@ -234,7 +264,7 @@
           /* size rendering param */
           @include sizing(
             0 0 0 0,
-            0 0.25em 0 0.5em,
+            0 0 0 0.5em,
             $input-side--size,
             none,
             none,

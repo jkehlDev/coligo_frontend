@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import cx from 'classnames';
 
 /* SVG icon asset */
-import icons from 'app/designs/icon-sprite.svg';
+import icons from 'app/designs/images/icon-sprite.svg';
 
 /* Utils */
 function getIconId(required, emptied, validated) {

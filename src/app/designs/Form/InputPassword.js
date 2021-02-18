@@ -4,16 +4,16 @@ import cx from 'classnames';
 import passwordValidator from 'password-validator';
 
 /* Label dictionnary */
-import labelsFr from 'app/designs/labels_fr.json';
+import labelsFr from 'labels_fr.json';
 
 /* Attached Design components */
 import GenericInput from './GenericInput';
 
 /* Password valitation rules config */
-import rules from 'app/designs/passwordRules.json';
+import rules from 'app/designs/config/passwordRules.json';
 
 /* SVG icon asset */
-import icons from 'app/designs/icon-sprite.svg';
+import icons from 'app/designs/images/icon-sprite.svg';
 
 /* Tools */
 /* Validation Rules Schema */

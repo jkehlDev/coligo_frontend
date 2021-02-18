@@ -1,0 +1,165 @@
+@mixin margin-top--notFirstChild {
+  &:not(:first-child) {
+    margin-top: $global--margin;
+  }
+}
+
+@mixin flexFlow(
+  $flx-direction: column,
+  $flx-wrap: nowrap,
+  $flx-main: flex-start,
+  $flx-cross: flex-start,
+  $flx-shrink: 0,
+  $flx-grow: 0
+) {
+  display: flex;
+  position: relative;
+  flex-direction: $flx-direction;
+  flex-wrap: $flx-wrap;
+  justify-content: $flx-main;
+  align-items: $flx-cross;
+  flex-shrink: $flx-shrink;
+  flex-grow: $flx-grow;
+}
+
+@mixin sizing(
+  $padding: 0,
+  $margin: 0,
+  $width: 100%,
+  $max-width: max-content,
+  $min-width: min-content,
+  $height: fit-content,
+  $box-sizing: border-box
+) {
+  box-sizing: $box-sizing;
+  padding: $padding;
+  margin: $margin;
+  width: $width;
+  height: $height;
+  max-width: $max-width;
+  min-width: $min-width;
+}
+
+@mixin sizing--hovering-title(
+  $margin: $global--margin--hovering-title,
+  $padding: $global--padding--hovering-title
+) {
+  @include sizing($padding, $margin, min-content, none, max-content);
+}
+
+@mixin bordering(
+  $size: 1px,
+  $color: transparent,
+  $radius: 0,
+  $top: true,
+  $right: true,
+  $bottom: true,
+  $left: true
+) {
+  border: $size solid $color;
+  @if $top!=true {
+    /* border-top: none; */
+    border-top: $size solid transparent;
+  }
+  @if $right!=true {
+    border-right: none;
+    border-right: $size solid transparent;
+  }
+  @if $bottom!=true {
+    border-bottom: none;
+    border-bottom: $size solid transparent;
+  }
+  @if $left!=true {
+    border-left: none;
+    border-left: $size solid transparent;
+  }
+
+  border-radius: $radius;
+  outline: none;
+}
+
+@mixin animate-scale-onHoverNdFocus($scale) {
+  transition: transform ease-in-out 250ms 100ms;
+  &:focus-within {
+    transform: scale($scale);
+  }
+  &:hover {
+    transform: scale($scale);
+  }
+}
+
+@mixin icon($size, $z-index, $stroke) {
+  /* Displaying part */
+  position: relative;
+  z-index: $z-index;
+  /* size rendering param */
+  width: $size;
+  height: $size;
+  /* Color */
+  fill: none;
+  stroke-width: 1.9px;
+  stroke: $stroke;
+}
+
+@mixin tool-tips($bordering-color, $background-color, $font-color) {
+  /* Flow rendering */
+  display: none;
+  position: absolute;
+  top: 0.25em;
+  left: 0;
+  z-index: 2;
+  flex-shrink: 0;
+  flex-grow: 0;
+  /* size rendering param */
+  box-sizing: border-box;
+  width: 100%;
+  padding: 1em;
+  /* Border rendering */
+  border-radius: $global--bordering-radius;
+  box-shadow: 0px 0px 5px $bordering-color;
+  /* Font, color, bckg*/
+  background-color: $background-color;
+  color: $font-color;
+  text-align: left;
+  font-size: 1em;
+  font-weight: bold;
+  word-wrap: break-word;
+
+  &.show {
+    display: block;
+    animation: 50ms ease-out 250ms both poping;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: calc(50% - 10px);
+    width: 0;
+    height: 0;
+    border-bottom: 10px solid $bordering-color;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+  }
+}
+
+@mixin datePicker($alternative: false, $color: $global--font-color) {
+  &::-webkit-calendar-picker-indicator {
+    background-image: none;
+    height: $input-side--size;
+    width: $input-side--size;
+    padding: 0;
+    background-color: $color;
+    @if $alternative {
+      mask-image: url('/app/designs/images/clock.svg');
+    } @else {
+      mask-image: url('/app/designs/images/calendar.svg');
+    }
+    mask-size: cover;
+    mask-repeat: no-repeat;
+    mask-position: center;
+    mask-origin: fill-box;
+    /* Cursor */
+    cursor: pointer;
+  }
+}

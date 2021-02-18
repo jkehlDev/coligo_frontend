@@ -82,7 +82,7 @@ $input--password--color--veryStrong: rgb(0, 70, 0);
 $input-state--stroke-invalid: $global--color--invalid;
 $input-state--stroke-valid: $global--color--valid;
 $input-state--stroke-neutral: $global--color--neutral--darker;
-$input-state--icon--size: 1.25em;
+$input-side--size: 1.25em;
 
 @mixin margin-top--notFirstChild {
   &:not(:first-child) {

@@ -43,6 +43,7 @@ const InputDate = ({
       onChange,
       validator,
       extValidityState,
+      optioned: false,
     }),
     [
       type,

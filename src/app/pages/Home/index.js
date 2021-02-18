@@ -9,6 +9,7 @@ import { Button, Form } from 'app/designs';
 import InputDate from 'app/designs/Form/InputDate';
 import InputEmail from 'app/designs/Form/InputEmail';
 import InputPassword from 'app/designs/Form/InputPassword';
+import InputText from 'app/designs/Form/InputText';
 
 /**
  * @function Home Home page react component
@@ -17,14 +18,16 @@ const Home = () => {
   const [email, setEmail] = useState('plop@plop.pop');
   const [password, setPassword] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
-  const [emailValidation, setEmailValidation] = useState({
-    state: false,
-    tips: 'Email déjà existant veuillez recommencer avec un autre',
-  });
+  const [text, setText] = useState('');
   const [date, setDate] = useState('');
   const [month, setMonth] = useState('');
   const [week, setWeek] = useState('');
   const [time, setTime] = useState('');
+  
+  const [emailValidation, setEmailValidation] = useState({
+    state: false,
+    tips: 'Email déjà existant veuillez recommencer avec un autre',
+  });
   return (
     <>
       <Button.Group>
@@ -90,6 +93,9 @@ const Home = () => {
           }}
           validator={(value) => ({ state: password === value })}
         />
+        <InputText label="Field Text" value={text} onChange={(event)=>{
+          setText(event.target.value);
+        }}/>
         <InputDate
           label="Field Date"
           value={date}

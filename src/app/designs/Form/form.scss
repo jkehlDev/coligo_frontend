@@ -150,7 +150,10 @@
         @include flexFlow();
         z-index: 1;
         /* size rendering param */
-        @include sizing--hovering-title(-0.75em 1.25em 0 1.25em, 0 1em 0.5em 1em);
+        @include sizing--hovering-title(
+          -0.75em 1.25em 0 1.25em,
+          0 1em 0.5em 1em
+        );
         /* Font, color, bckg */
         text-align: center;
         text-transform: capitalize;
@@ -174,7 +177,7 @@
           /* Displaying part */
           @include flexFlow();
           /* size rendering param */
-          @include sizing();
+          @include sizing(0, 0 0.5em 0 0);
           /* Font, color, bckg */
           background-color: inherit;
           color: inherit;
@@ -182,7 +185,7 @@
           cursor: help;
           &--icon {
             @include icon(
-              $input-state--icon--size,
+              $input-side--size,
               1,
               $input-state--stroke-neutral
             );
@@ -202,7 +205,7 @@
           /* Flow rendering */
           @include flexFlow($flx-direction: row, $flx-grow: 1);
           /* size rendering param */
-          @include sizing(0.5em 1.25em, 0 -1em 0 -1em, auto, none, max-content);
+          @include sizing(0.5em 0, 0, auto, none, max-content);
           /* Border rendering */
           border: none;
           outline: none;
@@ -213,8 +216,8 @@
           &::-webkit-calendar-picker-indicator {
             border-radius: 50%;
             background-color: white;
-            height: 1em;
-            width: 1em;
+            height: $input-side--size;
+            width: $input-side--size;
             padding: 0.25em;
             /* Cursor */
             cursor: pointer;
@@ -229,7 +232,14 @@
           /* Displaying part */
           @include flexFlow();
           /* size rendering param */
-          @include sizing();
+          @include sizing(
+            0 0 0 0,
+            0 0.25em 0 0.5em,
+            $input-side--size,
+            none,
+            none,
+            $input-side--size
+          );
           /* Font, color, bckg */
           background-color: inherit;
           color: inherit;

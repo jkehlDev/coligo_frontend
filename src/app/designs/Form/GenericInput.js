@@ -70,6 +70,7 @@ const GenericInput = (props) => {
     onChange,
     children,
     inputOption,
+    optioned,
     ...othersProps
   } = props;
 
@@ -148,9 +149,11 @@ const GenericInput = (props) => {
             required={required}
             {...othersProps}
           />
-          <div className="form--content--field--box--input-option">
-            {inputOption}
-          </div>
+          {optioned && (
+            <div className="form--content--field--box--input-option">
+              {inputOption}
+            </div>
+          )}
         </div>
         {/* Aside Field element (Ex: Password rules) */}
         <aside className="form--content--field--aside">{children}</aside>
@@ -201,6 +204,7 @@ GenericInput.propTypes = {
     PropTypes.node,
     PropTypes.arrayOf(PropTypes.node),
   ]),
+  optioned: PropTypes.bool,
   inputOption: PropTypes.oneOfType([
     PropTypes.node,
     PropTypes.arrayOf(PropTypes.node),
@@ -225,6 +229,7 @@ GenericInput.defaultProps = {
   extValidityState: undefined,
   validator: () => ({ state: true }),
   children: undefined,
+  optioned: true,
   inputOption: undefined,
 };
 

@@ -30,12 +30,12 @@ function getValidityState(
   value,
   required,
   emptied,
-  validate,
+  validator,
   extValidityState
 ) {
   /* Obtain validation state from external validation or executing inner validation process */
   const validated =
-    extValidityState === undefined ? validate(value) : extValidityState;
+    extValidityState === undefined ? validator(value) : extValidityState;
   /* Obtain default tips message */
   const defaultTips =
     validated.tips === undefined
@@ -128,7 +128,7 @@ const GenericInput = (props) => {
             onChange={(event) => {
               const targetValue = event.target.value;
               const targetEmptied = targetValue.trim() === '';
-              const targetValidated = validator(
+              const targetValidated = getValidityState(
                 targetValue,
                 required,
                 targetEmptied,

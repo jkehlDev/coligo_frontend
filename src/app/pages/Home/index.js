@@ -16,6 +16,7 @@ import InputPassword from 'app/designs/Form/InputPassword';
 const Home = () => {
   const [email, setEmail] = useState('plop@plop.pop');
   const [password, setPassword] = useState('');
+  const [passwordConfirm, setPasswordConfirm] = useState('');
   const [emailValidation, setEmailValidation] = useState({
     state: false,
     tips: 'Email déjà existant veuillez recommencer avec un autre',
@@ -27,10 +28,7 @@ const Home = () => {
   return (
     <>
       <Button.Group>
-        <Button
-          title="plop"
-          content="plop"
-        />
+        <Button title="plop" content="plop" />
         <Button
           title="plop"
           content="plop"
@@ -70,7 +68,7 @@ const Home = () => {
             setEmail(event.target.value);
             setEmailValidation(undefined);
           }}
-          validation={emailValidation}
+          extValidityState={emailValidation}
         />
         <InputPassword
           required
@@ -81,15 +79,16 @@ const Home = () => {
             setPassword(event.target.value);
           }}
         />
-         <InputPassword
+        <InputPassword
           required
           label="Field Confirm Password"
           autoComplete="off"
           ruled={false}
-          value={password}
+          value={passwordConfirm}
           onChange={(event) => {
-            setPassword(event.target.value);
+            setPasswordConfirm(event.target.value);
           }}
+          validator={(value) => ({ state: password === value })}
         />
         <InputDate
           label="Field Date"

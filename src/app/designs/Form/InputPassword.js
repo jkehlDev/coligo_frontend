@@ -105,7 +105,7 @@ const InputPassword = ({
   const type = useMemo(() => (togglePassword ? 'password' : 'text'), [
     togglePassword,
   ]);
-  const passwordState = useMemo(() => isValidPassword(value).state, [value]);
+  const passwordState = useMemo(() => validator(value).state, [validator, value]);
 
   /* Obtain eye/eye-off icon name */
   const iconEye = useMemo(() => (togglePassword ? 'eye-off' : 'eye'), [

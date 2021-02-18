@@ -54,7 +54,7 @@ function getValidityState(
 }
 /**
  * @function TextArea TextArea design react component
- * @param {*} props {title, onChange, size, content}
+ * @param {*} props
  */
 const TextArea = (props) => {
   const {

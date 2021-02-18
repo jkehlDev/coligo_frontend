@@ -101,6 +101,7 @@ const GenericInput = (props) => {
           valid: !emptied && validated.state,
         })}
         data-fontsize={fontSize}
+        title={label}
       >
         {/* Input Label */}
         <label className="form--content--field--label" htmlFor={id}>

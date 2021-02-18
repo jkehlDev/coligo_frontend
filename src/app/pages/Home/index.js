@@ -6,11 +6,6 @@ import React, { useState } from 'react';
 
 /* Designs react components */
 import { Button, Form } from 'app/designs';
-import InputDate from 'app/designs/Form/InputDate';
-import InputEmail from 'app/designs/Form/InputEmail';
-import InputPassword from 'app/designs/Form/InputPassword';
-import InputText from 'app/designs/Form/InputText';
-import TextArea from 'app/designs/Form/TextArea';
 
 /**
  * @function Home Home page react component
@@ -63,7 +58,7 @@ const Home = () => {
         }}
         title="My Form"
       >
-        <InputEmail
+        <Form.InputEmail
           autoFocus
           required
           label="Field Email"
@@ -74,7 +69,7 @@ const Home = () => {
           }}
           extValidityState={emailValidation}
         />
-        <InputPassword
+        <Form.InputPassword
           required
           label="Field Password"
           autoComplete="off"
@@ -83,7 +78,7 @@ const Home = () => {
             setPassword(event.target.value);
           }}
         />
-        <InputPassword
+        <Form.InputPassword
           required
           label="Field Confirm Password"
           autoComplete="off"
@@ -94,28 +89,28 @@ const Home = () => {
           }}
           validator={(value) => ({ state: password === value })}
         />
-        <InputText
+        <Form.InputText
           label="Field Text"
           value={text}
           onChange={(event) => {
             setText(event.target.value);
           }}
         />
-        <TextArea
+        <Form.TextArea
           label="Field Text Area"
           value={text}
           onChange={(event) => {
             setText(event.target.value);
           }}
         />
-        <InputDate
+        <Form.InputDate
           label="Field Date"
           value={date}
           onChange={(event) => {
             setDate(event.target.value);
           }}
         />
-        <InputDate
+        <Form.InputDate
           type="month"
           label="Field Month"
           value={month}
@@ -123,7 +118,7 @@ const Home = () => {
             setMonth(event.target.value);
           }}
         />
-        <InputDate
+        <Form.InputDate
           type="week"
           required
           label="Field Week"
@@ -132,7 +127,7 @@ const Home = () => {
             setWeek(event.target.value);
           }}
         />
-        <InputDate
+        <Form.InputDate
           type="time"
           required
           label="Field Time"

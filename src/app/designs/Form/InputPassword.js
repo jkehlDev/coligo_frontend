@@ -10,6 +10,9 @@ import GenericInput from './GenericInput';
 /* Password valitation rules config */
 import rules from 'app/designs/passwordRules.json';
 
+/* SVG icon asset */
+import icons from 'app/designs/icon-sprite.svg';
+
 /* Tools */
 const schema = new passwordValidator();
 schema
@@ -113,10 +116,16 @@ const InputPassword = ({
   return (
     <>
       <GenericInput {...genInputProps}>
-        <details className="password-description">
-          <summary
-            className={cx('password-strength', strength.class)}
-          >{`Force du mot de passe: ${strength.quality} (${strength.value} bits)`}</summary>
+        <details
+          className="password-description"
+          title={`Qualité du mot de passe: ${strength.quality} (${strength.value} bits)`}
+        >
+          <summary className="password-rules">
+            <svg className={cx('password-icon', strength.class)} aria-hidden="true">
+              <use xlinkHref={`${icons}#lock`} />
+            </svg>
+            {` ${strength.quality} - Règles détaillées :`}            
+          </summary>
           <article title="Règles saisie du mot de passe">
             <h1 data-fontsize="M">Règles saisie du mot de passe :</h1>
             <ul data-fontsize="M">
@@ -164,7 +173,7 @@ InputPassword.defaultProps = {
   required: true,
   minLength: 10,
   maxLength: 30,
-  size: 25,
+  size: 35,
   fontSize: 'M',
   onChange: undefined,
   extValidityState: undefined,

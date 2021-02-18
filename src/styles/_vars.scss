@@ -1,54 +1,57 @@
+$global--font-weigt--normal: 300;
+$global--font-weigt--bold: 600;
+$global--animate-scale: 1.05;
+$global--layout-breakpoint-small: 700px;
+$global--bordering-radius: 0.5em;
 $global--bordering-size: 3.5px;
-
-/* == FONT == */
-$app-font-family: 'Courier New', Courier, monospace;
-$app-font-weigt--normal: 300;
-$app-font-weigt--bold: 600;
-/* Border */
-$global--bordering-radius: 1em;
-/* Margin */
-$global--margin: 1em;
-
-/* Colors */
-/* - action */
+$global--margin: 1.5em;
+$global--margin--hovering-title: 0 2em -0.5em 2em;
+$global--padding: 1em;
+$global--padding--hovering-title: 0 1em;
 $global--color--action: rgb(60, 60, 240);
 $global--color--action--darker: rgb(30, 30, 150);
-/* - positve */
 $global--color--valid: rgb(50, 240, 50);
 $global--color--valid--darker: rgb(30, 150, 30);
-/* - negative */
 $global--color--invalid: rgb(240, 75, 75);
 $global--color--invalid--darker: rgb(150, 75, 75);
-/* - neutral */
 $global--color--neutral: rgb(180, 180, 180);
 $global--color--neutral--darker: rgb(140, 140, 140);
-
-/* - light / dark */
 $global--color--light: white;
 $global--color--dark: black;
 
-/* Responsive parameter */
-$layout-breakpoint-small: 700px;
+$global--font-family: monospace, Courier, sans-serif;
+$global--font-color: $global--color--dark;
+$global--background-color: $global--color--light;
+$global--bordering-color: $global--color--dark;
 
-/* == BUTTON == */
-/* border size */
-$button-border: $global--bordering-size solid;
-/* border radius */
-$button-border-radius: $global--bordering-radius;
-/* positve */
-$button-bcg--positive: $global--color--action;
-$button-border--positive: $global--color--valid--darker;
-/* negative */
-$button-bcg--negative: $global--color--invalid;
-$button-border--negative: $global--color--invalid--darker;
-/* neutral */
-$button-bcg--neutral: $global--color--neutral;
-$button-border--neutral: $global--color--neutral--darker;
-/* other */
-$button-content-color-light: $global--color--light;
-$button-content-color-dark: $global--color--dark;
+$global--font-size-S: 0.75em;
+$global--font-size-M: 1em;
+$global--font-size-XL: 1.5em;
+$global--font-size-XXL: 2em;
 
-/* = Form */
+/* Button */
+$button-group--margin: 1em;
+$button--background: inherit;
+$button--font--color: $global--font-color;
+$button--font--family: inherit;
+$button--font--weight: $global--font-weigt--bold;
+$button--font--size: 1em;
+$button--text--transform: capitalize;
+$button--padding: 0.5em 1em;
+$button--margin: 0.25em;
+$button--icon--size: 1.25em;
+$button--animate-scale: $global--animate-scale;
+$button--bordering-size: $global--bordering-size;
+$button--bordering-radius: $global--bordering-radius;
+$button--bordering-color--negative: $global--color--invalid;
+$button--bordering-color--negative-hovered: $global--color--invalid--darker;
+$button--bordering-color--positive: $global--color--valid;
+$button--bordering-color--positive-hovered: $global--color--valid--darker;
+$button--bordering-color--neutral: $global--color--neutral;
+$button--bordering-color--neutral-hovered: $global--color--neutral--darker;
+
+/* Form */
+$form--width: 40em;
 $form--bordering-size: $global--bordering-size;
 $form--bordering-radius: $global--bordering-radius;
 $form--bordering-color--invalid: $global--color--invalid;
@@ -56,7 +59,7 @@ $form--bordering-color--invalid-focused: $global--color--invalid--darker;
 $form--bordering-color--valid: $global--color--valid;
 $form--bordering-color--valid-focused: $global--color--valid--darker;
 
-/* = Form Input*/
+/* Form Input*/
 $input--bordering-size: $global--bordering-size;
 $input--bordering-radius: $global--bordering-radius;
 $input--bordering-color--neutral: $global--color--neutral;
@@ -65,12 +68,13 @@ $input--bordering-color--invalid: $global--color--invalid;
 $input--bordering-color--invalid-focused: $global--color--invalid--darker;
 $input--bordering-color--valid: $global--color--valid;
 $input--bordering-color--valid-focused: $global--color--valid--darker;
-$input--animate-scale: 1.05;
+$input--animate-scale: $global--animate-scale;
 
 /* Form Input State */
 $input-state--stroke-invalid: $global--color--invalid;
 $input-state--stroke-valid: $global--color--valid;
 $input-state--stroke-neutral: $global--color--neutral--darker;
+$input-state--icon--size: 1.5em;
 
 @mixin margin-top--notFirstChild {
   &:not(:first-child) {
@@ -114,6 +118,16 @@ $input-state--stroke-neutral: $global--color--neutral--darker;
   min-width: $min-width;
 }
 
+@mixin sizing--hovering-title {
+  @include sizing(
+    $global--padding--hovering-title,
+    $global--margin--hovering-title,
+    min-content,
+    none,
+    max-content
+  );
+}
+
 @mixin bordering(
   $size: 1px,
   $color: transparent,
@@ -141,7 +155,7 @@ $input-state--stroke-neutral: $global--color--neutral--darker;
 }
 
 @mixin animate-scale-onHoverNdFocus($scale) {
-  transition: transform ease-in-out 250ms, border ease-in-out 250ms;
+  transition: transform ease-in-out 250ms 100ms;
   &:focus-within {
     transform: scale($scale);
   }
@@ -163,11 +177,11 @@ $input-state--stroke-neutral: $global--color--neutral--darker;
   stroke: $stroke;
 }
 
-@mixin tool-tips() {
+@mixin tool-tips($bordering-color, $background-color, $font-color) {
   /* Flow rendering */
   display: none;
   position: absolute;
-  top: 0;
+  top: 0.25em;
   left: 0;
   z-index: 2;
   flex-shrink: 0;
@@ -178,15 +192,15 @@ $input-state--stroke-neutral: $global--color--neutral--darker;
   padding: 1em;
   /* Border rendering */
   border-radius: $global--bordering-radius;
-  box-shadow: 0px 2px 5px black;
+  box-shadow: 0px 0px 5px $bordering-color;
   /* Font, color, bckg*/
-  background-color: rgba(255, 255, 240, 0.95);
-  color: $global--color--dark;
+  background-color: $background-color;
+  color: $font-color;
   text-align: left;
   font-size: 1em;
   font-weight: bold;
   word-wrap: break-word;
-  
+
   &.show {
     display: block;
     animation: 50ms ease-out 250ms both poping;
@@ -199,7 +213,7 @@ $input-state--stroke-neutral: $global--color--neutral--darker;
     left: calc(50% - 10px);
     width: 0;
     height: 0;
-    border-bottom: 10px solid rgba(0, 0, 0, 0.50);
+    border-bottom: 10px solid $bordering-color;
     border-left: 10px solid transparent;
     border-right: 10px solid transparent;
   }

@@ -6,15 +6,13 @@ import cx from 'classnames';
  * @function BtGroup Button Group design react component
  * @param {*} props {nowrap, vertical, align, nofill, children}
  */
-const BtGroup = ({ nowrap, vertical, align, nofill, children }) => (
+const BtGroup = ({ nowrap, vertical, mainAlign, nofill, children }) => (
   <div
     className={cx('button-group', {
       nowrap: nowrap,
       vertical: vertical,
-      'align-centered': align === 'centered',
-      'align-start': align === 'start',
       nofill: nofill,
-    })}
+    }, mainAlign)}
   >
     {children}
   </div>
@@ -25,7 +23,7 @@ BtGroup.propTypes = {
   nowrap: PropTypes.bool,
   vertical: PropTypes.bool,
   nofill: PropTypes.bool,
-  align: PropTypes.oneOf(['centered', 'start', 'end']),
+  mainAlign: PropTypes.oneOf(['center', 'flex-start', 'flex-end', 'space-around', 'space-between']),
   children: PropTypes.oneOfType([
     PropTypes.node,
     PropTypes.arrayOf(PropTypes.node),
@@ -37,7 +35,7 @@ BtGroup.defaultProps = {
   nowrap: false,
   vertical: false,
   nofill: false,
-  align: 'end',
+  mainAlign: 'center',
 };
 
 export default BtGroup;

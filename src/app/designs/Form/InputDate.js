@@ -6,19 +6,6 @@ import cx from 'classnames';
 /* Attached Design components */
 import GenericInput from './GenericInput';
 
-/* Utils */
-function getSize(type) {
-  switch (type) {
-    case 'month':
-      return 7;
-    case 'week':
-      return 8;
-    case 'time':
-      return 5;
-    default:
-      return 10;
-  }
-}
 
 /**
  * @function InputDate InputDate design react component
@@ -39,7 +26,6 @@ const InputDate = ({
   validator,
 }) => {
   const id = useMemo(() => camelCase(label), [label]);
-  let size = useMemo(() => getSize(type), [type]);
   const genInputProps = useMemo(
     () => ({
       type,
@@ -61,7 +47,7 @@ const InputDate = ({
       placeholder: undefined,
       fontSize,
       required,
-      size,
+      size: undefined,
       value,
       onChange,
       validator,
@@ -77,7 +63,6 @@ const InputDate = ({
       min,
       onChange,
       required,
-      size,
       type,
       validator,
       extValidityState,

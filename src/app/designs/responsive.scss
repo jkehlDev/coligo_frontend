@@ -3,12 +3,12 @@
 /* $layout-breakpoint-small: 700px; */
 /* == RESPONSIVE */
 .only {
-  @media (min-width: $layout-breakpoint-small) {
+  @media (min-width: $global--layout-breakpoint-small) {
     &.small {
       display: none;
     }
   }
-  @media (max-width: $layout-breakpoint-small) {
+  @media (max-width: $global--layout-breakpoint-small) {
     &.large {
       display: none;
     }

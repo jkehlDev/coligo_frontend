@@ -1,2 +1,32 @@
 /* Designs styles import */
 @import 'app/designs/designs.scss';
+
+body {
+  font-family: $global--font-family;
+  color: $global--font-color;
+  background-color: $global--background-color;
+  width: 100%;
+  height: 100vh;
+  padding: 0;
+  margin: 0;
+}
+
+#root {
+  @include flexFlow();
+  @include sizing(0, auto);
+  overflow: hidden;
+  header{
+    @include flexFlow(row, wrap, space-between, center);
+    @include sizing();
+  }
+  main{
+    @include flexFlow($flx-cross:center);
+    @include sizing();
+    overflow-y: auto;
+  }
+  footer{
+    @include flexFlow(row, wrap, space-around, center);
+    @include sizing();
+    overflow-y: auto;
+  }
+}

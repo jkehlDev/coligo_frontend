@@ -4,16 +4,17 @@
     /* Flow rendering */
     @include flexFlow($flx-cross: center);
     /* size rendering param */
-    @include sizing(0.75em, 0, min-content);
+    @include sizing(0.75em, 0, $form--width);
     /* Font, color, bckg */
-    background-color: white;
+    background-color: $global--background-color;
+    color: $global--font-color;
     /* Sub elements */
     &--title {
       /* Flow rendering */
       @include flexFlow();
       z-index: 1;
       /* size rendering param */
-      @include sizing(0 1em, 0 0 -0.5em 0);
+      @include sizing--hovering-title;
       /* Font, color, bckg */
       background-color: inherit;
       line-height: 1.2em;
@@ -67,6 +68,7 @@
     }
     /* Font, color, bckg */
     background-color: inherit;
+    color: inherit;
     /* Animation / Transitions rendering */
     transition: border ease-in-out 250ms;
     /* Sub elements */
@@ -74,17 +76,18 @@
       /* Flow rendering */
       @include flexFlow($flx-cross: center);
       /* size rendering param */
-      @include sizing(0.25em, 0, 100%, none, max-content);
+      @include sizing(0.25em, 0, auto, none, max-content);
       @include margin-top--notFirstChild;
       /* Font, color, bckg */
       background-color: inherit;
+      color: inherit;
       /* Sub elements */
       &--label {
         /* Flow rendering */
         @include flexFlow();
         z-index: 1;
         /* size rendering param */
-        @include sizing(0 1em, 0 0 -0.5em 0, fit-content, none, max-content);
+        @include sizing--hovering-title;
         /* Font, color, bckg */
         text-align: center;
         text-transform: capitalize;
@@ -98,9 +101,10 @@
         /* Flow rendering */
         @include flexFlow(row, $flx-cross: center);
         /* size rendering param */
-        @include sizing(0.75em 0.5em, 0, 100%, none, min-content);
+        @include sizing(0.75em 0.5em, 0, 100%, none, max-content);
         /* Font, color, bckg */
         background-color: inherit;
+        color: inherit;
         /* Animation / Transitions rendering */
         @include animate-scale-onHoverNdFocus($input--animate-scale);
         /* Border rendering */
@@ -163,10 +167,17 @@
           @include flexFlow();
           /* size rendering param */
           @include sizing();
+          /* Font, color, bckg */
+          background-color: inherit;
+          color: inherit;
           /* Cursor */
           cursor: help;
           &--icon {
-            @include icon(1em, 1, $input-state--stroke-neutral);
+            @include icon(
+              $input-state--icon--size,
+              1,
+              $input-state--stroke-neutral
+            );
             &.invalid {
               stroke: $input-state--stroke-invalid;
             }
@@ -188,30 +199,47 @@
           border: none;
           outline: none;
           /* Font, color, bckg */
-          text-align: center;
           background-color: inherit;
-        }
-      }
-      .password-description {
-        /* Displaying part */
-        @include flexFlow();
-        /* size rendering param */
-        @include sizing(0, 0.5em 0 0 0, 100%);
-        .password-strength {
-          &.bad {
-            color: $global--color--invalid;
-          }
-          &.good {
-            color: $global--color--dark;
-          }
-          &.strong {
-            color: $global--color--valid--darker;
-          }
-          &.very-strong {
-            color: $global--color--valid--darker;
+          color: $global--font-color;
+          text-align: center;
+          &::-webkit-calendar-picker-indicator {
+            border-radius: 50%;
+            background-color: white;
+            height: 1em;
+            width: 1em;
+            padding: 0.25em;
           }
         }
       }
+        .password-description {
+          font-size: 0.75em;
+          /* Displaying part */
+          @include flexFlow();
+          display: inline-block;
+          /* size rendering param */
+          @include sizing(0, 0.5em 0 0 0, 100%);
+          .password-icon {
+            @include icon(1em, auto, $global--color--dark);
+            padding: 0 0.25em;
+            &.bad {
+              stroke: $global--color--invalid;
+            }
+            &.good {
+              stroke: $global--color--dark;
+            }
+            &.strong {
+              stroke: $global--color--valid--darker;
+            }
+            &.very-strong {
+              stroke: $global--color--valid--darker;
+            }
+          }
+          .password-rules {
+            /* Font, color, bckg */
+            background-color: inherit;
+            color: inherit;
+          }
+        }
     }
     .tool-tips-box {
       /* Displaying part */
@@ -220,7 +248,11 @@
       width: 100%;
       /* Sub element */
       .tool-tips {
-        @include tool-tips;
+        @include tool-tips(
+          $global--bordering-color,
+          $global--background-color,
+          $global--font-color
+        );
       }
     }
   }

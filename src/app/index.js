@@ -16,13 +16,19 @@ import NotFound from 'app/pages/NotFound';
  * @param {*} props {}
  */
 const App = (props) => (
-  <Switch>
-    {/* HOME PAGE */}
-    <Route exact path="/" component={Home} />
-    {/* 404 & REDIRECT TOWARDS HOMEPAGE */}
-    <Route exact path="*" component={NotFound} />
-    <RouteProtected></RouteProtected>
-  </Switch>
+  <>
+    <header></header>
+    <main>
+      <Switch>
+        {/* HOME PAGE */}
+        <Route exact path="/" component={Home} />
+        {/* 404 & REDIRECT TOWARDS HOMEPAGE */}
+        <Route exact path="*" component={NotFound} />
+        <RouteProtected></RouteProtected>
+      </Switch>
+    </main>
+    <footer></footer>
+  </>
 );
 
 /* PropTypes definition */

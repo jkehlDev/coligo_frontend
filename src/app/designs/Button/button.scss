@@ -1,116 +1,78 @@
 @import 'styles/_vars.scss';
 
 .button-group {
-  /* flex */
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: flex-end;
-  align-items: center;
+  /* Flow rendering */
+  @include flexFlow(row, wrap, flex-end, center);
   &.nowrap {
     flex-wrap: nowrap;
   }
   &.vertical {
     flex-direction: column;
   }
-  &.align {
-    &-centered {
-      justify-content: center;
-      align-items: center;
-      margin: 0;
-      .button:not(:first-child):not(:last-child) {
-        margin-left: 0.25rem;
-        margin-right: 0.25rem;
-      }
-    }
-    &-start {
-      justify-content: flex-start;
-      align-items: center;
-      margin: 0;
-      .button:not(:last-child) {
-        margin-right: 0.5rem;
-      }
-    }
+  &.flex-start {
+    justify-content: flex-start;
   }
-  .button:not(:first-child) {
-    margin-left: 0.5rem;
+  &.flex-end {
+    justify-content: flex-end;
   }
-  /* scale */
-  box-sizing: border-box;
-  width: 100%;
-  min-width: min-content;
-  height: fit-content;
-  margin: 0;
-  padding: 0.5rem 0;
+  &.center {
+    justify-content: center;
+  }
+  &.space-around {
+    justify-content: space-around;
+  }
+  &.space-between {
+    justify-content: space-between;
+  }
+  /* size rendering param */
+  @include sizing(0, $button-group--margin, auto, none);
   &.nofill {
-    width: fit-content;
+    width: min-content;
   }
+  
 }
 .button {
-  /* font */
-  font-family: $app-font-family;
-  font-weight: $app-font-weigt--bold;
-  font-size: 1em;
-  /* scale */
-  box-sizing: border-box;
-  margin: 0rem;
-  padding: 0.5rem;
-  /* flex */
-  flex-basis: content;
-  flex-grow: 0;
-  flex-grow: 0;
-  /* border */
-  border-radius: $button-border-radius;
-  transition: all ease-in-out 750ms;
-  border: $button-border transparent;
-  outline: none;
-  /* TEXT */
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: center;
-  align-items: center;
-
+  @include flexFlow(row, $flx-cross: center);
+  @include sizing($button--padding, $button--margin);
+  /* Font, color, bckg */
+  background-color: $button--background;
+  color: $button--font--color;
+  font-family: $button--font--family;
+  font-weight: $button--font--weight;
+  font-size: $button--font--size;
+  text-transform: capitalize;
+  /* Border rendering - Variations rendering */
+  @include bordering(
+    $button--bordering-size,
+    transparent,
+    $button--bordering-radius
+  );
   &.positive {
-    background-color: $button-bcg--positive;
-    color: $button-content-color-light;
-    stroke: $button-content-color-light;
+    border-color: $button--bordering-color--positive;
     &:hover {
-      transition: all ease-in-out 300ms;
-      border: $button-border $button-border--positive;
+      border-color: $button--bordering-color--positive-hovered;
     }
   }
   &.negative {
-    background-color: $button-bcg--negative;
-    color: $button-content-color-light;
-    stroke: $button-content-color-light;
+    border-color: $button--bordering-color--negative;
     &:hover {
-      transition: all ease-in-out 300ms;
-      border: $button-border $button-border--negative;
+      border-color: $button--bordering-color--negative-hovered;
     }
   }
   &.neutral {
-    background-color: $button-bcg--neutral;
-    color: $button-content-color-light;
-    stroke: $button-content-color-light;
+    border-color: $button--bordering-color--neutral;
     &:hover {
-      transition: all ease-in-out 300ms;
-      border: $button-border $button-border--neutral;
+      border-color: $button--bordering-color--neutral-hovered;
     }
   }
-  > .icon {
-    width: 2em;
-    height: 2em;
+  transition: all ease-in-out 750ms;
+  @include animate-scale-onHoverNdFocus($button--animate-scale);
+
+  .icon {
+    @include icon($button--icon--size, auto, $button--font--color);
     display: inline-block;
-    padding-right: 0;
-    fill: none;
-    stroke: inherit;
-    stroke-width: 1.9px;
     &.padded {
       padding-right: 1em;
     }
-  }
-  &:hover {
-    animation: growing 500ms ease-in-out both;
   }
 }

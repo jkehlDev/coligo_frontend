@@ -15,7 +15,7 @@ import TextArea from './TextArea';
 const Form = ({ title, onSubmit, fontSize, children }) => {
   return (
     <section className="form--section" data-fontsize={`${fontSize}`}>
-      <h1 className="form--section--title">{title}</h1>
+      <h1 className="form--section--title" title={title}>{title}</h1>
       <form className="form--content" title={title} onSubmit={onSubmit}>
         {children}
       </form>

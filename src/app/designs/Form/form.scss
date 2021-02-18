@@ -1,14 +1,18 @@
 @import 'styles/_vars.scss';
+@import 'app/designs/Form/inputPassword.scss';
+
 .form {
+  /* Form Section rendering  */
   &--section {
     /* Flow rendering */
     @include flexFlow($flx-cross: center);
     /* size rendering param */
-    @include sizing(0.75em, 0, $form--width);
+    @include sizing(0, $form--margin, $form--width);
     /* Font, color, bckg */
     background-color: $global--background-color;
     color: $global--font-color;
-    /* Sub elements */
+
+    /* Form Section title rendering */
     &--title {
       /* Flow rendering */
       @include flexFlow();
@@ -22,12 +26,12 @@
       text-align: center;
     }
   }
-  /* Sub elements */
+  /* Form content childs rendering */
   &--content {
     /* Flow rendering */
     @include flexFlow($flx-cross: center);
     /* size rendering param */
-    @include sizing(1.5em, 0, 100%, none, max-content);
+    @include sizing($form--padding, 0, 100%, none, max-content);
     /* Border rendering */
     outline: none;
     &:invalid {
@@ -71,23 +75,82 @@
     color: inherit;
     /* Animation / Transitions rendering */
     transition: border ease-in-out 250ms;
-    /* Sub elements */
+
+    /* Form generic Input Field rendering */
     &--field {
       /* Flow rendering */
       @include flexFlow($flx-cross: center);
       /* size rendering param */
-      @include sizing(0.25em, 0, auto, none, max-content);
+      @include sizing(0 0.5em 0.5em 0.5em, 0, auto, none, max-content);
       @include margin-top--notFirstChild;
       /* Font, color, bckg */
       background-color: inherit;
       color: inherit;
-      /* Sub elements */
+      /* Border rendering */
+      @include bordering(
+        $input--bordering-size,
+        $input--bordering-color--neutral,
+        $input--bordering-radius,
+        $right: false,
+        $left: false
+      );
+      &:focus-within {
+        @include bordering(
+          $input--bordering-size,
+          $input--bordering-color--neutral-focused,
+          $input--bordering-radius,
+          $right: false,
+          $left: false
+        );
+      }
+      /* Valid input field rendering case */
+      &.invalid {
+        @include bordering(
+          $input--bordering-size,
+          $input--bordering-color--invalid,
+          $input--bordering-radius,
+          $right: false,
+          $left: false
+        );
+        &:focus-within {
+          @include bordering(
+            $input--bordering-size,
+            $input--bordering-color--invalid-focused,
+            $input--bordering-radius,
+            $right: false,
+            $left: false
+          );
+        }
+      }
+      /* Invalid input field rendering case */
+      &.valid {
+        @include bordering(
+          $input--bordering-size,
+          $input--bordering-color--valid,
+          $input--bordering-radius,
+          $right: false,
+          $left: false
+        );
+        &:focus-within {
+          @include bordering(
+            $input--bordering-size,
+            $input--bordering-color--valid-focused,
+            $input--bordering-radius,
+            $right: false,
+            $left: false
+          );
+        }
+      }
+      /* Animation / Transitions rendering */
+      @include animate-scale-onHoverNdFocus($input--animate-scale);
+
+      /* Generic Input Label rendering */
       &--label {
         /* Flow rendering */
         @include flexFlow();
         z-index: 1;
         /* size rendering param */
-        @include sizing--hovering-title;
+        @include sizing--hovering-title(-0.75em 2em 0 2em, 0 1em 0.5em 1em);
         /* Font, color, bckg */
         text-align: center;
         text-transform: capitalize;
@@ -96,70 +159,15 @@
         word-break: keep-all;
         background-color: inherit;
       }
-
+      /* Generic Input Box rendering */
       &--box {
         /* Flow rendering */
         @include flexFlow(row, $flx-cross: center);
         /* size rendering param */
-        @include sizing(0.75em 0.5em, 0, 100%, none, max-content);
+        @include sizing(0, 0, 100%, none, max-content);
         /* Font, color, bckg */
         background-color: inherit;
         color: inherit;
-        /* Animation / Transitions rendering */
-        @include animate-scale-onHoverNdFocus($input--animate-scale);
-        /* Border rendering */
-        @include bordering(
-          $input--bordering-size,
-          $input--bordering-color--neutral,
-          $input--bordering-radius,
-          $right: false,
-          $left: false
-        );
-        &:focus-within {
-          @include bordering(
-            $input--bordering-size,
-            $input--bordering-color--neutral-focused,
-            $input--bordering-radius,
-            $right: false,
-            $left: false
-          );
-        }
-        &.invalid {
-          @include bordering(
-            $input--bordering-size,
-            $input--bordering-color--invalid,
-            $input--bordering-radius,
-            $right: false,
-            $left: false
-          );
-          &:focus-within {
-            @include bordering(
-              $input--bordering-size,
-              $input--bordering-color--invalid-focused,
-              $input--bordering-radius,
-              $right: false,
-              $left: false
-            );
-          }
-        }
-        &.valid {
-          @include bordering(
-            $input--bordering-size,
-            $input--bordering-color--valid,
-            $input--bordering-radius,
-            $right: false,
-            $left: false
-          );
-          &:focus-within {
-            @include bordering(
-              $input--bordering-size,
-              $input--bordering-color--valid-focused,
-              $input--bordering-radius,
-              $right: false,
-              $left: false
-            );
-          }
-        }
 
         /* Sub elements */
         &--state {
@@ -189,12 +197,12 @@
             }
           }
         }
-
+        /* Generic Input rendering */
         &--input {
           /* Flow rendering */
           @include flexFlow($flx-direction: row, $flx-grow: 1);
           /* size rendering param */
-          @include sizing(0 1em, 0 0 0 -1em, auto, none, max-content);
+          @include sizing(0.5em 1em, 0 0 0 -1em, auto, none, max-content);
           /* Border rendering */
           border: none;
           outline: none;
@@ -208,51 +216,53 @@
             height: 1em;
             width: 1em;
             padding: 0.25em;
+            /* Cursor */
+            cursor: pointer;
+          }
+          /* Specifics rendering for Input Password */
+          &--password {
+            @include inputPassword;
           }
         }
-      }
-        .password-description {
-          font-size: 0.75em;
+        /* Generic Input option (boxed right side element) */
+        &--input-option {
           /* Displaying part */
           @include flexFlow();
-          display: inline-block;
           /* size rendering param */
-          @include sizing(0, 0.5em 0 0 0, 100%);
-          .password-icon {
-            @include icon(1em, auto, $global--color--dark);
-            padding: 0 0.25em;
-            &.bad {
-              stroke: $global--color--invalid;
-            }
-            &.good {
-              stroke: $global--color--dark;
-            }
-            &.strong {
-              stroke: $global--color--valid--darker;
-            }
-            &.very-strong {
-              stroke: $global--color--valid--darker;
-            }
-          }
-          .password-rules {
-            /* Font, color, bckg */
-            background-color: inherit;
-            color: inherit;
-          }
+          @include sizing();
+          /* Font, color, bckg */
+          background-color: inherit;
+          color: inherit;
+          /* Cursor */
+          cursor: pointer;
         }
-    }
-    .tool-tips-box {
-      /* Displaying part */
-      display: block;
-      position: relative;
-      width: 100%;
-      /* Sub element */
-      .tool-tips {
-        @include tool-tips(
-          $global--bordering-color,
-          $global--background-color,
-          $global--font-color
-        );
+      }
+      /* Generic Input aside (boxed bottom element) */
+      &--aside {
+        /* Displaying part */
+        @include flexFlow();
+        /* size rendering param */
+        @include sizing();
+        /* Font, color, bckg */
+        background-color: inherit;
+        color: inherit;
+        /* Cursor */
+        cursor: pointer;
+      }
+      /* Generic Input tool-tips popup (same level and inside Field, with z-index constraint) */
+      &--tool-tips-box {
+        /* Displaying part */
+        display: block;
+        position: relative;
+        width: 100%;
+        /* Sub element */
+        &--content {
+          @include tool-tips(
+            $global--bordering-color,
+            $global--background-color,
+            $global--font-color
+          );
+        }
       }
     }
   }

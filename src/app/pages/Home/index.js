@@ -80,6 +80,16 @@ const Home = () => {
             setPassword(event.target.value);
           }}
         />
+         <InputPassword
+          required
+          label="Field Confirm Password"
+          autoComplete="off"
+          ruled={false}
+          value={password}
+          onChange={(event) => {
+            setPassword(event.target.value);
+          }}
+        />
         <InputDate
           label="Field Date"
           value={date}

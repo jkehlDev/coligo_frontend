@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 import camelCase from 'camelcase';
 import emailValidator from 'email-validator';
 
+/* Label dictionnary */
+import labelsFr from 'app/designs/labels_fr.json';
+
 /* Attached Design components */
 import GenericInput from './GenericInput';
 
@@ -100,7 +103,7 @@ InputEmail.defaultProps = {
   required: false,
   minLength: undefined,
   maxLength: undefined,
-  size: 35,
+  size: 30,
   fontSize: 'M',
   onChange: undefined,
   extValidityState: undefined,
@@ -108,7 +111,9 @@ InputEmail.defaultProps = {
     const state = emailValidator.validate(value);
     return {
       state,
-      tips: state ? undefined : 'Veuillez saisir une adresse email valide.',
+      tips: state
+        ? undefined
+        : labelsFr.designs.email.validator.default_invalid,
     };
   },
 };

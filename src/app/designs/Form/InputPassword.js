@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
 import camelCase from 'camelcase';
 import cx from 'classnames';
 import passwordValidator from 'password-validator';
+
+/* Label dictionnary */
+import labelsFr from 'app/designs/labels_fr.json';
 
 /* Attached Design components */
 import GenericInput from './GenericInput';
@@ -14,7 +17,9 @@ import rules from 'app/designs/passwordRules.json';
 import icons from 'app/designs/icon-sprite.svg';
 
 /* Tools */
+/* Validation Rules Schema */
 const schema = new passwordValidator();
+// --------------------
 schema
   .is()
   .min(rules.condition.min.value) // Minimum length 8
@@ -31,28 +36,32 @@ schema
   .has()
   .not()
   .spaces(); // Should not have spaces
+// --------------------
 
-function getRulesErr(schema, value) {
+/* Obtain validation rule execution */
+function getRulesErr(schema, password) {
   return schema
-    .validate(value, { list: true })
+    .validate(password, { list: true })
     .map((err) => rules.condition[err]);
 }
-function isValidPassword(value) {
-  const state = schema.validate(value);
+
+/* Obtain Password validation state */
+function isValidPassword(password) {
+  const state = schema.validate(password);
   if (state) {
     return {
       state,
     };
   } else {
-    const rulesErr = getRulesErr(schema, value);
+    const rulesErr = getRulesErr(schema, password);
     return {
       state,
-      tips: `Mot de passe invalide, les critères suivants ne sont pas respectés: ${rulesErr
-        .map((rule) => rule.msg)
-        .join(', ')}.`,
+      tips: `${
+        labelsFr.designs.password.validator.default_invalid
+      } ${rulesErr.map((rule) => rule.msg).join(', ')}.`,
       structuredTips: (
         <>
-          Mot de passe invalide, les critères suivants ne sont pas respectés:
+          {`${labelsFr.designs.password.validator.default_invalid}`}
           <ul>
             {rulesErr.map((rule) => (
               <li key={rule.id}>{rule.msg}</li>
@@ -64,6 +73,7 @@ function isValidPassword(value) {
     };
   }
 }
+/* Obtain Password Strength bits value */
 function getPasswordStrength(password) {
   const charsetLenght = rules.CHARSETS.join('').length;
   const value = Math.ceil(Math.log2(Math.pow(charsetLenght, password.length)));
@@ -89,52 +99,128 @@ const InputPassword = ({
   onChange,
   extValidityState,
   validator,
+  ruled,
 }) => {
-  const strength = getPasswordStrength(value);
-  const id = camelCase(label);
-  const genInputProps = {
-    type: 'password',
-    id,
-    name: id,
-    label,
-    autoComplete,
-    autoFocus,
-    inputClassName: '',
-    min: undefined,
-    minLength,
-    max: undefined,
-    maxLength,
-    placeholder,
-    fontSize,
-    required,
-    size,
-    value,
-    onChange,
-    extValidityState,
-    validator,
-  };
+  const [togglePassword, setTogglePassword] = useState(true);
+  const type = useMemo(() => (togglePassword ? 'password' : 'text'), [
+    togglePassword,
+  ]);
+  const passwordState = useMemo(() => isValidPassword(value).state, [value]);
+
+  /* Obtain eye/eye-off icon name */
+  const iconEye = useMemo(() => (togglePassword ? 'eye-off' : 'eye'), [
+    togglePassword,
+  ]);
+
+  /* Obtain lock/unlock icon name */
+  const iconLock = useMemo(() => (passwordState ? 'lock' : 'unlock'), [
+    passwordState,
+  ]);
+
+  /* Set password Strength */
+  const strength = useMemo(() => getPasswordStrength(value), [value]);
+
+  /* Set identifiant (id, name) in camel case format */
+  const camelIdentifiant = useMemo(() => camelCase(label), [label]);
+
+  /* Build GenericInput props */
+  const genInputProps = useMemo(
+    () => ({
+      type,
+      id: camelIdentifiant,
+      name: camelIdentifiant,
+      label,
+      autoComplete,
+      autoFocus,
+      inputClassName: '',
+      min: undefined,
+      minLength,
+      max: undefined,
+      maxLength,
+      placeholder,
+      fontSize,
+      required,
+      size,
+      value,
+      onChange,
+      extValidityState,
+      validator,
+      // Input option : User abality to hide or show password value
+      inputOption: (
+        <svg
+          className={cx(
+            'form--content--field--box--input--password--eye-icon',
+            strength.class
+          )}
+          onClick={() => {
+            setTogglePassword(!togglePassword);
+          }}
+          aria-hidden="true"
+        >
+          <use xlinkHref={`${icons}#${iconEye}`} />
+        </svg>
+      ),
+    }),
+    [
+      autoComplete,
+      autoFocus,
+      camelIdentifiant,
+      extValidityState,
+      fontSize,
+      iconEye,
+      label,
+      maxLength,
+      minLength,
+      onChange,
+      placeholder,
+      required,
+      size,
+      strength.class,
+      togglePassword,
+      type,
+      validator,
+      value,
+    ]
+  );
   return (
     <>
       <GenericInput {...genInputProps}>
-        <details
-          className="password-description"
-          title={`Qualité du mot de passe: ${strength.quality} (${strength.value} bits)`}
-        >
-          <summary className="password-rules">
-            <svg className={cx('password-icon', strength.class)} aria-hidden="true">
-              <use xlinkHref={`${icons}#lock`} />
-            </svg>
-            {` ${strength.quality} - Règles détaillées :`}            
-          </summary>
-          <article title="Règles saisie du mot de passe">
-            <h1 data-fontsize="M">Règles saisie du mot de passe :</h1>
-            <ul data-fontsize="M">
-              {Object.values(rules.condition).map((rule) => (
-                <li key={rule.id}>{rule.msg}</li>
-              ))}
-            </ul>
-          </article>
-        </details>
+        {/* If ruled Input password - render rules details and password strength */}
+        {ruled && (
+          <details
+            className="form--content--field--box--input--password--description"
+            title={`${
+              passwordState
+                ? `${labelsFr.designs.password.details.info_quality} ${strength.quality} (${strength.value} bits)`
+                : `${labelsFr.designs.password.details.invalid}`
+            }`}
+          >
+            <summary className="password-rules">
+              <svg
+                className={cx(
+                  'password-icon',
+                  ` ${passwordState ? strength.class : ''}`
+                )}
+                aria-hidden="true"
+              >
+                <use xlinkHref={`${icons}#${iconLock}`} />
+              </svg>
+              {` ${passwordState ? strength.quality : ''} - ${
+                labelsFr.designs.password.details.summary_title
+              } :`}
+            </summary>
+            <article
+              title={`${labelsFr.designs.password.details.summary_title}`}
+            >
+              <h1 data-fontsize="M">{`${labelsFr.designs.password.details.summary_title} : `}</h1>
+              <ul data-fontsize="M">
+                {Object.values(rules.condition).map((rule) => (
+                  <li key={rule.id}>{rule.msg}</li>
+                ))}
+              </ul>
+            </article>
+          </details>
+        )}
       </GenericInput>
     </>
   );
@@ -152,8 +238,7 @@ InputPassword.propTypes = {
   size: PropTypes.number,
   fontSize: PropTypes.string,
   placeholder: PropTypes.string,
-  value: PropTypes.string.isRequired,
-  onChange: PropTypes.func,
+  ruled: PropTypes.bool,
   extValidityState: PropTypes.shape({
     state: PropTypes.bool.isRequired,
     tips: PropTypes.string,
@@ -164,6 +249,8 @@ InputPassword.propTypes = {
     ]),
   }),
   validator: PropTypes.func,
+  value: PropTypes.string.isRequired,
+  onChange: PropTypes.func,
 };
 
 /* Props default value definition */
@@ -173,11 +260,12 @@ InputPassword.defaultProps = {
   required: true,
   minLength: 10,
   maxLength: 30,
-  size: 35,
+  size: 30,
   fontSize: 'M',
-  onChange: undefined,
+  ruled: true,
   extValidityState: undefined,
   validator: (value) => isValidPassword(value),
+  onChange: undefined,
 };
 
 export default InputPassword;

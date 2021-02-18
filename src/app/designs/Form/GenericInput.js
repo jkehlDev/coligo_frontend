@@ -2,24 +2,29 @@ import React, { useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 
+/* Label dictionnary */
+import labelsFr from 'app/designs/labels_fr.json';
+
 /* Attached Design components */
 import InputState from './InputState';
 
 /* Tools */
-function getDefaultToolTips(required, emptied, validated) {
+/* Obtain default tips non-structured message */
+function getDefaultTips(required, emptied, validated) {
   return required
     ? emptied
-      ? 'Saisie obligatoire, veuillez compléter.'
+      ? labelsFr.designs.input.validator.default_required
       : validated
-      ? 'Votre saisie est correcte.'
-      : 'Votre saisie est incorrecte. Veuillez corriger.'
+      ? labelsFr.designs.input.validator.default_valid
+      : labelsFr.designs.input.validator.default_invalid
     : emptied
-    ? 'Saisie facultative, vous pouvez compléter si nécessaire'
+    ? labelsFr.designs.input.validator.default_optional
     : validated
-    ? 'Votre saisie est correcte.'
-    : 'Votre saisie est incorrecte, veuillez corriger.';
+    ? labelsFr.designs.input.validator.default_valid
+    : labelsFr.designs.input.validator.default_invalid;
 }
 
+/* Obtain validation state with tips messages */
 function getValidityState(
   value,
   required,
@@ -27,12 +32,16 @@ function getValidityState(
   validate,
   extValidityState
 ) {
+  /* Obtain validation state from external validation or executing inner validation process */
   const validated =
     extValidityState === undefined ? validate(value) : extValidityState;
+  /* Obtain default tips message */
   const defaultTips =
     validated.tips === undefined
-      ? getDefaultToolTips(required, emptied, validated.state)
+      ? getDefaultTips(required, emptied, validated.state)
       : validated.tips;
+
+  /* Return validation state */
   return {
     state: validated.state,
     tips: defaultTips,
@@ -59,27 +68,38 @@ const GenericInput = (props) => {
     validator,
     onChange,
     children,
+    inputOption,
     ...othersProps
   } = props;
+
+  /* Obtain empty test result on value */
   const emptied = useMemo(() => value.trim() === '', [value]);
+
+  /* Obtain validation test result on value */
   const validated = useMemo(
     () =>
       getValidityState(value, required, emptied, validator, extValidityState),
     [value, required, emptied, validator, extValidityState]
   );
+
+  /* Declare tool-tips rendering (hide/show) state */
   const [hidedToolTips, setHidedToolTips] = useState(true);
+
   return (
     <>
-      <div className="form--content--field" data-fontsize={fontSize}>
+      <div
+        className={cx('form--content--field', {
+          invalid: !validated.state || (emptied && required),
+          valid: !emptied && validated.state,
+        })}
+        data-fontsize={fontSize}
+      >
+        {/* Input Label */}
         <label className="form--content--field--label" htmlFor={id}>
           {`${label}`}
         </label>
-        <div
-          className={cx('form--content--field--box', {
-            invalid: !validated.state || (emptied && required),
-            valid: !emptied && validated.state,
-          })}
-        >
+        {/* Input field box with input state, input field and input option elements */}
+        <div className={cx('form--content--field--box')}>
           <InputState
             required={required}
             validated={validated.state}
@@ -120,18 +140,23 @@ const GenericInput = (props) => {
             required={required}
             {...othersProps}
           />
+          <div className="form--content--field--box--input-option">
+            {inputOption}
+          </div>
         </div>
-        {children}
+        {/* Aside Field element (Ex: Password rules) */}
+        <aside className="form--content--field--aside">{children}</aside>
       </div>
-      <aside className={'tool-tips-box'}>
+      {/* Field Tool-tips popup element */}
+      <div className={'form--content--field--tool-tips-box'}>
         <article
-          className={cx('tool-tips', {
+          className={cx('form--content--field--tool-tips-box--content', {
             show: !hidedToolTips,
           })}
         >
           {validated.structuredTips}
         </article>
-      </aside>
+      </div>
     </>
   );
 };
@@ -169,6 +194,10 @@ GenericInput.propTypes = {
     PropTypes.node,
     PropTypes.arrayOf(PropTypes.node),
   ]),
+  inputOption: PropTypes.oneOfType([
+    PropTypes.node,
+    PropTypes.arrayOf(PropTypes.node),
+  ]),
 };
 
 /* Props default value definition */
@@ -188,6 +217,7 @@ GenericInput.defaultProps = {
   extValidityState: undefined,
   validator: () => ({ state: true }),
   children: undefined,
+  inputOption: undefined,
 };
 
 export default GenericInput;

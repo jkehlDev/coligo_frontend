@@ -1,0 +1,28 @@
+{
+  "designs": {
+    "input": {
+      "validator": {
+        "default_required": "Saisie obligatoire, veuillez compléter.",
+        "default_valid": "Votre saisie est correcte.",
+        "default_invalid": "Votre saisie est incorrecte. Veuillez corriger.",
+        "default_optional": "Saisie facultative, vous pouvez compléter si nécessaire"
+      }
+    },
+    "email": {
+      "validator": {
+        "default_invalid": "Veuillez saisir une adresse email valide."
+      }
+    },
+    "password": {
+      "validator": {
+        "default_invalid": "Mot de passe invalide, les critères suivants ne sont pas respectés :"
+      },
+      "details": {
+        "info_quality": "Qualité du mot de passe :",
+        "invalid": "Votre mot de passe ne respect pas les règles de validation",
+        "summary_title" : "Règles détaillées",
+        "summary_rules_title" : "Règles saisie du mot de passe"
+      }
+    }
+  }
+}

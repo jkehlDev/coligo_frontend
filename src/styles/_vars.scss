@@ -6,7 +6,7 @@ $global--bordering-radius: 0.5em;
 $global--bordering-size: 3.5px;
 $global--margin: 1.5em;
 $global--margin--hovering-title: 0 2em -0.5em 2em;
-$global--padding: 1em;
+$global--padding: 1.5em;
 $global--padding--hovering-title: 0 1em;
 $global--color--action: rgb(60, 60, 240);
 $global--color--action--darker: rgb(30, 30, 150);
@@ -51,6 +51,8 @@ $button--bordering-color--neutral: $global--color--neutral;
 $button--bordering-color--neutral-hovered: $global--color--neutral--darker;
 
 /* Form */
+$form--margin: $global--margin;
+$form--padding: 3em $global--padding $global--padding $global--padding;
 $form--width: 40em;
 $form--bordering-size: $global--bordering-size;
 $form--bordering-radius: $global--bordering-radius;
@@ -70,11 +72,17 @@ $input--bordering-color--valid: $global--color--valid;
 $input--bordering-color--valid-focused: $global--color--valid--darker;
 $input--animate-scale: $global--animate-scale;
 
+/* Form Input password */
+$input--password--color--weak: rgb(155, 0, 0);
+$input--password--color--medium: rgb(145, 94, 0);
+$input--password--color--strong: green;
+$input--password--color--veryStrong: rgb(0, 70, 0);
+
 /* Form Input State */
 $input-state--stroke-invalid: $global--color--invalid;
 $input-state--stroke-valid: $global--color--valid;
 $input-state--stroke-neutral: $global--color--neutral--darker;
-$input-state--icon--size: 1.5em;
+$input-state--icon--size: 1.25em;
 
 @mixin margin-top--notFirstChild {
   &:not(:first-child) {
@@ -118,14 +126,11 @@ $input-state--icon--size: 1.5em;
   min-width: $min-width;
 }
 
-@mixin sizing--hovering-title {
-  @include sizing(
-    $global--padding--hovering-title,
-    $global--margin--hovering-title,
-    min-content,
-    none,
-    max-content
-  );
+@mixin sizing--hovering-title(
+  $margin: $global--margin--hovering-title,
+  $padding: $global--padding--hovering-title
+) {
+  @include sizing($padding, $margin, min-content, none, max-content);
 }
 
 @mixin bordering(

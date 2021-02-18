@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
+import camelCase from 'camelcase';
 import cx from 'classnames';
 
 /* Label dictionnary */
@@ -59,8 +60,8 @@ function getValidityState(
 const GenericInput = (props) => {
   const {
     id,
+    name,
     label,
-    inputClassName,
     required,
     fontSize,
     value,
@@ -85,6 +86,12 @@ const GenericInput = (props) => {
   /* Declare tool-tips rendering (hide/show) state */
   const [hidedToolTips, setHidedToolTips] = useState(true);
 
+  /* Set identifiant (id, name) in camel case format */
+  const camelIdentifiant = useMemo(() => (id ? id : camelCase(label)), [
+    id,
+    label,
+  ]);
+
   return (
     <>
       <div
@@ -108,8 +115,9 @@ const GenericInput = (props) => {
             onMouseLeave={() => setHidedToolTips(true)}
           />
           <input
-            id={id}
-            className={cx('form--content--field--box--input', inputClassName)}
+            id={camelIdentifiant}
+            name={camelIdentifiant}
+            className={cx('form--content--field--box--input')}
             title={label}
             value={value}
             onFocus={(event) =>
@@ -164,12 +172,11 @@ const GenericInput = (props) => {
 /* PropTypes definition */
 GenericInput.propTypes = {
   type: PropTypes.string.isRequired,
-  id: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
+  id: PropTypes.string,
+  name: PropTypes.string,
   label: PropTypes.string.isRequired,
   autoComplete: PropTypes.string,
   autoFocus: PropTypes.bool,
-  inputClassName: PropTypes.string,
   min: PropTypes.string,
   minLength: PropTypes.number,
   max: PropTypes.string,
@@ -202,9 +209,10 @@ GenericInput.propTypes = {
 
 /* Props default value definition */
 GenericInput.defaultProps = {
+  id: undefined,
+  name: undefined,
   autoComplete: 'off',
   autoFocus: undefined,
-  inputClassName: '',
   min: undefined,
   minLength: undefined,
   max: undefined,

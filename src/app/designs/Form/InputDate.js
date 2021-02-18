@@ -1,17 +1,15 @@
 import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
-import camelCase from 'camelcase';
-import cx from 'classnames';
 
 /* Attached Design components */
 import GenericInput from './GenericInput';
-
 
 /**
  * @function InputDate InputDate design react component
  * @param {*} props
  */
 const InputDate = ({
+  id,
   type,
   label,
   autoComplete,
@@ -25,21 +23,14 @@ const InputDate = ({
   extValidityState,
   validator,
 }) => {
-  const id = useMemo(() => camelCase(label), [label]);
+  /* Build GenericInput props */
   const genInputProps = useMemo(
     () => ({
       type,
       id,
-      name: id,
       label,
       autoComplete,
       autoFocus,
-      inputClassName: cx({
-        date: type === 'date',
-        month: type === 'month',
-        week: type === 'week',
-        time: type === 'time',
-      }),
       min,
       minLength: undefined,
       max,
@@ -54,19 +45,19 @@ const InputDate = ({
       extValidityState,
     }),
     [
-      autoComplete,
-      autoFocus,
-      fontSize,
+      type,
       id,
       label,
-      max,
+      autoComplete,
+      autoFocus,
       min,
-      onChange,
+      max,
+      fontSize,
       required,
-      type,
+      value,
+      onChange,
       validator,
       extValidityState,
-      value,
     ]
   );
   return <GenericInput {...genInputProps} />;
@@ -74,6 +65,7 @@ const InputDate = ({
 
 /* PropTypes definition */
 InputDate.propTypes = {
+  id: PropTypes.string,
   type: PropTypes.oneOf(['date', 'month', 'week', 'time']),
   label: PropTypes.string.isRequired,
   autoComplete: PropTypes.oneOf(['off', 'bday', 'bday-month']),
@@ -98,6 +90,7 @@ InputDate.propTypes = {
 
 /* Props default value definition */
 InputDate.defaultProps = {
+  id: undefined,
   type: 'date',
   autoComplete: 'off',
   autoFocus: undefined,

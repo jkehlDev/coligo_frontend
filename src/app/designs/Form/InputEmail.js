@@ -1,6 +1,5 @@
 import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
-import camelCase from 'camelcase';
 import emailValidator from 'email-validator';
 
 /* Label dictionnary */
@@ -14,6 +13,7 @@ import GenericInput from './GenericInput';
  * @param {*} props
  */
 const InputEmail = ({
+  id,
   label,
   autoComplete,
   autoFocus,
@@ -28,16 +28,14 @@ const InputEmail = ({
   extValidityState,
   validator,
 }) => {
-  const id = useMemo(() => camelCase(label), [label]);
+  /* Build GenericInput props */
   const genInputProps = useMemo(
     () => ({
       type: 'email',
       id,
-      name: id,
       label,
       autoComplete,
       autoFocus,
-      inputClassName: '',
       min: undefined,
       minLength,
       max: undefined,
@@ -52,20 +50,20 @@ const InputEmail = ({
       validator,
     }),
     [
-      autoComplete,
-      autoFocus,
-      fontSize,
       id,
       label,
-      maxLength,
+      autoComplete,
+      autoFocus,
       minLength,
-      onChange,
+      maxLength,
       placeholder,
+      fontSize,
       required,
       size,
-      validator,
-      extValidityState,
       value,
+      onChange,
+      extValidityState,
+      validator,
     ]
   );
   return <GenericInput {...genInputProps} />;
@@ -73,6 +71,7 @@ const InputEmail = ({
 
 /* PropTypes definition */
 InputEmail.propTypes = {
+  id: PropTypes.string,
   label: PropTypes.string.isRequired,
   autoComplete: PropTypes.oneOf(['off', 'email', 'username']),
   autoFocus: PropTypes.bool,
@@ -98,6 +97,7 @@ InputEmail.propTypes = {
 
 /* Props default value definition */
 InputEmail.defaultProps = {
+  id: undefined,
   autoComplete: undefined,
   autoFocus: false,
   required: false,

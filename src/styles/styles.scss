@@ -28,8 +28,9 @@ body {
     @include flexFlow($flx-cross: center);
     flex-grow: 1;
     flex-shrink: 1;
-    @include sizing(0, auto, auto, 100%, none, none);
-    overflow-x: scroll;
+    @include sizing(0, 0, 100%, 100%, none, none);
+    overflow-x: hidden;
+    overflow-y: scroll;
   }
   footer {
     @include flexFlow(row, wrap, space-around, center);

@@ -1,6 +1,5 @@
 import React, { useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
-import camelCase from 'camelcase';
 import cx from 'classnames';
 import passwordValidator from 'password-validator';
 
@@ -86,6 +85,7 @@ function getPasswordStrength(password) {
  * @param {*} props
  */
 const InputPassword = ({
+  id,
   label,
   autoComplete,
   autoFocus,
@@ -120,19 +120,14 @@ const InputPassword = ({
   /* Set password Strength */
   const strength = useMemo(() => getPasswordStrength(value), [value]);
 
-  /* Set identifiant (id, name) in camel case format */
-  const camelIdentifiant = useMemo(() => camelCase(label), [label]);
-
   /* Build GenericInput props */
   const genInputProps = useMemo(
     () => ({
       type,
-      id: camelIdentifiant,
-      name: camelIdentifiant,
+      id,
       label,
       autoComplete,
       autoFocus,
-      inputClassName: '',
       min: undefined,
       minLength,
       max: undefined,
@@ -164,10 +159,10 @@ const InputPassword = ({
     [
       autoComplete,
       autoFocus,
-      camelIdentifiant,
       extValidityState,
       fontSize,
       iconEye,
+      id,
       label,
       maxLength,
       minLength,
@@ -228,6 +223,7 @@ const InputPassword = ({
 
 /* PropTypes definition */
 InputPassword.propTypes = {
+  id: PropTypes.string,
   label: PropTypes.string.isRequired,
   autoComplete: PropTypes.oneOf(['off', 'current-password', 'new-password'])
     .isRequired,
@@ -255,6 +251,7 @@ InputPassword.propTypes = {
 
 /* Props default value definition */
 InputPassword.defaultProps = {
+  id: undefined,
   autoComplete: undefined,
   autoFocus: false,
   required: true,

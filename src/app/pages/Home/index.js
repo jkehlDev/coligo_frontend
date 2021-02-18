@@ -10,6 +10,7 @@ import InputDate from 'app/designs/Form/InputDate';
 import InputEmail from 'app/designs/Form/InputEmail';
 import InputPassword from 'app/designs/Form/InputPassword';
 import InputText from 'app/designs/Form/InputText';
+import TextArea from 'app/designs/Form/TextArea';
 
 /**
  * @function Home Home page react component
@@ -23,7 +24,7 @@ const Home = () => {
   const [month, setMonth] = useState('');
   const [week, setWeek] = useState('');
   const [time, setTime] = useState('');
-  
+
   const [emailValidation, setEmailValidation] = useState({
     state: false,
     tips: 'Email déjà existant veuillez recommencer avec un autre',
@@ -93,9 +94,20 @@ const Home = () => {
           }}
           validator={(value) => ({ state: password === value })}
         />
-        <InputText label="Field Text" value={text} onChange={(event)=>{
-          setText(event.target.value);
-        }}/>
+        <InputText
+          label="Field Text"
+          value={text}
+          onChange={(event) => {
+            setText(event.target.value);
+          }}
+        />
+        <TextArea
+          label="Field Text Area"
+          value={text}
+          onChange={(event) => {
+            setText(event.target.value);
+          }}
+        />
         <InputDate
           label="Field Date"
           value={date}

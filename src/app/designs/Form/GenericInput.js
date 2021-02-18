@@ -71,7 +71,7 @@ const GenericInput = (props) => {
     children,
     inputOption,
     optioned,
-    ...othersProps
+    ...others
   } = props;
 
   /* Obtain empty test result on value */
@@ -118,9 +118,14 @@ const GenericInput = (props) => {
           <input
             id={camelIdentifiant}
             name={camelIdentifiant}
-            className={cx('form--content--field--box--input')}
             title={label}
+            required={required}
+            {...others}
+            className="form--content--field--box--input"
             value={value}
+            aria-required={required}
+            aria-invalid={!validated.state && !emptied}
+            aria-errormessage={validated.tips}
             onFocus={(event) =>
               event.target.setCustomValidity(
                 !validated.state && !emptied ? validated.tips : ''
@@ -143,11 +148,6 @@ const GenericInput = (props) => {
               );
               onChange(event);
             }}
-            aria-required={required}
-            aria-invalid={!validated.state && !emptied}
-            aria-errormessage={validated.tips}
-            required={required}
-            {...othersProps}
           />
           {optioned && (
             <div className="form--content--field--box--input-option">
@@ -178,18 +178,16 @@ GenericInput.propTypes = {
   id: PropTypes.string,
   name: PropTypes.string,
   label: PropTypes.string.isRequired,
+  required: PropTypes.bool,
   autoComplete: PropTypes.string,
   autoFocus: PropTypes.bool,
+  placeholder: PropTypes.string,
   min: PropTypes.string,
   minLength: PropTypes.number,
   max: PropTypes.string,
   maxLength: PropTypes.number,
-  placeholder: PropTypes.string,
-  fontSize: PropTypes.string,
-  required: PropTypes.bool,
   size: PropTypes.number,
-  value: PropTypes.string.isRequired,
-  onChange: PropTypes.func,
+  fontSize: PropTypes.string,
   extValidityState: PropTypes.shape({
     state: PropTypes.bool.isRequired,
     tips: PropTypes.string,
@@ -199,22 +197,25 @@ GenericInput.propTypes = {
       PropTypes.arrayOf(PropTypes.node),
     ]),
   }),
-  validator: PropTypes.func,
-  children: PropTypes.oneOfType([
-    PropTypes.node,
-    PropTypes.arrayOf(PropTypes.node),
-  ]),
   optioned: PropTypes.bool,
   inputOption: PropTypes.oneOfType([
     PropTypes.node,
     PropTypes.arrayOf(PropTypes.node),
   ]),
+  value: PropTypes.string.isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.node,
+    PropTypes.arrayOf(PropTypes.node),
+  ]),
+  validator: PropTypes.func,
+  onChange: PropTypes.func,
 };
 
 /* Props default value definition */
 GenericInput.defaultProps = {
   id: undefined,
   name: undefined,
+  required: false,
   autoComplete: 'off',
   autoFocus: undefined,
   min: undefined,
@@ -223,14 +224,13 @@ GenericInput.defaultProps = {
   maxLength: undefined,
   placeholder: undefined,
   fontSize: 'M',
-  required: false,
   size: undefined,
-  onChange: () => {},
   extValidityState: undefined,
-  validator: () => ({ state: true }),
   children: undefined,
   optioned: true,
   inputOption: undefined,
+  onChange: () => {},
+  validator: () => ({ state: true }),
 };
 
 export default GenericInput;

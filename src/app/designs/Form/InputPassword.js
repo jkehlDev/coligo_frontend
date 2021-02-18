@@ -260,7 +260,7 @@ InputPassword.defaultProps = {
   required: true,
   minLength: 10,
   maxLength: 30,
-  size: 30,
+  size: undefined,
   fontSize: 'M',
   ruled: true,
   extValidityState: undefined,

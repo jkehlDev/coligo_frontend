@@ -12,11 +12,11 @@ import TextArea from './TextArea';
  * @function Form Form design react component
  * @param {*} props {onSubmit, fontSize, children}
  */
-const Form = ({ onSubmit, fontSize, children }) => {
+const Form = ({ title, onSubmit, fontSize, children }) => {
   return (
     <section className="form--section" data-fontsize={`${fontSize}`}>
-      <h1 className="form--section--title">My tiny form</h1>
-      <form className="form--content" onSubmit={onSubmit}>
+      <h1 className="form--section--title">{title}</h1>
+      <form className="form--content" title={title} onSubmit={onSubmit}>
         {children}
       </form>
     </section>
@@ -25,6 +25,7 @@ const Form = ({ onSubmit, fontSize, children }) => {
 
 /* PropTypes definition */
 Form.propTypes = {
+  title: PropTypes.string.isRequired,
   onSubmit: PropTypes.func,
   fontSize: PropTypes.string,
   children: PropTypes.oneOfType([

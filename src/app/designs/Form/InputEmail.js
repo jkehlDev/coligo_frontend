@@ -103,7 +103,7 @@ InputEmail.defaultProps = {
   required: false,
   minLength: undefined,
   maxLength: undefined,
-  size: 30,
+  size: undefined,
   fontSize: 'M',
   onChange: undefined,
   extValidityState: undefined,

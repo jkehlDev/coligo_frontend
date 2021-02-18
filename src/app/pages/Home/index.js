@@ -59,6 +59,7 @@ const Home = () => {
           event.preventDefault();
           console.log('submit');
         }}
+        title="My Form"
       >
         <InputEmail
           autoFocus

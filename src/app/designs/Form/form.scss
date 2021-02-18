@@ -81,7 +81,7 @@
       /* Flow rendering */
       @include flexFlow($flx-cross: center);
       /* size rendering param */
-      @include sizing(0 0.5em 0.5em 0.5em, 0, auto, none, max-content);
+      @include sizing(0 0.5em 0.5em 0.5em, 0, 100%, none, max-content);
       @include margin-top--notFirstChild;
       /* Font, color, bckg */
       background-color: inherit;
@@ -150,7 +150,7 @@
         @include flexFlow();
         z-index: 1;
         /* size rendering param */
-        @include sizing--hovering-title(-0.75em 2em 0 2em, 0 1em 0.5em 1em);
+        @include sizing--hovering-title(-0.75em 1.25em 0 1.25em, 0 1em 0.5em 1em);
         /* Font, color, bckg */
         text-align: center;
         text-transform: capitalize;
@@ -202,7 +202,7 @@
           /* Flow rendering */
           @include flexFlow($flx-direction: row, $flx-grow: 1);
           /* size rendering param */
-          @include sizing(0.5em 1em, 0 0 0 -1em, auto, none, max-content);
+          @include sizing(0.5em 1.25em, 0 -1em 0 -1em, auto, none, max-content);
           /* Border rendering */
           border: none;
           outline: none;

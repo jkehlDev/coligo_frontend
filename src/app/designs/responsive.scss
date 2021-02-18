@@ -2,15 +2,24 @@
 
 /* $layout-breakpoint-small: 700px; */
 /* == RESPONSIVE */
-.only {
-  @media (min-width: $global--layout-breakpoint-small) {
+
+@media (min-width: $global--layout-breakpoint-small) {
+  .only {
     &.small {
       display: none;
     }
   }
-  @media (max-width: $global--layout-breakpoint-small) {
+  body{
+    font-size: 16px;
+  }
+}
+@media (max-width: $global--layout-breakpoint-small) {
+  .only {
     &.large {
       display: none;
     }
+  }
+  body{
+    font-size: 12px;
   }
 }

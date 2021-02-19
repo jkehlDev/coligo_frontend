@@ -14,12 +14,12 @@ import TextArea from './TextArea';
  */
 const Form = ({ title, onSubmit, fontSize, children }) => {
   return (
-    <section className="form--section" data-fontsize={`${fontSize}`}>
-      <h1 className="form--section--title" title={title}>{title}</h1>
-      <form className="form--content" title={title} onSubmit={onSubmit}>
-        {children}
+      <form className="form" title={title} onSubmit={onSubmit} data-fontsize={`${fontSize}`}>
+        <fieldset className="form--content">
+        <legend className="form--legend">{title}</legend>
+          {children}
+        </fieldset>
       </form>
-    </section>
   );
 };
 

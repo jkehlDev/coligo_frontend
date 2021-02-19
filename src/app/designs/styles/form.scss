@@ -1,28 +1,23 @@
 .form {
-  /* Form Section rendering  */
-  &--section {
-    /* Flow rendering */
-    @include flexFlow($flx-cross: center);
-    /* size rendering param */
-    @include sizing(0, $form--margin, $form--width);
-    /* Font, color, bckg */
-    background-color: $global--background-color;
-    color: $global--font-color;
+  /* Flow rendering */
+  @include flexFlow($flx-cross: center);
+  /* size rendering param */
+  @include sizing(0, $form--margin, $form--width);
+  /* Font, color, bckg */
+  background-color: $global--background-color;
+  color: $global--font-color;
 
-    /* Form Section title rendering */
-    &--title {
-      /* Flow rendering */
-      @include flexFlow();
-      z-index: 1;
-      /* size rendering param */
-      @include sizing--hovering-title;
-      /* Font, color, bckg */
-      background-color: inherit;
-      line-height: 1.2em;
-      word-wrap: break-word;
-      text-align: center;
-      font-size: 1.25em;
-    }
+  /* Form Section title rendering */
+  &--legend {
+    /* Flow rendering */
+    @include flexFlow();
+
+    /* Font, color, bckg */
+    background-color: inherit;
+    line-height: 1.2em;
+    word-wrap: break-word;
+    text-align: center;
+    font-size: 1.25em;
   }
   /* Form content childs rendering */
   &--content {
@@ -30,8 +25,13 @@
     @include flexFlow($flx-cross: center);
     /* size rendering param */
     @include sizing($form--padding, 0, 100%, none, max-content);
-    /* Border rendering */
+    /* Font, color, bckg */
+    background-color: inherit;
+    color: inherit;
+    border: none;
     outline: none;
+    /* Animation / Transitions rendering */
+    transition: border ease-in-out 250ms;
     &:invalid {
       @include bordering(
         $form--bordering-size,
@@ -68,12 +68,6 @@
         );
       }
     }
-    /* Font, color, bckg */
-    background-color: inherit;
-    color: inherit;
-    /* Animation / Transitions rendering */
-    transition: border ease-in-out 250ms;
-
     /* Form generic Input Field rendering */
     &--field {
       /* Flow rendering */

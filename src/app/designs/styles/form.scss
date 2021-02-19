@@ -202,7 +202,6 @@
           @include flexFlow(
             $flx-direction: row,
             $flx-grow: 1,
-            $position: relative
           );
           /* size rendering param */
           @include sizing(0.5em 0, 0, auto, none, max-content);

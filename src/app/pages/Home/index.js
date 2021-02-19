@@ -70,26 +70,28 @@ const Home = () => {
           }}
           extValidityState={emailValidation}
         />
-        <Form.InputPassword
-          required
-          label="Field Password"
-          autoComplete="off"
-          value={password}
-          onChange={(event) => {
-            setPassword(event.target.value);
-          }}
-        />
-        <Form.InputPassword
-          required
-          label="Field Confirm Password"
-          autoComplete="off"
-          ruled={false}
-          value={passwordConfirm}
-          onChange={(event) => {
-            setPasswordConfirm(event.target.value);
-          }}
-          validator={(value) => ({ state: password === value })}
-        />
+        <Form.Group>
+          <Form.InputPassword
+            required
+            label="Field Password"
+            autoComplete="off"
+            value={password}
+            onChange={(event) => {
+              setPassword(event.target.value);
+            }}
+          />
+          <Form.InputPassword
+            required
+            label="Field Confirm Password"
+            autoComplete="off"
+            ruled={false}
+            value={passwordConfirm}
+            onChange={(event) => {
+              setPasswordConfirm(event.target.value);
+            }}
+            validator={(value) => ({ state: password === value })}
+          />
+        </Form.Group>
         <Form.InputText
           label="Field Text"
           value={text}

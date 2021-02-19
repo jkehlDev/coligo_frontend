@@ -1,3 +1,30 @@
+.form-group {
+  /* Flow rendering */
+  @include flexFlow(row, wrap, flex-start, flex-start);
+  &.nowrap {
+    flex-wrap: nowrap;
+  }
+  &.flex-start {
+    justify-content: flex-start;
+  }
+  &.flex-end {
+    justify-content: flex-end;
+  }
+  &.center {
+    justify-content: center;
+  }
+  &.space-around {
+    justify-content: space-around;
+  }
+  &.space-between {
+    justify-content: space-between;
+  }
+  /* size rendering param */
+  @include sizing(0, 0, auto, none);
+  /* Font, color, bckg */
+  background-color: $global--background-color;
+  color: $global--font-color;
+}
 .form {
   /* Flow rendering */
   @include flexFlow($flx-cross: center);
@@ -20,6 +47,7 @@
     text-align: center;
     font-size: 1.25em;
   }
+
   /* Form content childs rendering */
   &--content {
     /* Flow rendering */
@@ -199,10 +227,7 @@
         /* Generic Input rendering */
         &--input {
           /* Flow rendering */
-          @include flexFlow(
-            $flx-direction: row,
-            $flx-grow: 1,
-          );
+          @include flexFlow($flx-direction: row, $flx-grow: 1);
           /* size rendering param */
           @include sizing(0.5em 0, 0, auto, none, max-content);
           /* Border rendering */

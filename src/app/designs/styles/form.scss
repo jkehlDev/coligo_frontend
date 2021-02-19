@@ -281,6 +281,10 @@
             }
           }
         }
+        &--textarea {
+          box-shadow: 0px 0px 1px $global--bordering-color;
+          text-align: left;
+        }
         /* Generic Input option (boxed right side element) */
         &--input-option {
           /* Displaying part */

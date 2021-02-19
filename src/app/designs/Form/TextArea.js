@@ -115,7 +115,10 @@ const TextArea = (props) => {
           name={camelIdentifiant}
           title={label}
           required={required}
-          className="form--content--field--box--input"
+          className={cx(
+            'form--content--field--box--textarea',
+            'form--content--field--box--input'
+          )}
           value={value}
           aria-required={required}
           aria-invalid={!validated.state && !emptied}

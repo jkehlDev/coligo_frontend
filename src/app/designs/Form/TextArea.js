@@ -90,71 +90,74 @@ const TextArea = (props) => {
     label,
   ]);
   return (
-    <>
-      <div
-        className={cx('form--content--field', {
-          invalid: !validated.state || (emptied && required),
-          valid: !emptied && validated.state,
-        })}
-        data-fontsize={fontSize}
-      >
-        {/* Input Label */}
-        <label className="form--content--field--label" htmlFor={id}>
-          {`${label}`}
-        </label>
-        {/* Input field box with input state, input field and input option elements */}
-        <div className={cx('form--content--field--box')}>
-          <InputState
-            required={required}
-            validated={validated.state}
-            emptied={emptied}
-            onMouseEnter={() => setHidedToolTips(false)}
-            onMouseLeave={() => setHidedToolTips(true)}
-          />
-          <textarea
-            id={camelIdentifiant}
-            name={camelIdentifiant}
-            title={label}
-            required={required}
-            className="form--content--field--box--input"
-            value={value}
-            aria-required={required}
-            aria-invalid={!validated.state && !emptied}
-            aria-errormessage={validated.tips}
-            onFocus={(event) =>
-              event.target.setCustomValidity(
-                !validated.state && !emptied ? validated.tips : ''
-              )
-            }
-            onChange={(event) => {
-              const targetValue = event.target.value;
-              const targetEmptied = targetValue.trim() === '';
-              const targetValidated = getValidityState(
-                targetValue,
-                required,
-                targetEmptied,
-                validator,
-                undefined
-              );
-              event.target.setCustomValidity(
-                !targetValidated.state && !targetEmptied
-                  ? targetValidated.tips
-                  : ''
-              );
-              onChange(event);
-            }}
-          />
-          {optioned && (
-            <div className="form--content--field--box--input-option">
-              {inputOption}
-            </div>
-          )}
-        </div>
-        {/* Aside Field element (Ex: Password rules) */}
-        <aside className="form--content--field--aside">{children}</aside>
+    <div
+      className={cx('form--content--field', {
+        invalid: !validated.state || (emptied && required),
+        valid: !emptied && validated.state,
+      })}
+      data-fontsize={fontSize}
+    >
+      {/* Input Label */}
+      <label className="form--content--field--label" htmlFor={id}>
+        {`${label}`}
+      </label>
+      {/* Input field box with input state, input field and input option elements */}
+      <div className={cx('form--content--field--box')}>
+        <InputState
+          required={required}
+          validated={validated.state}
+          emptied={emptied}
+          onMouseEnter={() => setHidedToolTips(false)}
+          onMouseLeave={() => setHidedToolTips(true)}
+        />
+        <textarea
+          id={camelIdentifiant}
+          name={camelIdentifiant}
+          title={label}
+          required={required}
+          className="form--content--field--box--input"
+          value={value}
+          aria-required={required}
+          aria-invalid={!validated.state && !emptied}
+          aria-errormessage={validated.tips}
+          onFocus={(event) =>
+            event.target.setCustomValidity(
+              !validated.state && !emptied ? validated.tips : ''
+            )
+          }
+          onChange={(event) => {
+            const targetValue = event.target.value;
+            const targetEmptied = targetValue.trim() === '';
+            const targetValidated = getValidityState(
+              targetValue,
+              required,
+              targetEmptied,
+              validator,
+              undefined
+            );
+            event.target.setCustomValidity(
+              !targetValidated.state && !targetEmptied
+                ? targetValidated.tips
+                : ''
+            );
+            onChange(event);
+          }}
+        />
+        {optioned && (
+          <div className="form--content--field--box--input-option">
+            {inputOption}
+          </div>
+        )}
       </div>
+      {/* Aside Field element (Ex: Password rules) */}
+      <aside className="form--content--field--aside">{children}</aside>
       {/* Field Tool-tips popup element */}
       <div className={'form--content--field--tool-tips-box'}>
+        <div
+          className={cx('tool-tips-pointer', {
+            show: !hidedToolTips,
+          })}
+        />
         <article
           className={cx('form--content--field--tool-tips-box--content', {
             show: !hidedToolTips,
@@ -163,7 +166,7 @@ const TextArea = (props) => {
           {validated.structuredTips}
         </article>
       </div>
-    </>
+    </div>
   );
 };
 

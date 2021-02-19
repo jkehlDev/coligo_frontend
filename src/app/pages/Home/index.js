@@ -15,6 +15,7 @@ const Home = () => {
   const [password, setPassword] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
   const [text, setText] = useState('');
+  const [range, setRange] = useState('0.5');
   const [date, setDate] = useState('');
   const [month, setMonth] = useState('');
   const [week, setWeek] = useState('');
@@ -96,6 +97,14 @@ const Home = () => {
             setText(event.target.value);
           }}
         />
+        <Form.InputRange
+          id="inputRange"
+          label="Field Range"
+          value={range}
+          onChange={(event) => {
+            setRange(event.target.value);
+          }}
+        />
         <Form.TextArea
           label="Field Text Area"
           value={text}
@@ -103,6 +112,7 @@ const Home = () => {
             setText(event.target.value);
           }}
         />
+
         <Form.InputDate
           label="Field Date"
           value={date}

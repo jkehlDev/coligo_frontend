@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import cx from 'classnames';
 
 /* Attached Design components */
-import BtGroup from './BtGroup';
+import BtGroup from './ButtonGroup';
 
 /* SVG icon asset */
 import icons from 'app/designs/images/icon-sprite.svg';

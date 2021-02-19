@@ -6,7 +6,9 @@ import InputText from './InputText';
 import InputPassword from './InputPassword';
 import InputEmail from './InputEmail';
 import InputDate from './InputDate';
+import InputRange from './InputRange';
 import TextArea from './TextArea';
+import FormGroup from './FormGroup';
 
 /**
  * @function Form Form design react component
@@ -14,12 +16,17 @@ import TextArea from './TextArea';
  */
 const Form = ({ title, onSubmit, fontSize, children }) => {
   return (
-      <form className="form" title={title} onSubmit={onSubmit} data-fontsize={`${fontSize}`}>
-        <fieldset className="form--content">
+    <form
+      className="form"
+      title={title}
+      onSubmit={onSubmit}
+      data-fontsize={`${fontSize}`}
+    >
+      <fieldset className="form--content">
         <legend className="form--legend">{title}</legend>
-          {children}
-        </fieldset>
-      </form>
+        {children}
+      </fieldset>
+    </form>
   );
 };
 
@@ -47,6 +54,8 @@ Form.InputText = InputText;
 Form.InputPassword = InputPassword;
 Form.InputEmail = InputEmail;
 Form.InputDate = InputDate;
+Form.InputRange = InputRange;
 Form.TextArea = TextArea;
+Form.Group = FormGroup;
 
 export default Form;

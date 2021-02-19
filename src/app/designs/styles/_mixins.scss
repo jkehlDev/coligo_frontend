@@ -1,6 +1,5 @@
-@mixin margin-top--notFirstChild {
-  &:not(:first-child) {
-    margin-top: $global--margin;
+@mixin margin-top--notLastChild {
+  &:not(:last-child) {
   }
 }
 
@@ -10,10 +9,11 @@
   $flx-main: flex-start,
   $flx-cross: flex-start,
   $flx-shrink: 0,
-  $flx-grow: 0
+  $flx-grow: 0,
+  $position: static
 ) {
   display: flex;
-  position: relative;
+  position: $position;
   flex-direction: $flx-direction;
   flex-wrap: $flx-wrap;
   justify-content: $flx-main;
@@ -38,13 +38,6 @@
   height: $height;
   max-width: $max-width;
   min-width: $min-width;
-}
-
-@mixin sizing--hovering-title(
-  $margin: $global--margin--hovering-title,
-  $padding: $global--padding--hovering-title
-) {
-  @include sizing($padding, $margin, min-content, none, max-content);
 }
 
 @mixin bordering(
@@ -90,8 +83,8 @@
 
 @mixin icon($size, $z-index, $stroke) {
   /* Displaying part */
-  position: relative;
-  z-index: $z-index;
+  position: static;
+  z-index: auto;
   /* size rendering param */
   width: $size;
   height: $size;
@@ -105,14 +98,15 @@
   /* Flow rendering */
   display: none;
   position: absolute;
-  top: 0.25em;
-  left: 0;
-  z-index: 2;
+  z-index: 1;
+  top: 0em;
+  left: -10em;
   flex-shrink: 0;
   flex-grow: 0;
+  z-index: auto !important;
   /* size rendering param */
   box-sizing: border-box;
-  width: 100%;
+  width: 20em;
   padding: 1em;
   /* Border rendering */
   border-radius: $global--bordering-radius;
@@ -129,37 +123,36 @@
     display: block;
     animation: 50ms ease-out 250ms both poping;
   }
-
-  &::before {
-    content: '';
-    position: absolute;
-    top: -10px;
-    left: calc(50% - 10px);
-    width: 0;
-    height: 0;
-    border-bottom: 10px solid $bordering-color;
-    border-left: 10px solid transparent;
-    border-right: 10px solid transparent;
-  }
 }
 
 @mixin datePicker($alternative: false, $color: $global--font-color) {
   &::-webkit-calendar-picker-indicator {
-    background-image: none;
+    /*     display: none;
+    position: static;
     height: $input-side--size;
     width: $input-side--size;
     padding: 0;
-    background-color: $color;
-    @if $alternative {
+    background: $color;
+     @if $alternative {
+      -webkit-mask-image: url('/app/designs/images/clock.svg');
       mask-image: url('/app/designs/images/clock.svg');
     } @else {
+      -webkit-mask-image: url('/app/designs/images/calendar.svg');
       mask-image: url('/app/designs/images/calendar.svg');
     }
+    -webkit-mask-size: cover;
     mask-size: cover;
-    mask-repeat: no-repeat;
-    mask-position: center;
-    mask-origin: fill-box;
-    /* Cursor */
+    -webkit-mask-mode: luminance;
+    mask-mode: luminance;
+    -webkit-mask-origin: content-box;
+    mask-origin: content-box;
+    -webkit-mask-clip: content-box;
+    mask-clip: content-box;  */
+    background-color: white;
+    height: 0.75em;
+    width: 0.75em;
+    padding: 0.25em;
+    border-radius: 50%;
     cursor: pointer;
   }
 }

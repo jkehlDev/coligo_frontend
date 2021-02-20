@@ -5,7 +5,7 @@
         "title": "Chercher un projet",
         "fields": {
           "location": "Où ?",
-          "perimeter": "Dans quel périmètre ?",
+          "perimeter": "Périmètre ?",
           "archived": "Faut-il inclure les projets archivés ?"
         }
       }

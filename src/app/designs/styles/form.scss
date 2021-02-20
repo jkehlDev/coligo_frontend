@@ -184,15 +184,14 @@
         @include flexFlow($flx-cross: center);
         /* size rendering param */
         @include sizing(
-          0 1em,
-          -0.5em 1em 0.5em 1em,
+          0 $global--padding,
+          -0.5em 2.5em 0.5em 2.5em,
           fit-content,
           none,
           max-content
         );
         /* Font, color, bckg */
         text-align: center;
-        text-transform: capitalize;
         font-weight: bold;
         line-height: 1em;
         word-break: keep-all;
@@ -341,7 +340,7 @@
         /* Flow rendering */
         @include flexFlow(row, $flx-cross: center);
         /* size rendering param */
-        @include sizing(0 0.5em 0.5em 0.5em, 1em, auto, none, max-content);
+        @include sizing(0 0.5em 0.5em 0.5em, 1em);
         /* Font, color, bckg */
         background-color: inherit;
         color: inherit;
@@ -351,18 +350,15 @@
           @include flexFlow(row, $flx-cross: center);
           /* size rendering param */
           @include sizing(
-            0 1em,
-            -1em 1em 0.5em 1em,
-            fit-content,
-            none,
-            max-content
+            0 $global--padding,
+            -1em 0 0 0,
           );
           /* Font, color, bckg */
           text-align: center;
-          text-transform: capitalize;
           font-weight: bold;
           line-height: 1em;
-          word-break: keep-all;
+          word-break: normal;
+          word-wrap: break-word;
           background-color: inherit;
           color: inherit;
           .icon {

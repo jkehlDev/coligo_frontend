@@ -1,8 +1,9 @@
 /* State actions define */
-import actions from './actions';
+import actionTypes from './actions';
 
 /* State configuration */
 import config from './config.json';
+
 
 /* Reducer intiale storage state */
 const initialState = {
@@ -16,6 +17,25 @@ const initialState = {
  */
 const reducer = (oldState = initialState, action = {}) => {
   switch (action.type) {
+    case actionTypes.business.searchProjects.CLEAR_FIELDS:
+      return {
+        ...oldState,
+        business: {
+          ...oldState.business,
+          searchProjects: { ...initialState.business.searchProjects },
+        },
+      };
+    case actionTypes.business.searchProjects.UPDATE_FIELDS:
+      return {
+        ...oldState,
+        business: {
+          ...oldState.business,
+          searchProjects: {
+            ...oldState.business.searchProjects,
+            ...action.payload,
+          },
+        },
+      };
     default:
       return { ...oldState };
   }

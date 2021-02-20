@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import SearchProjects from 'app/business/SearchProjects';
 
 /* Externals react components */
 
@@ -9,23 +8,25 @@ import SearchProjects from 'app/business/SearchProjects';
 /* Designs react components */
 
 /**
- * @function Home Home page react component
+ * @function NotFound NotFound page react component
  * @param {*} props {}
  */
-const Home = (props) => (
+const NotFound = (props) => (
   <>
-    <SearchProjects />
+    <header></header>
+    <main></main>
+    <footer></footer>
   </>
 );
 
 /* PropTypes definition */
-Home.propTypes = {
+NotFound.propTypes = {
   props: PropTypes.object,
 };
 
 /* Props default value definition */
-Home.defaultProps = {
+NotFound.defaultProps = {
   props: {},
 };
 
-export default Home;
+export default NotFound;

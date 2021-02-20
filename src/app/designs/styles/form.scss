@@ -20,7 +20,7 @@
     justify-content: space-between;
   }
   /* size rendering param */
-  @include sizing(0, 0, auto, none);
+  @include sizing(0, 0, 100%, none, none);
   /* Font, color, bckg */
   background-color: $global--background-color;
   color: $global--font-color;
@@ -28,9 +28,8 @@
 .form {
   /* Flow rendering */
   @include flexFlow($flx-cross: center);
-  position: relative;
   /* size rendering param */
-  @include sizing(0, $form--margin, $form--width);
+  @include sizing(0, $form--margin, auto, none, none);
   /* Font, color, bckg */
   background-color: $global--background-color;
   color: $global--font-color;
@@ -53,7 +52,7 @@
     /* Flow rendering */
     @include flexFlow($flx-cross: center);
     /* size rendering param */
-    @include sizing($form--padding, 0, 100%, none, max-content);
+    @include sizing($form--padding, 0, 100%, none, none);
     /* Font, color, bckg */
     background-color: inherit;
     color: inherit;
@@ -221,7 +220,7 @@
           /* Cursor */
           cursor: help;
           &--icon {
-            @include icon($input-side--size, 1, $input-state--stroke-neutral);
+            @include icon($input-side--size, $input-state--stroke-neutral);
             &.invalid {
               stroke: $input-state--stroke-invalid;
             }
@@ -254,7 +253,7 @@
           &--password {
             /* Input Password eye icon rendering */
             &--eye-icon {
-              @include icon(1.25em, auto, $global--font-color);
+              @include icon(1.25em, $global--font-color);
             }
             /* Input password rules description rendering */
             &--description {
@@ -266,7 +265,7 @@
               @include sizing(0, 0.5em 0 0 0, 100%);
               /* Password icon rendering */
               .password-icon {
-                @include icon(1em, auto, $global--color--dark);
+                @include icon(1em, $global--font-color);
                 padding: 0 0.25em;
                 &.weak {
                   stroke: $input--password--color--weak;
@@ -314,6 +313,7 @@
           cursor: pointer;
         }
       }
+
       /* Generic Input aside (boxed bottom element) */
       &--aside {
         /* Displaying part */
@@ -336,6 +336,38 @@
           $global--font-color
         );
       }
+      /* Toggle design Component*/
+      &--toggle {
+        /* Flow rendering */
+        @include flexFlow(row, $flx-cross: center);
+        /* size rendering param */
+        @include sizing(0 0.5em 0.5em 0.5em, 1em, auto, none, max-content);
+        /* Font, color, bckg */
+        background-color: inherit;
+        color: inherit;
+        /* Animation / Transitions rendering */
+        @include animate-scale-onHoverNdFocus($input--animate-scale);
+        &--label {
+          @include flexFlow(row, $flx-cross: center);
+          .icon {
+            @include icon(2em, $global--font-color);
+            &.checked {
+              fill: $global--color--action--darker;
+            }
+            &.unchecked {
+              fill: none;
+            }
+            padding: 0 0.25em;
+          }
+          cursor: pointer;
+        }
+        &--input {
+          /* Border rendering */
+          border: none;
+          outline: none;
+          opacity: 0;
+        }
+      }
     }
   }
   &--buttons {
@@ -347,7 +379,7 @@
       $flx-cross: center
     );
     /* size rendering param */
-    @include sizing(0, 0, 100%, none);
+    @include sizing(0, 0, 100%, none, none);
     margin-bottom: -1.5em;
   }
 

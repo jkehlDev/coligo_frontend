@@ -75,7 +75,10 @@ const GenericInput = (props) => {
   } = props;
 
   /* Obtain empty test result on value */
-  const emptied = useMemo(() => value.trim() === '', [value]);
+  const emptied = useMemo(
+    () => typeof value === 'string' && value.trim() === '',
+    [value]
+  );
 
   /* Obtain validation test result on value */
   const validated = useMemo(
@@ -208,7 +211,7 @@ GenericInput.propTypes = {
     PropTypes.node,
     PropTypes.arrayOf(PropTypes.node),
   ]),
-  value: PropTypes.string.isRequired,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   children: PropTypes.oneOfType([
     PropTypes.node,
     PropTypes.arrayOf(PropTypes.node),

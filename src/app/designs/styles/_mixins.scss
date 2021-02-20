@@ -81,7 +81,7 @@
   }
 }
 
-@mixin icon($size, $z-index, $stroke) {
+@mixin icon($size, $stroke) {
   /* Displaying part */
   position: static;
   z-index: auto;

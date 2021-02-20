@@ -66,7 +66,7 @@ InputRange.propTypes = {
   step: PropTypes.number,
   unit: PropTypes.string,
   fontSize: PropTypes.string,
-  value: PropTypes.string.isRequired,
+  value: PropTypes.number.isRequired,
   onChange: PropTypes.func.isRequired,
 };
 

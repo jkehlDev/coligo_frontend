@@ -11,6 +11,7 @@ import InputEmail from './InputEmail';
 import InputDate from './InputDate';
 import InputRange from './InputRange';
 import TextArea from './TextArea';
+import Toggle from './Toggle';
 import FormGroup from './FormGroup';
 
 /**
@@ -22,29 +23,32 @@ const Form = ({ title, onSubmit, onCancel, fontSize, children }) => {
     <form
       className="form"
       title={title}
-      onSubmit={onSubmit}
+      onSubmit={(event) => {
+        event.preventDefault();
+        onSubmit(event);
+      }}
       data-fontsize={`${fontSize}`}
     >
       <fieldset className="form--content">
         <legend className="form--legend">{title}</legend>
         {children}
         <div className="form--buttons">
-        <input
-          type="submit"
-          className="button form--submit"
-          value={labelsFr.designs.form.submit}
-          title={labelsFr.designs.form.submit}
-        />
-        {onCancel && (
           <input
-            type="button"
-            className="button form--cancel"
-            onClick={onCancel}
-            value={labelsFr.designs.form.cancel}
-            title={labelsFr.designs.form.cancel}
+            type="submit"
+            className="button form--submit"
+            value={labelsFr.designs.form.submit.label}
+            title={labelsFr.designs.form.submit.title}
           />
-        )}
-      </div>
+          {onCancel && (
+            <input
+              type="button"
+              className="button form--cancel"
+              onClick={onCancel}
+              value={labelsFr.designs.form.cancel.label}
+              title={labelsFr.designs.form.cancel.title}
+            />
+          )}
+        </div>
       </fieldset>
     </form>
   );
@@ -64,9 +68,7 @@ Form.propTypes = {
 
 /* Props default value definition */
 Form.defaultProps = {
-  onSubmit: (event) => {
-    event.preventDefault();
-  },
+  onSubmit: () => console.log('default submit action'),
   onCancel: undefined,
   fontSize: 'M',
 };
@@ -78,6 +80,7 @@ Form.InputEmail = InputEmail;
 Form.InputDate = InputDate;
 Form.InputRange = InputRange;
 Form.TextArea = TextArea;
+Form.Toggle = Toggle;
 Form.Group = FormGroup;
 
 export default Form;

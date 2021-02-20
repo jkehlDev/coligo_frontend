@@ -8,6 +8,7 @@ import { Route, Switch } from 'react-router-dom';
 import RouteProtected from 'app/business/RouteProtected';
 
 /* Pages components */
+import PageTest from 'app/pages/PageTest';
 import Home from 'app/pages/Home';
 import NotFound from 'app/pages/NotFound';
 
@@ -22,6 +23,8 @@ const App = (props) => (
       <Switch>
         {/* HOME PAGE */}
         <Route exact path="/" component={Home} />
+        {/* TEST DESIGNS PAGE */}
+        <Route exact path="/test" component={PageTest} />
         {/* 404 & REDIRECT TOWARDS HOMEPAGE */}
         <Route exact path="*" component={NotFound} />
         <RouteProtected></RouteProtected>

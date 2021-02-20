@@ -1,8 +1,26 @@
 {
+  "business": {
+    "searchProjects": {
+      "form": {
+        "title": "Chercher un projet",
+        "fields": {
+          "location": "Où ?",
+          "perimeter": "Dans quel périmètre ?",
+          "archived": "Faut-il inclure les projets archivés ?"
+        }
+      }
+    }
+  },
   "designs": {
     "form": {
-      "submit": "Envoyer",
-      "cancel": "Retour"
+      "submit": {
+        "label": "Soumettre",
+        "title": "Soumettre la saisie du formulaire"
+      },
+      "cancel": {
+        "label": "Retour",
+        "title": "Quitter la saisie du formulaire"
+      }
     },
     "input": {
       "validator": {
@@ -10,6 +28,10 @@
         "default_valid": "Votre saisie est correcte.",
         "default_invalid": "Votre saisie est incorrecte. Veuillez corriger.",
         "default_optional": "Saisie facultative, vous pouvez compléter si nécessaire"
+      },
+      "toggle": {
+        "checked": "Oui",
+        "unchecked": "Non"
       }
     },
     "email": {

@@ -67,7 +67,7 @@
   @include animate-scale-onHoverNdFocus($button--animate-scale);
 
   .icon {
-    @include icon($button--icon--size, auto, $button--font--color);
+    @include icon($button--icon--size, $button--font--color);
     display: inline-block;
     &.padded {
       padding-right: 1em;

@@ -12,11 +12,7 @@ import PropTypes from 'prop-types';
  * @param {*} props {}
  */
 const NotFound = (props) => (
-  <>
-    <header></header>
-    <main></main>
-    <footer></footer>
-  </>
+  <> Not found </>
 );
 
 /* PropTypes definition */

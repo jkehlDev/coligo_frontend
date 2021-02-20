@@ -31,7 +31,7 @@ body {
     flex-shrink: 1;
     @include sizing(0, 0, 100%, 100%, none, none);
     overflow-x: hidden;
-    overflow-y: scroll;
+    overflow-y: auto;
   }
   footer {
     @include flexFlow(row, wrap, space-around, center);

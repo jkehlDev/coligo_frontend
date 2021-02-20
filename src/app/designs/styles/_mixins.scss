@@ -95,33 +95,64 @@
 }
 
 @mixin tool-tips($bordering-color, $background-color, $font-color) {
-  /* Flow rendering */
-  display: none;
-  position: absolute;
-  z-index: 1;
-  top: 0em;
-  left: -10em;
-  flex-shrink: 0;
-  flex-grow: 0;
-  z-index: auto !important;
-  /* size rendering param */
-  box-sizing: border-box;
-  width: 20em;
-  padding: 1em;
-  /* Border rendering */
-  border-radius: $global--bordering-radius;
-  box-shadow: 0px 0px 5px $bordering-color;
-  /* Font, color, bckg*/
-  background-color: $background-color;
-  color: $font-color;
-  text-align: left;
-  font-size: 1em;
-  font-weight: bold;
-  word-wrap: break-word;
+  &--content {
+    /* Flow rendering */
+    display: none;
+    position: absolute;
+    z-index: 1;
+    top: $global--margin;
+    left: -10em;
+    flex-shrink: 0;
+    flex-grow: 0;
+    z-index: auto !important;
+    /* size rendering param */
+    box-sizing: border-box;
+    width: 20em;
+    padding: 1em;
+    /* Border rendering */
+    border-radius: $global--bordering-radius;
+    box-shadow: 0px 0px 5px $bordering-color;
+    border: 1px solid $bordering-color;
+    /* Font, color, bckg*/
+    background-color: $background-color;
+    color: $font-color;
+    text-align: left;
+    font-size: 1em;
+    font-weight: bold;
+    word-wrap: break-word;
 
-  &.show {
-    display: block;
-    animation: 50ms ease-out 250ms both poping;
+    &.show {
+      display: block;
+      animation: 50ms ease-out 250ms both poping;
+    }
+  }
+  .tool-tips-pointer {
+    display: none;
+    position: absolute;
+    z-index: 2;
+    top: 1px;
+    left: calc(50% - 10px);
+    width: 0;
+    height: 0;
+    border-bottom: $global--margin solid $bordering-color;
+    border-left: $global--margin solid transparent;
+    border-right: $global--margin solid transparent;
+    &::before {
+      content: '';
+      position: absolute;
+      z-index: 0;
+      top: 2px;
+      left: -$global--margin;
+      width: 0;
+      height: 0;
+      border-bottom: $global--margin solid $background-color;
+      border-left: $global--margin solid transparent;
+      border-right: $global--margin solid transparent;
+    }
+    &.show {
+      display: block;
+      animation: 50ms ease-out 250ms both poping;
+    }
   }
 }
 

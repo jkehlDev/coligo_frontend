@@ -323,41 +323,11 @@
         display: block;
         position: relative;
         /* Sub element */
-        &--content {
-          @include tool-tips(
-            $global--bordering-color,
-            $global--background-color,
-            $global--font-color
-          );
-        }
-        .tool-tips-pointer {
-          display: none;
-          position: absolute;
-          z-index: 2;
-          top: -11px;
-          left: calc(50% - 10px);
-          width: 0;
-          height: 0;
-          border-bottom: 10px solid $tool-tips-pointer-color;
-          border-left: 12px solid transparent;
-          border-right: 12px solid transparent;
-          &::before {
-            content: '';
-            position: absolute;
-            z-index: 0;
-            top: 3px;
-            left: -10px;
-            width: 0;
-            height: 0;
-            border-bottom: 10px solid $global--background-color;
-            border-left: 10px solid transparent;
-            border-right: 10px solid transparent;
-          }
-          &.show {
-            display: block;
-            animation: 50ms ease-out 250ms both poping;
-          }
-        }
+        @include tool-tips(
+          $global--bordering-color,
+          $global--background-color,
+          $global--font-color
+        );
       }
     }
   }

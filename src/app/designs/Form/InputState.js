@@ -35,6 +35,7 @@ const InputState = ({ required, emptied, validated, onMouseEnter, onMouseLeave }
       className="form--content--field--box--state"
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
+      title=""
     >
       <svg
         className={cx('form--content--field--box--state--icon', {

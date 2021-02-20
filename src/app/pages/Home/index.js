@@ -15,6 +15,7 @@ const Home = () => {
   const [password, setPassword] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
   const [text, setText] = useState('');
+  const [textarea, setTextarea] = useState('');
   const [range, setRange] = useState('0.5');
   const [date, setDate] = useState('');
   const [month, setMonth] = useState('');
@@ -92,62 +93,65 @@ const Home = () => {
             validator={(value) => ({ state: password === value })}
           />
         </Form.Group>
-        <Form.InputText
-          label="Field Text"
-          value={text}
-          onChange={(event) => {
-            setText(event.target.value);
-          }}
-        />
-        <Form.InputRange
-          id="inputRange"
-          label="Field Range"
-          value={range}
-          onChange={(event) => {
-            setRange(event.target.value);
-          }}
-        />
+        <Form.Group>
+          <Form.InputText
+            label="Field Text"
+            value={text}
+            onChange={(event) => {
+              setText(event.target.value);
+            }}
+          />
+          <Form.InputRange
+            id="inputRange"
+            label="Field Range"
+            value={range}
+            onChange={(event) => {
+              setRange(event.target.value);
+            }}
+          />
+        </Form.Group>
         <Form.TextArea
           label="Field Text Area"
-          value={text}
+          value={textarea}
           onChange={(event) => {
-            setText(event.target.value);
+            setTextarea(event.target.value);
           }}
         />
-
-        <Form.InputDate
-          label="Field Date"
-          value={date}
-          onChange={(event) => {
-            setDate(event.target.value);
-          }}
-        />
-        <Form.InputDate
-          type="month"
-          label="Field Month"
-          value={month}
-          onChange={(event) => {
-            setMonth(event.target.value);
-          }}
-        />
-        <Form.InputDate
-          type="week"
-          required
-          label="Field Week"
-          value={week}
-          onChange={(event) => {
-            setWeek(event.target.value);
-          }}
-        />
-        <Form.InputDate
-          type="time"
-          required
-          label="Field Time"
-          value={time}
-          onChange={(event) => {
-            setTime(event.target.value);
-          }}
-        />
+        <Form.Group>
+          <Form.InputDate
+            label="Field Date"
+            value={date}
+            onChange={(event) => {
+              setDate(event.target.value);
+            }}
+          />
+          <Form.InputDate
+            type="month"
+            label="Field Month"
+            value={month}
+            onChange={(event) => {
+              setMonth(event.target.value);
+            }}
+          />
+          <Form.InputDate
+            type="week"
+            required
+            label="Field Week"
+            value={week}
+            onChange={(event) => {
+              setWeek(event.target.value);
+            }}
+          />
+          <Form.InputDate
+            type="time"
+            required
+            label="Field Time"
+            value={time}
+            onChange={(event) => {
+              setTime(event.target.value);
+            }}
+          />
+        </Form.Group>
         <input type="submit" />
       </Form>
     </>

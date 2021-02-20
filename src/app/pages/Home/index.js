@@ -58,6 +58,7 @@ const Home = () => {
           event.preventDefault();
           console.log('submit');
         }}
+        onCancel={()=>{console.log('cancel')}}
         title="My Form"
       >
         <Form.InputEmail
@@ -152,7 +153,6 @@ const Home = () => {
             }}
           />
         </Form.Group>
-        <input type="submit" />
       </Form>
     </>
   );

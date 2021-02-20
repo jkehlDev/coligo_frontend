@@ -38,11 +38,11 @@
   /* Form Section title rendering */
   &--legend {
     /* Flow rendering */
-    @include flexFlow();
-
+    @include flexFlow($flx-cross: center);
+    /* size rendering param */
+    @include sizing(0 1em, 0, auto);
     /* Font, color, bckg */
     background-color: inherit;
-    line-height: 1.2em;
     word-wrap: break-word;
     text-align: center;
     font-size: 1.25em;
@@ -61,21 +61,26 @@
     outline: none;
     /* Animation / Transitions rendering */
     transition: border ease-in-out 250ms;
+    /* Bordering rendering */
     &:invalid {
       @include bordering(
         $form--bordering-size,
         $form--bordering-color--invalid,
         $form--bordering-radius,
-        $top: false,
-        $bottom: false
+        true,
+        false,
+        true,
+        false
       );
       &:focus-within {
         @include bordering(
           $form--bordering-size,
           $form--bordering-color--invalid-focused,
           $form--bordering-radius,
-          $top: false,
-          $bottom: false
+          true,
+          false,
+          true,
+          false
         );
       }
     }
@@ -84,16 +89,20 @@
         $form--bordering-size,
         $form--bordering-color--valid,
         $form--bordering-radius,
-        $top: false,
-        $bottom: false
+        true,
+        false,
+        true,
+        false
       );
       &:focus-within {
         @include bordering(
           $form--bordering-size,
           $form--bordering-color--valid-focused,
           $form--bordering-radius,
-          $top: false,
-          $bottom: false
+          true,
+          false,
+          true,
+          false
         );
       }
     }
@@ -314,7 +323,7 @@
         /* Font, color, bckg */
         background-color: inherit;
         color: inherit;
-       }
+      }
       /* Generic Input tool-tips popup (same level and inside Field, with z-index constraint) */
       &--tool-tips-box {
         /* Displaying part */
@@ -328,5 +337,44 @@
         );
       }
     }
+  }
+  &--buttons {
+    /* Displaying part */
+    @include flexFlow(
+      $flx-direction: row,
+      $flx-wrap: wrap,
+      $flx-main: space-around,
+      $flx-cross: center
+    );
+    /* size rendering param */
+    @include sizing(0, 0, 100%, none);
+    margin-bottom: -1.5em;
+  }
+
+  &--submit {
+    /* Border rendering - Variations rendering */
+    @include bordering(
+      $button--bordering-size,
+      $button--bordering-color--positive,
+      $button--bordering-radius
+    );
+    &:hover {
+      border-color: $button--bordering-color--positive-hovered;
+    }
+    outline: 1em solid $form-background-color;
+    background-color: $form-background-color;
+  }
+  &--cancel {
+    /* Border rendering - Variations rendering */
+    @include bordering(
+      $button--bordering-size,
+      $button--bordering-color--neutral,
+      $button--bordering-radius
+    );
+    &:hover {
+      border-color: $button--bordering-color--neutral-hovered;
+    }
+    outline: 1em solid $form-background-color;
+    background-color: $form-background-color;
   }
 }

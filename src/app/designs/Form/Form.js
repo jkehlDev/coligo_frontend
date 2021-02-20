@@ -1,6 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+/* Label dictionnary */
+import labelsFr from 'labels_fr.json';
+
 /* Attached Design components */
 import InputText from './InputText';
 import InputPassword from './InputPassword';
@@ -14,7 +17,7 @@ import FormGroup from './FormGroup';
  * @function Form Form design react component
  * @param {*} props {onSubmit, fontSize, children}
  */
-const Form = ({ title, onSubmit, fontSize, children }) => {
+const Form = ({ title, onSubmit, onCancel, fontSize, children }) => {
   return (
     <form
       className="form"
@@ -25,6 +28,23 @@ const Form = ({ title, onSubmit, fontSize, children }) => {
       <fieldset className="form--content">
         <legend className="form--legend">{title}</legend>
         {children}
+        <div className="form--buttons">
+        <input
+          type="submit"
+          className="button form--submit"
+          value={labelsFr.designs.form.submit}
+          title={labelsFr.designs.form.submit}
+        />
+        {onCancel && (
+          <input
+            type="button"
+            className="button form--cancel"
+            onClick={onCancel}
+            value={labelsFr.designs.form.cancel}
+            title={labelsFr.designs.form.cancel}
+          />
+        )}
+      </div>
       </fieldset>
     </form>
   );
@@ -34,6 +54,7 @@ const Form = ({ title, onSubmit, fontSize, children }) => {
 Form.propTypes = {
   title: PropTypes.string.isRequired,
   onSubmit: PropTypes.func,
+  onCancel: PropTypes.func,
   fontSize: PropTypes.string,
   children: PropTypes.oneOfType([
     PropTypes.node,
@@ -46,6 +67,7 @@ Form.defaultProps = {
   onSubmit: (event) => {
     event.preventDefault();
   },
+  onCancel: undefined,
   fontSize: 'M',
 };
 

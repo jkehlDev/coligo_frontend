@@ -1,5 +1,9 @@
 {
   "designs": {
+    "form": {
+      "submit": "Envoyer",
+      "cancel": "Retour"
+    },
     "input": {
       "validator": {
         "default_required": "Saisie obligatoire, veuillez compléter.",
@@ -20,8 +24,8 @@
       "details": {
         "info_quality": "Qualité du mot de passe :",
         "invalid": "Votre mot de passe ne respect pas les règles de validation",
-        "summary_title" : "Règles détaillées",
-        "summary_rules_title" : "Règles saisie du mot de passe"
+        "summary_title": "Règles détaillées",
+        "summary_rules_title": "Règles saisie du mot de passe"
       }
     }
   }

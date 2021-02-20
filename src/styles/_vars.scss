@@ -6,7 +6,7 @@ $global--bordering-radius: 0.25em;
 $global--bordering-size: 3.5px;
 $global--margin: 1em;
 $global--margin--hovering-title: 0 2em -0.5em 2em;
-$global--padding: 2em;
+$global--padding: 1em;
 $global--padding--hovering-title: 0 1em;
 
 $global--color--action: rgb(60, 60, 240);
@@ -52,8 +52,9 @@ $button--bordering-color--neutral: $global--color--neutral;
 $button--bordering-color--neutral-hovered: $global--color--neutral--darker;
 
 /* Form */
+$form-background-color: $global--background-color;
 $form--margin: $global--margin;
-$form--padding: 3em $global--padding $global--padding $global--padding;
+$form--padding: $global--padding $global--padding 0 $global--padding;
 $form--width: 40em;
 $form--bordering-size: $global--bordering-size;
 $form--bordering-radius: $global--bordering-radius;

@@ -22,18 +22,14 @@ const InputRange = ({
   onChange,
 }) => {
   /* Obtain label with value + unit */
-  const labeledValue = useMemo(() => `${label} (${value} ${unit})`, [
-    label,
-    unit,
-    value,
-  ]);
+  const valueUnit = useMemo(() => `${value} ${unit}`, [unit, value]);
 
   /* Build GenericInput props */
   const genInputProps = useMemo(
     () => ({
       type: 'range',
       id,
-      label: labeledValue,
+      label,
       autoComplete: undefined,
       autoFocus,
       min,
@@ -50,20 +46,13 @@ const InputRange = ({
       extValidityState: undefined,
       validator: undefined,
     }),
-    [
-      id,
-      labeledValue,
-      autoFocus,
-      min,
-      max,
-      step,
-      fontSize,
-      required,
-      value,
-      onChange,
-    ]
+    [id, label, autoFocus, min, max, step, fontSize, required, value, onChange]
   );
-  return <GenericInput {...genInputProps} />;
+  return (
+    <GenericInput {...genInputProps}>
+      {`${valueUnit}`}
+    </GenericInput>
+  );
 };
 
 /* PropTypes definition */

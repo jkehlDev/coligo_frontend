@@ -45,14 +45,12 @@ const InputRange = ({
       onChange,
       extValidityState: undefined,
       validator: undefined,
+      toolTipped: false,
+      optioned: false,
     }),
     [id, label, autoFocus, min, max, step, fontSize, required, value, onChange]
   );
-  return (
-    <GenericInput {...genInputProps}>
-      {`${valueUnit}`}
-    </GenericInput>
-  );
+  return <GenericInput {...genInputProps}>{`${valueUnit}`}</GenericInput>;
 };
 
 /* PropTypes definition */

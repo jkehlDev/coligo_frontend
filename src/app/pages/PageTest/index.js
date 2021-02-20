@@ -12,7 +12,8 @@ const PageTest = () => {
   const [passwordConfirm, setPasswordConfirm] = useState('');
   const [text, setText] = useState('');
   const [textarea, setTextarea] = useState('');
-  const [range, setRange] = useState('0.5');
+  const [range, setRange] = useState(0.5);
+  const [toggle, setToggle] = useState(false);
   const [date, setDate] = useState('');
   const [month, setMonth] = useState('');
   const [week, setWeek] = useState('');
@@ -54,7 +55,9 @@ const PageTest = () => {
           event.preventDefault();
           console.log('submit');
         }}
-        onCancel={()=>{console.log('cancel')}}
+        onCancel={() => {
+          console.log('cancel');
+        }}
         title="My Form"
       >
         <Form.InputEmail
@@ -99,11 +102,18 @@ const PageTest = () => {
             }}
           />
           <Form.InputRange
-            id="inputRange"
+            id="rangeid"
             label="Field Range"
             value={range}
             onChange={(event) => {
-              setRange(event.target.value);
+              setRange(parseFloat(event.target.value));
+            }}
+          />
+          <Form.Toggle
+            label="FieldToggle"
+            value={toggle}
+            onChange={(event) => {
+              setToggle(event.target.checked);
             }}
           />
         </Form.Group>

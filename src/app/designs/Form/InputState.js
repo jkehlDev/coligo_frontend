@@ -24,8 +24,13 @@ function getIconId(required, emptied, validated) {
  * @function InputState InputState design react component
  * @param {*} props {}
  */
-const InputState = ({ required, emptied, validated, onMouseEnter, onMouseLeave }) => {
- 
+const InputState = ({
+  required,
+  emptied,
+  validated,
+  onMouseEnter,
+  onMouseLeave,
+}) => {
   const [iconId, setIconId] = useState(getIconId(required, emptied, validated));
   useEffect(() => {
     setIconId(getIconId(required, emptied, validated));
@@ -54,9 +59,9 @@ const InputState = ({ required, emptied, validated, onMouseEnter, onMouseLeave }
 /* PropTypes definition */
 InputState.propTypes = {
   required: PropTypes.bool,
-  emptied: PropTypes.bool,
+  emptied: PropTypes.bool.isRequired,
   validated: PropTypes.bool,
-  onMouseEnter: PropTypes.func.isRequired, 
+  onMouseEnter: PropTypes.func.isRequired,
   onMouseLeave: PropTypes.func.isRequired,
 };
 

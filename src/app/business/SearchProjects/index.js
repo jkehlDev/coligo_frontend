@@ -39,23 +39,26 @@ const SearchProjects = ({
       fontSize={fontSize}
       onSubmit={onSubmit}
     >
-      <Form.InputText
-        id="location"
-        label={labelsFr.business.searchProjects.form.fields.location}
-        value={location}
-        onChange={ctrlStringFields}
-      />
-      <Form.InputRange
-        id="perimeter"
-        label={labelsFr.business.searchProjects.form.fields.perimeter}
-        min={perimeterMin}
-        max={perimeterMax}
-        step={perimeterStep}
-        unit={perimeterUnit}
-        value={perimeter}
-        onChange={ctrlNumberFields}
-      />
-      <Form.Toggle 
+      <Form.Group>
+        <Form.InputText
+          id="location"
+          label={labelsFr.business.searchProjects.form.fields.location}
+          required
+          value={location}
+          onChange={ctrlStringFields}
+        />
+        <Form.InputRange
+          id="perimeter"
+          label={labelsFr.business.searchProjects.form.fields.perimeter}
+          min={perimeterMin}
+          max={perimeterMax}
+          step={perimeterStep}
+          unit={perimeterUnit}
+          value={perimeter}
+          onChange={ctrlNumberFields}
+        />
+      </Form.Group>
+      <Form.Toggle
         id="archived"
         label={labelsFr.business.searchProjects.form.fields.archived}
         value={archived}

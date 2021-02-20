@@ -349,6 +349,22 @@
         @include animate-scale-onHoverNdFocus($input--animate-scale);
         &--label {
           @include flexFlow(row, $flx-cross: center);
+          /* size rendering param */
+          @include sizing(
+            0 1em,
+            -1em 1em 0.5em 1em,
+            fit-content,
+            none,
+            max-content
+          );
+          /* Font, color, bckg */
+          text-align: center;
+          text-transform: capitalize;
+          font-weight: bold;
+          line-height: 1em;
+          word-break: keep-all;
+          background-color: inherit;
+          color: inherit;
           .icon {
             @include icon(2em, $global--font-color);
             &.checked {
@@ -357,7 +373,7 @@
             &.unchecked {
               fill: none;
             }
-            padding: 0 0.25em;
+            padding: 0 0 0 1em;
           }
           cursor: pointer;
         }

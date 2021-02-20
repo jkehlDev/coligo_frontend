@@ -1,57 +1,14 @@
-import React, { useMemo, useState } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import camelCase from 'camelcase';
 import cx from 'classnames';
 
-/* Label dictionnary */
-import labelsFr from 'labels_fr.json';
-
 /* Attached Design components */
-import InputState from './InputState';
+import GenericField from './GenericField';
 
 /* Tools */
-/* Obtain default tips non-structured message */
-function getDefaultTips(required, emptied, validated) {
-  return required
-    ? emptied
-      ? labelsFr.designs.input.validator.default_required
-      : validated
-      ? labelsFr.designs.input.validator.default_valid
-      : labelsFr.designs.input.validator.default_invalid
-    : emptied
-    ? labelsFr.designs.input.validator.default_optional
-    : validated
-    ? labelsFr.designs.input.validator.default_valid
-    : labelsFr.designs.input.validator.default_invalid;
-}
+import { getValidityState, isEmptied } from './tools';
 
-/* Obtain validation state with tips messages */
-function getValidityState(
-  value,
-  required,
-  emptied,
-  validator,
-  extValidityState
-) {
-  /* Obtain validation state from external validation or executing inner validation process */
-  const validated =
-    extValidityState === undefined ? validator(value) : extValidityState;
-  /* Obtain default tips message */
-  const defaultTips =
-    validated.tips === undefined
-      ? getDefaultTips(required, emptied, validated.state)
-      : validated.tips;
-
-  /* Return validation state */
-  return {
-    state: validated.state,
-    tips: defaultTips,
-    structuredTips:
-      validated.structuredTips === undefined
-        ? defaultTips
-        : validated.structuredTips,
-  };
-}
 /**
  * @function TextArea TextArea design react component
  * @param {*} props
@@ -68,108 +25,92 @@ const TextArea = (props) => {
     onChange,
     children,
     inputOption,
+    toolTipped,
     optioned,
   } = props;
 
   /* Obtain empty test result on value */
-  const emptied = useMemo(() => value.trim() === '', [value]);
+  const emptied = useMemo(() => isEmptied(value), [value]);
 
   /* Obtain validation test result on value */
-  const validated = useMemo(
+  const intValidityState = useMemo(
     () =>
       getValidityState(value, required, emptied, validator, extValidityState),
     [value, required, emptied, validator, extValidityState]
   );
-
-  /* Declare tool-tips rendering (hide/show) state */
-  const [hidedToolTips, setHidedToolTips] = useState(true);
 
   /* Set identifiant (id, name) in camel case format */
   const camelIdentifiant = useMemo(() => (id ? id : camelCase(label)), [
     id,
     label,
   ]);
+  /* Build GenericField props */
+  const genericFieldProps = useMemo(
+    () => ({
+      id: camelIdentifiant,
+      label,
+      required,
+      fontSize,
+      intValidityState,
+      emptied,
+      children,
+      contentAside: children,
+      inputOption,
+      toolTipped,
+      optioned,
+    }),
+    [
+      camelIdentifiant,
+      children,
+      emptied,
+      fontSize,
+      inputOption,
+      intValidityState,
+      label,
+      optioned,
+      required,
+      toolTipped,
+    ]
+  );
   return (
-    <div
-      className={cx('form--content--field', {
-        invalid: !validated.state || (emptied && required),
-        valid: !emptied && validated.state,
-      })}
-      data-fontsize={fontSize}
-    >
-      {/* Input Label */}
-      <label className="form--content--field--label" htmlFor={id}>
-        {`${label}`}
-      </label>
-      {/* Input field box with input state, input field and input option elements */}
-      <div className={cx('form--content--field--box')}>
-        <InputState
-          required={required}
-          validated={validated.state}
-          emptied={emptied}
-          onMouseEnter={() => setHidedToolTips(false)}
-          onMouseLeave={() => setHidedToolTips(true)}
-        />
-        <textarea
-          id={camelIdentifiant}
-          name={camelIdentifiant}
-          title={label}
-          required={required}
-          className={cx(
-            'form--content--field--box--textarea',
-            'form--content--field--box--input'
-          )}
-          value={value}
-          aria-required={required}
-          aria-invalid={!validated.state && !emptied}
-          aria-errormessage={validated.tips}
-          onFocus={(event) =>
-            event.target.setCustomValidity(
-              !validated.state && !emptied ? validated.tips : ''
-            )
-          }
-          onChange={(event) => {
-            const targetValue = event.target.value;
-            const targetEmptied = targetValue.trim() === '';
-            const targetValidated = getValidityState(
-              targetValue,
-              required,
-              targetEmptied,
-              validator,
-              undefined
-            );
-            event.target.setCustomValidity(
-              !targetValidated.state && !targetEmptied
-                ? targetValidated.tips
-                : ''
-            );
-            onChange(event);
-          }}
-        />
-        {optioned && (
-          <div className="form--content--field--box--input-option">
-            {inputOption}
-          </div>
+    <GenericField {...genericFieldProps}>
+      <textarea
+        id={camelIdentifiant}
+        name={camelIdentifiant}
+        title={label}
+        required={required}
+        className={cx(
+          'form--content--field--box--textarea',
+          'form--content--field--box--input'
         )}
-      </div>
-      {/* Aside Field element (Ex: Password rules) */}
-      <aside className="form--content--field--aside">{children}</aside>
-      {/* Field Tool-tips popup element */}
-      <div className={'form--content--field--tool-tips-box'}>
-        <div
-          className={cx('tool-tips-pointer', {
-            show: !hidedToolTips,
-          })}
-        />
-        <article
-          className={cx('form--content--field--tool-tips-box--content', {
-            show: !hidedToolTips,
-          })}
-        >
-          {validated.structuredTips}
-        </article>
-      </div>
-    </div>
+        value={value}
+        aria-required={required}
+        aria-invalid={!intValidityState.state && !emptied}
+        aria-errormessage={intValidityState.tips}
+        onFocus={(event) =>
+          event.target.setCustomValidity(
+            !intValidityState.state && !emptied ? intValidityState.tips : ''
+          )
+        }
+        onChange={(event) => {
+          const targetValue = event.target.value;
+          const targetEmptied = isEmptied(targetValue);
+          const onChangeValidityState = getValidityState(
+            targetValue,
+            required,
+            targetEmptied,
+            validator,
+            undefined
+          );
+          event.target.setCustomValidity(
+            !onChangeValidityState.state && !targetEmptied
+              ? onChangeValidityState.tips
+              : ''
+          );
+          onChange(event);
+        }}
+      />
+    </GenericField>
   );
 };
 
@@ -190,6 +131,7 @@ TextArea.propTypes = {
       PropTypes.arrayOf(PropTypes.node),
     ]),
   }),
+  toolTipped: PropTypes.bool,
   optioned: PropTypes.bool,
   inputOption: PropTypes.oneOfType([
     PropTypes.node,
@@ -213,6 +155,7 @@ TextArea.defaultProps = {
   fontSize: 'M',
   extValidityState: undefined,
   children: undefined,
+  toolTipped: true,
   optioned: true,
   inputOption: undefined,
   onChange: () => {},

@@ -13,7 +13,7 @@ import labelsFr from 'labels_fr.json';
 import { Form } from '../../designs';
 
 /* HOC Redux actions imports */
-import { searchProjects } from 'store/reducers/app/actions';
+import actions from 'store/reducers/app/actions';
 
 /**
  * @function SearchProjects Search projects business react component
@@ -96,35 +96,47 @@ SearchProjects.propTypes = {
 
 /* Props default value definition */
 SearchProjects.defaultProps = {};
-const mapStateToProps = (state, ownProps) => ({
-  fontSize: state.app.business.searchProjects.fontSize,
-  location: state.app.business.searchProjects.location,
-  perimeter: state.app.business.searchProjects.perimeter,
-  perimeterUnit: state.app.business.searchProjects.perimeterUnit,
-  perimeterMin: state.app.business.searchProjects.perimeterMin,
-  perimeterMax: state.app.business.searchProjects.perimeterMax,
-  perimeterStep: state.app.business.searchProjects.perimeterStep,
-  archived: state.app.business.searchProjects.archived,
+/**
+ * @function mapStateToProps
+ * @param {*} state Current redux state
+ * @param {*} _ OwnProps (notuse)
+ */
+const mapStateToProps = (state, _) => ({
+  fontSize: state.app.business.searchProjects.default.fontSize,
+  location: state.app.business.searchProjects.fields.location,
+  perimeter: state.app.business.searchProjects.fields.perimeter,
+  perimeterUnit: state.app.business.searchProjects.default.perimeterUnit,
+  perimeterMin: state.app.business.searchProjects.default.perimeterMin,
+  perimeterMax: state.app.business.searchProjects.default.perimeterMax,
+  perimeterStep: state.app.business.searchProjects.default.perimeterStep,
+  archived: state.app.business.searchProjects.fields.archived,
 });
-const mapDispatchToProps = (dispatch, ownProps) => ({
-  onSubmit: (event) => {},
+/**
+ * @function mapDispatchToProps
+ * @param {*} dispatch
+ * @param {*} _ OwnProps (notuse)
+ */
+const mapDispatchToProps = (dispatch, _) => ({
+  onSubmit: (_) => {
+    dispatch(actions.business.searchProjects.clearFields());
+  },
   ctrlStringFields: (event) => {
     dispatch(
-      searchProjects.updateFields({
+      actions.business.searchProjects.updateFields({
         [event.target.id]: `${event.target.value}`,
       })
     );
   },
   ctrlNumberFields: (event) => {
     dispatch(
-      searchProjects.updateFields({
+      actions.business.searchProjects.updateFields({
         [event.target.id]: parseFloat(event.target.value),
       })
     );
   },
   ctrlBoolFields: (event) => {
     dispatch(
-      searchProjects.updateFields({
+      actions.business.searchProjects.updateFields({
         [event.target.id]: event.target.checked,
       })
     );

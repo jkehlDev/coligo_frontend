@@ -1,22 +1,28 @@
-const actionTypes = {
-  /* Actions type implementation */
+import { CLEAR_STATE, UPDATE_STATE } from './index';
+import config from './config.json';
+
+function clearFields(path) {
+  return () => ({
+    type: CLEAR_STATE,
+    path,
+  });
+}
+
+function updateFields(path) {
+  return (payload) => ({
+    type: UPDATE_STATE,
+    path,
+    payload,
+  });
+}
+
+const actions = {
   business: {
     searchProjects: {
-      CLEAR_FIELDS: 'CLEAR_FIELDS',
-      UPDATE_FIELDS: 'UPDATE_FIELDS',
+      clearFields: clearFields(config.business.searchProjects.fields.storePath),
+      updateFields: updateFields(config.business.searchProjects.fields.storePath),
     },
   },
-  /* Actions object implementation */
-};
-export const searchProjects = {
-  clearFields: (payload) => ({
-    type: actionTypes.business.searchProjects.UPDATE_FIELDS,
-    payload,
-  }),
-  updateFields: (payload) => ({
-    type: actionTypes.business.searchProjects.UPDATE_FIELDS,
-    payload,
-  }),
 };
 
-export default actionTypes;
+export default actions;

@@ -9,14 +9,19 @@
       }
     },
     "searchProjects": {
-      "fontSize": "M",
-      "location": "",
-      "perimeter": 5,
-      "perimeterUnit": "Km",
-      "perimeterMin": 5,
-      "perimeterMax": 50,
-      "perimeterStep": 5,
-      "archived": false
+      "default": {
+        "fontSize": "M",
+        "perimeterUnit": "Km",
+        "perimeterMin": 5,
+        "perimeterMax": 50,
+        "perimeterStep": 5
+      },
+      "fields": {
+        "storePath": "business.searchProjects.fields",
+        "location": "",
+        "perimeter": 5,
+        "archived": false
+      }
     }
   }
 }

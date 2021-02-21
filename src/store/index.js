@@ -3,11 +3,11 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import local from 'store/localStorage';
 import { createBrowserHistory } from 'history';
 import throttle from 'lodash.throttle';
-import createRootReducer from 'store/reducers';
+import createRootReducer from 'store/combineReducers';
 import { routerMiddleware } from 'connected-react-router';
 
 /* Application middlewares */
-import applicationMdl from 'middlewares';
+import applicationMdl from 'store/combineMiddlewares';
 
 /* Browser history */
 export const history = createBrowserHistory();

@@ -2,9 +2,9 @@
 import { combineReducers } from 'redux';
 import { connectRouter } from 'connected-react-router';
 
-import app from 'store/reducers/app';
-import profil from 'store/reducers/profil';
-import project from 'store/reducers/project';
+import app from 'store/app/reducer';
+import profil from 'store/profil/reducer';
+import project from 'store/project/reducer';
 
 const createRootReducer = (history) =>
   combineReducers({

@@ -13,7 +13,7 @@ import labelsFr from 'labels_fr.json';
 import { Form } from '../../designs';
 
 /* HOC Redux actions imports */
-import actions from 'store/reducers/app/actions';
+import actions from 'store/app/actions';
 
 /**
  * @function SearchProjects Search projects business react component
@@ -118,25 +118,25 @@ const mapStateToProps = (state, _) => ({
  */
 const mapDispatchToProps = (dispatch, _) => ({
   onSubmit: (_) => {
-    dispatch(actions.business.searchProjects.clearFields());
+    dispatch(actions.store.business.searchProjects.clearFields());
   },
   ctrlStringFields: (event) => {
     dispatch(
-      actions.business.searchProjects.updateFields({
+      actions.store.business.searchProjects.updateFields({
         [event.target.id]: `${event.target.value}`,
       })
     );
   },
   ctrlNumberFields: (event) => {
     dispatch(
-      actions.business.searchProjects.updateFields({
+      actions.store.business.searchProjects.updateFields({
         [event.target.id]: parseFloat(event.target.value),
       })
     );
   },
   ctrlBoolFields: (event) => {
     dispatch(
-      actions.business.searchProjects.updateFields({
+      actions.store.business.searchProjects.updateFields({
         [event.target.id]: event.target.checked,
       })
     );

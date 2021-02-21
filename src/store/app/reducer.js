@@ -1,15 +1,21 @@
-/* State configuration */
-import { resolveClear, resolveUpdate } from 'store/reducers';
+/**
+ * @module AppReducer
+ * @description Application store reducer
+ */
+// =====================================
+/* Global reducer action and configuration import */
+import { resolveClear, resolveUpdate } from 'store/combineReducers';
 import config from './config.json';
-
-/* Reducer intiale storage state */
-const initialState = {
-  ...config,
-};
-
+// =====================================
+/* ACTION TYPE CONFIGURATION */
 export const CLEAR_ALL = 'APP_CLEAR_ALL';
 export const CLEAR_STATE = 'APP_CLEAR_STATE';
 export const UPDATE_STATE = 'APP_UPDATE_STATE';
+// =====================================
+/* Initiale storage state */
+const initialState = {
+  ...config,
+};
 
 /**
  * @function reducer App reducer implemantion
@@ -35,4 +41,5 @@ const reducer = (oldState = initialState, action = {}) => {
   }
 };
 
+/* Reducer export */
 export default reducer;

@@ -1,16 +1,21 @@
-/* State configuration */
-import { resolveClear, resolveUpdate } from 'store/reducers';
+/**
+ * @module ProfilReducer
+ * @description Profil store reducer
+ */
+// =====================================
+/* Global reducer action and configuration import */
+import { resolveClear, resolveUpdate } from 'store/combineReducers';
 import config from './config.json';
-
-/* Reducer intiale storage state */
-const initialState = {
-  ...config,
-};
-
+// =====================================
+/* ACTION TYPE CONFIGURATION */
 export const CLEAR_ALL = 'PROFIL_CLEAR_ALL';
 export const CLEAR_STATE = 'PROFIL_CLEAR_STATE';
 export const UPDATE_STATE = 'PROFIL_UPDATE_STATE';
-
+// =====================================
+/* Initiale storage state */
+const initialState = {
+  ...config,
+};
 /**
  * @function reducer Profil reducer implemantion
  * @param {*} oldState
@@ -35,4 +40,5 @@ const reducer = (oldState = initialState, action = {}) => {
   }
 };
 
+/* Reducer export */
 export default reducer;

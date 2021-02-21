@@ -15,9 +15,11 @@ import icons from 'app/designs/images/icon-sprite.svg';
 const Button = ({
   title,
   type,
+  className,
   onClick,
   positive,
   negative,
+  noColor,
   icon,
   fontSize,
   content,
@@ -27,11 +29,15 @@ const Button = ({
     aria-label={icon ? `${title}` : ''}
     type={`${type}`}
     onClick={onClick}
-    className={cx('button', {
-      positive: positive,
-      negative: negative,
-      neutral: !(positive || negative),
-    })}
+    className={cx(
+      'button',
+      {
+        positive: positive,
+        negative: negative,
+        neutral: !(positive || negative || noColor),
+      },
+      className
+    )}
     data-fontsize={`${fontSize}`}
   >
     {icon && (
@@ -47,10 +53,12 @@ const Button = ({
 Button.propTypes = {
   title: PropTypes.string.isRequired,
   type: PropTypes.oneOf(['submit', 'button']),
+  className: PropTypes.string,
   onClick: PropTypes.func,
   positive: PropTypes.bool,
   negative: PropTypes.bool,
   neutral: PropTypes.bool,
+  noColor: PropTypes.bool,
   icon: PropTypes.string,
   fontSize: PropTypes.string,
   content: PropTypes.string,
@@ -59,9 +67,11 @@ Button.propTypes = {
 /* Props default value definition */
 Button.defaultProps = {
   type: 'button',
+  className: '',
   onClick: () => {},
   positive: false,
   negative: false,
+  noColor: false,
   icon: undefined,
   fontSize: 'M',
   content: undefined,

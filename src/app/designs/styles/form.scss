@@ -407,6 +407,7 @@
     }
     outline: 1em solid $form-background-color;
     background-color: $form-background-color;
+    margin: 0;
   }
   &--cancel {
     /* Border rendering - Variations rendering */
@@ -420,5 +421,6 @@
     }
     outline: 1em solid $form-background-color;
     background-color: $form-background-color;
+    margin: 0;
   }
 }

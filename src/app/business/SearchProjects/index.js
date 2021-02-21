@@ -64,6 +64,13 @@ const SearchProjects = ({
         value={archived}
         onChange={ctrlBoolFields}
       />
+      <Form.Button
+        id="submit"
+        type="submit"
+        title="Chercher"
+        icon="search"
+        fontSize="S"
+      />
     </Form>
   );
 };
@@ -90,7 +97,7 @@ SearchProjects.propTypes = {
 /* Props default value definition */
 SearchProjects.defaultProps = {};
 const mapStateToProps = (state, ownProps) => ({
-  fontSize: state.app.business.searchProjects.location,
+  fontSize: state.app.business.searchProjects.fontSize,
   location: state.app.business.searchProjects.location,
   perimeter: state.app.business.searchProjects.perimeter,
   perimeterUnit: state.app.business.searchProjects.perimeterUnit,

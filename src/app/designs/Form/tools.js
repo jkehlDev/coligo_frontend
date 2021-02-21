@@ -1,3 +1,5 @@
+/* Import React for find by type function */
+import React from 'react';
 /* Label dictionnary */
 import labelsFr from 'labels_fr.json';
 
@@ -20,7 +22,6 @@ export const getDefaultTips = (required, emptied, validated) =>
     : validated
     ? labelsFr.designs.input.validator.default_valid
     : labelsFr.designs.input.validator.default_invalid;
-
 
 /**
  * @function getValidityState Obtain validation state with tips messages
@@ -60,8 +61,46 @@ export const getValidityState = (
 
 /**
  * @function isEmptied Obtain if value is empty
- * @param {*} value 
+ * @param {*} value
  * @returns True if target value empty or not string type
  */
 export const isEmptied = (value) =>
   typeof value !== 'string' || value.trim() === '';
+
+/**
+ * @function findByType Find by type component in children
+ * @param {*} children Components Array
+ * @param {*} component Target component we looking for
+ * @returns Components list search result
+ */
+export const findByType = (children, component) => {
+  const result = [];
+  const type = [component.displayName] || [component.name];
+  React.Children.forEach(children, (child) => {
+    const childType =
+      child && child.type && (child.type.displayName || child.type.name);
+    if (type.includes(childType)) {
+      result.push(child);
+    }
+  });
+  return result;
+};
+
+/**
+ * @function removeByType Remove by type component in children
+ * @param {*} children Components Array
+ * @param {*} component Target component we looking for
+ * @returns Components list filter result
+ */
+export const removeByType = (children, component) => {
+  const result = [];
+  const type = [component.displayName] || [component.name];
+  React.Children.forEach(children, (child) => {
+    const childType =
+      child && child.type && (child.type.displayName || child.type.name);
+    if (!type.includes(childType)) {
+      result.push(child);
+    }
+  });
+  return result;
+};

@@ -1,15 +1,10 @@
 import axios from 'axios';
 
-const getProjects = ({ location, perimeter, archived }, limit, offset) => {};
-const getProject = (id) => {};
-const putProject = ({ title, description, author, dateExpire, location }) => {};
-const patchProject = ({
-  title,
-  description,
-  dateExpire,
-  location,
-  state,
-}) => {};
-const deleteProject = (id) => {};
-const connectors = { getProjects, getProject, putProject, patchProject };
+const connectors = {
+  getProjects: ({ location, perimeter, archived }, limit, offset) => {},
+  getProject: (id) => {},
+  putProject: ({ title, description, author, dateExpire, location }) => {},
+  patchProject: ({ title, description, dateExpire, location, state }) => {},
+  deleteProject: (id) => {},
+};
 export default connectors;

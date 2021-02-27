@@ -57,7 +57,7 @@ ProjectItem.propTypes = {
     })
   ).isRequired,
   // TODO - Make external project states enum
-  state: PropTypes.oneOf(['created', 'published', 'archived']).isRequired,
+  state: PropTypes.oneOf(['', 'created', 'published', 'archived']).isRequired,
   fontSize: PropTypes.string.isRequired,
   /* Dispatch part */
   refreshStateByProjectId: PropTypes.func.isRequired,

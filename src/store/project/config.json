@@ -1,3 +1,30 @@
 {
-  "business": {}
+  "business": {
+    "projectsList": {
+      "default": {},
+      "fields": {
+        "projects": []
+      }
+    },
+    "projectItem": {
+      "default": {
+        "fontSize": "M"
+      },
+      "fields": {
+        "storePath": "business.projectItem.fields",
+        "id": "",
+        "title": "",
+        "description": "",
+        "author": {
+          "id": "",
+          "name": ""
+        },
+        "dateCreate": "",
+        "dateExpire": "",
+        "location": "",
+        "needs": [],
+        "state": ""
+      }
+    }
+  }
 }

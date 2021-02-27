@@ -1,4 +1,5 @@
 {
+  "loading": false,
   "business": {
     "routeProtected": {
       "default": {
@@ -21,6 +22,21 @@
         "location": "",
         "perimeter": 5,
         "archived": false
+      }
+    },
+    "searchProjectsPagination": {
+      "default": {
+        "fontSize": "M",
+        "limit": 10,
+        "offset": 0
+      },
+      "fields": {
+        "storePath": "business.searchProjectsPagination.fields",
+        "limit": 10,
+        "offset": 0,
+        "currentPage": 0,
+        "maxPage": 1,
+        "nbItemsPerPage": 10
       }
     }
   }

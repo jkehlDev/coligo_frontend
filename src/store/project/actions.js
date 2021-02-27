@@ -6,7 +6,7 @@
 
 // =====================================
 /* MIDDLEWARE ACTIONS IMPORT */
-import { EXECUTE } from './middleware';
+import { EXECUTE, getProjectFromListById } from './middleware';
 /* STORE CONFIGURATION IMPORT */
 import config from './config.json';
 /* STATE ACTIONS TYPES */
@@ -20,9 +20,12 @@ const updateFields = (path) => (payload) => ({
   payload,
 });
 /* EXECUTE MIDDLEWARE ACTION */
-const execute = (callable) => () => ({ type: EXECUTE, execute: callable });
+const execute = (callable) => (payload) => ({
+  type: EXECUTE,
+  execute: callable,
+  payload,
+});
 // =====================================
-
 
 /**
  * @name projectActionsInterface
@@ -30,10 +33,25 @@ const execute = (callable) => () => ({ type: EXECUTE, execute: callable });
  */
 const actions = {
   store: {
-    business: {},
+    business: {
+      projectsList: {
+        updateFields: updateFields(
+          config.business.projectsList.fields.storePath
+        ),
+      },
+      projectItem: {
+        updateFields: updateFields(
+          config.business.projectItem.fields.storePath
+        ),
+      },
+    },
   },
   execute: {
-    business: {},
+    business: {
+      projectItem: {
+        getProjectById: execute(getProjectFromListById),
+      },
+    },
   },
 };
 /* MODULE EXPORT */

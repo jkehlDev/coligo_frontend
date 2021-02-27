@@ -5,13 +5,9 @@ import { connect } from 'react-redux';
 /* Externals react components */
 import { Redirect, Route } from 'react-router-dom';
 
-/* Business react components */
-
-/* Designs react components */
-
 /**
  * @function ProtectedRoute Route protected business react component
- * @param {*} props {path, exact, sensitive, strict, component, isAllowed, redirectTo}
+ * @param {*} props 
  */
 const RouteProtected = ({
   path,
@@ -42,10 +38,12 @@ RouteProtected.propTypes = {
   redirectTo: PropTypes.string.isRequired,
 };
 
-/* Props default value definition */
-RouteProtected.defaultProps = {};
-
 /* HOC Redux container implementation */
+/**
+ * @function mapStateToProps
+ * @param {*} state Current redux state
+ * @param {*} ownProps OwnProps
+ */
 const mapStateToProps = (state, ownProps) => ({
   exact: ownProps.exact
     ? ownProps.exact
@@ -60,6 +58,12 @@ const mapStateToProps = (state, ownProps) => ({
     ? ownProps.redirectTo
     : state.app.business.routeProtected.default.redirectTo,
 });
-const mapDispatchToProps = (dispatch, ownProps) => ({});
+/**
+ * @function mapDispatchToProps
+ * @param {*} dispatch
+ * @param {*} _ OwnProps (notuse)
+ */
+const mapDispatchToProps = (dispatch, _) => ({});
 
+/* Export business component */
 export default connect(mapStateToProps, mapDispatchToProps)(RouteProtected);

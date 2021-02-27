@@ -1,12 +1,12 @@
 /* eslint-disable no-unused-vars */
 /**
- * @module AppActions 
+ * @module AppActions
  * @description This module provide redux actions interface for application process part
  */
 
 // =====================================
 /* MIDDLEWARE ACTIONS IMPORT */
-import { EXECUTE, searchProjects } from './middleware';
+import { EXECUTE, searchProjects, loadPage } from './middleware';
 /* STORE CONFIGURATION IMPORT */
 import config from './config.json';
 /* STATE ACTIONS TYPES */
@@ -20,7 +20,11 @@ const updateFields = (path) => (payload) => ({
   payload,
 });
 /* EXECUTE MIDDLEWARE ACTION */
-const execute = (callable) => () => ({ type: EXECUTE, execute: callable });
+const execute = (callable) => (payload) => ({
+  type: EXECUTE,
+  execute: callable,
+  payload,
+});
 // =====================================
 
 /**
@@ -29,6 +33,8 @@ const execute = (callable) => () => ({ type: EXECUTE, execute: callable });
  */
 const actions = {
   store: {
+    setLoaderOn: () => updateFields('')({ loading: true }),
+    setLoaderOff: () => updateFields('')({ loading: false }),
     business: {
       searchProjects: {
         clearFields: clearFields(
@@ -38,12 +44,23 @@ const actions = {
           config.business.searchProjects.fields.storePath
         ),
       },
+      searchProjectsPagination: {
+        clearFields: clearFields(
+          config.business.searchProjectsPagination.fields.storePath
+        ),
+        updateFields: updateFields(
+          config.business.searchProjectsPagination.fields.storePath
+        ),
+      },
     },
   },
   execute: {
     business: {
       searchProjects: {
         search: execute(searchProjects),
+      },
+      searchProjectsPagination: {
+        loadPage: execute(loadPage),
       },
     },
   },

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
@@ -13,16 +13,16 @@ import { connect } from 'react-redux';
 import ProjectEntity from 'store/models/ProjectEntity';
 
 /**
- * @function ProjectItem Project item business react component
+ * @function ProjectsListItem Project item business react component
  * @param {*} props
  */
-const ProjectItem = ({ project, fontSize }) => {
+const ProjectsListItem = ({ project, fontSize }) => {
   return <></>;
 };
 
 /* HOC Redux container implementation */
 /* PropTypes definition */
-ProjectItem.propTypes = {
+ProjectsListItem.propTypes = {
   /* State part*/
   project: PropTypes.instanceOf(ProjectEntity).isRequired,
   fontSize: PropTypes.string.isRequired,
@@ -46,4 +46,4 @@ const mapStateToProps = (state, _) => ({
 const mapDispatchToProps = (dispatch, _) => ({});
 
 /* Export business component */
-export default connect(mapStateToProps, mapDispatchToProps)(ProjectItem);
+export default connect(mapStateToProps, mapDispatchToProps)(ProjectsListItem);

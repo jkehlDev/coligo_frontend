@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 /* Label dictionnary */
 // import labelsFr from 'labels_fr.json';
 /* Business react components */
-import ProjectItem from 'app/business/Project/ProjectItem';
+import ProjectsListItem from 'app/business/Project/ProjectsListItem';
 /* Designs react components */
 /* HOC Redux actions imports */
 /* Models imports */
@@ -18,7 +18,7 @@ const ProjectsList = ({ fontSize, projects }) => {
   return (
     <>
       {projects.map((project) => (
-        <ProjectItem key={project.id} project={project} />
+        <ProjectsListItem key={project.id} project={project} />
       ))}
     </>
   );

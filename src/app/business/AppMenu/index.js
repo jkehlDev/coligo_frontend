@@ -4,15 +4,12 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 /* Label dictionnary */
-import labelsFr from 'labels_fr.json';
+//import labelsFr from 'labels_fr.json';
 
 /* Externals react components */
 /* Business react components */
 /* Designs react components */
-import { Button } from '../../designs';
-
 /* HOC Redux actions imports */
-import actions from 'store/app/actions';
 
 /**
  * @function AppMenu Application menu business react component

@@ -3,24 +3,22 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 /* Label dictionnary */
-//import labelsFr from 'labels_fr.json';
-
+// import labelsFr from 'labels_fr.json';
 /* Business react components */
-import ProjectItem from './ProjectItem';
-
+import ProjectItem from 'app/business/Project/ProjectItem';
 /* Designs react components */
-
 /* HOC Redux actions imports */
-
+/* Models imports */
+import ProjectEntity from 'store/models/ProjectEntity';
 /**
  * @function ProjectsList Projects list business react component
  * @param {*} props
  */
-const ProjectsList = ({ projects }) => {
+const ProjectsList = ({ fontSize, projects }) => {
   return (
     <>
-      {projects.map((id) => (
-        <ProjectItem key={id} projectId={id} />
+      {projects.map((project) => (
+        <ProjectItem key={project.id} project={project} />
       ))}
     </>
   );
@@ -30,11 +28,7 @@ const ProjectsList = ({ projects }) => {
 /* PropTypes definition */
 ProjectsList.propTypes = {
   /* State part*/
-  projects: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-    })
-  ).isRequired,
+  projects: PropTypes.arrayOf(PropTypes.instanceOf(ProjectEntity)).isRequired,
   /* Dispatch part */
 };
 
@@ -44,7 +38,8 @@ ProjectsList.propTypes = {
  * @param {*} _ OwnProps (notuse)
  */
 const mapStateToProps = (state, _) => ({
-  projects: state.project.business.projectList.fields.projects,
+  fontSize: state.app.display.fontSize,
+  projects: state.project.business.projectList.data.projects,
 });
 /**
  * @function mapDispatchToProps

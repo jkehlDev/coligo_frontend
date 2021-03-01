@@ -3,91 +3,33 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 /* Label dictionnary */
-import labelsFr from 'labels_fr.json';
-
+// import labelsFr from 'labels_fr.json';
 /* Designs react components */
-import { Form } from '../../designs';
-
 /* HOC Redux actions imports */
-import actions from 'store/app/actions';
-
+/* Models imports */
+import ProjectEntity from 'store/models/ProjectEntity';
 /**
- * @function SearchProjects Search projects business react component
- * @param {*} props 
+ * @function ProjectEdit Project edition business react component
+ * @param {*} props
  */
-const SearchProjects = ({
+const ProjectEdit = ({
   fontSize,
-  location,
-  perimeter,
-  perimeterUnit,
-  perimeterMin,
-  perimeterMax,
-  perimeterStep,
-  archived,
-  onSubmit,
-  ctrlStringFields,
-  ctrlNumberFields,
-  ctrlBoolFields,
 }) => {
-  return (
-    <Form
-      title={labelsFr.business.searchProjects.form.title}
-      fontSize={fontSize}
-      onSubmit={onSubmit}
-    >
-      <Form.Group>
-        <Form.InputText
-          id="location"
-          label={labelsFr.business.searchProjects.form.fields.location}
-          required
-          value={location}
-          onChange={ctrlStringFields}
-        />
-        <Form.InputRange
-          id="perimeter"
-          label={labelsFr.business.searchProjects.form.fields.perimeter}
-          min={perimeterMin}
-          max={perimeterMax}
-          step={perimeterStep}
-          unit={perimeterUnit}
-          value={perimeter}
-          onChange={ctrlNumberFields}
-        />
-      </Form.Group>
-      <Form.Toggle
-        id="archived"
-        label={labelsFr.business.searchProjects.form.fields.archived}
-        value={archived}
-        onChange={ctrlBoolFields}
-      />
-      <Form.Button
-        id="submit"
-        type="submit"
-        title="Chercher"
-        icon="search"
-        fontSize="S"
-      />
-    </Form>
-  );
+  return <></>;
 };
 
 /* HOC Redux container implementation */
 /* PropTypes definition */
-SearchProjects.propTypes = {
+ProjectEdit.propTypes = {
   /* State part*/
+  project: PropTypes.instanceOf(ProjectEntity),
   fontSize: PropTypes.string.isRequired,
-  location: PropTypes.string.isRequired,
-  perimeter: PropTypes.number.isRequired,
-  perimeterUnit: PropTypes.string.isRequired,
-  perimeterMin: PropTypes.number.isRequired,
-  perimeterMax: PropTypes.number.isRequired,
-  perimeterStep: PropTypes.number.isRequired,
-  archived: PropTypes.bool.isRequired,
   /* Dispatch part */
-  onSubmit: PropTypes.func.isRequired,
-  ctrlStringFields: PropTypes.func.isRequired,
-  ctrlNumberFields: PropTypes.func.isRequired,
-  ctrlBoolFields: PropTypes.func.isRequired,
+};
+
+/* PropTypes default value */
+ProjectEdit.defaultProps = {
+  project: new ProjectEntity(),
 };
 
 /**
@@ -96,46 +38,15 @@ SearchProjects.propTypes = {
  * @param {*} _ OwnProps (notuse)
  */
 const mapStateToProps = (state, _) => ({
-  fontSize: state.app.business.searchProjects.default.fontSize,
-  location: state.app.business.searchProjects.fields.location,
-  perimeter: state.app.business.searchProjects.fields.perimeter,
-  perimeterUnit: state.app.business.searchProjects.default.perimeterUnit,
-  perimeterMin: state.app.business.searchProjects.default.perimeterMin,
-  perimeterMax: state.app.business.searchProjects.default.perimeterMax,
-  perimeterStep: state.app.business.searchProjects.default.perimeterStep,
-  archived: state.app.business.searchProjects.fields.archived,
+  project: state.project.business.projectEdit.data.project,
+  fontSize: state.app.display.fontSize,
 });
 /**
  * @function mapDispatchToProps
  * @param {*} dispatch
  * @param {*} _ OwnProps (notuse)
  */
-const mapDispatchToProps = (dispatch, _) => ({
-  onSubmit: (_) => {
-    dispatch(actions.execute.business.searchProjects.search());
-  },
-  ctrlStringFields: (event) => {
-    dispatch(
-      actions.store.business.searchProjects.updateFields({
-        [event.target.id]: `${event.target.value}`,
-      })
-    );
-  },
-  ctrlNumberFields: (event) => {
-    dispatch(
-      actions.store.business.searchProjects.updateFields({
-        [event.target.id]: parseFloat(event.target.value),
-      })
-    );
-  },
-  ctrlBoolFields: (event) => {
-    dispatch(
-      actions.store.business.searchProjects.updateFields({
-        [event.target.id]: event.target.checked,
-      })
-    );
-  },
-});
+const mapDispatchToProps = (dispatch, _) => ({});
 
 /* Export business component */
-export default connect(mapStateToProps, mapDispatchToProps)(SearchProjects);
+export default connect(mapStateToProps, mapDispatchToProps)(ProjectEdit);

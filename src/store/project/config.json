@@ -2,28 +2,23 @@
   "business": {
     "projectsList": {
       "default": {},
-      "fields": {
+      "data": {
+        "storePath": "business.projectsList.data",
         "projects": []
       }
     },
-    "projectItem": {
-      "default": {
-        "fontSize": "M"
-      },
-      "fields": {
-        "storePath": "business.projectItem.fields",
-        "id": "",
-        "title": "",
-        "description": "",
-        "author": {
-          "id": "",
-          "name": ""
-        },
-        "dateCreate": "",
-        "dateExpire": "",
-        "location": "",
-        "needs": [],
-        "state": ""
+    "projectCns": {
+      "default": {},
+      "data": {
+        "storePath": "business.projectCns.data",
+        "project": null
+      }
+    },
+    "projectEdit": {
+      "default": {},
+      "data": {
+        "storePath": "business.projectEdit.data",
+        "project": null
       }
     }
   }

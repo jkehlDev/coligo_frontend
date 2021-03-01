@@ -1,5 +1,10 @@
 {
-  "loading": false,
+  "display": {
+    "storePath": "display",
+    "loading": false,
+    "fontSize": "M"
+  },
+
   "business": {
     "routeProtected": {
       "default": {
@@ -11,7 +16,6 @@
     },
     "searchProjects": {
       "default": {
-        "fontSize": "M",
         "perimeterUnit": "Km",
         "perimeterMin": 5,
         "perimeterMax": 50,
@@ -22,21 +26,20 @@
         "location": "",
         "perimeter": 5,
         "archived": false
-      }
-    },
-    "searchProjectsPagination": {
-      "default": {
-        "fontSize": "M",
-        "limit": 10,
-        "offset": 0
       },
-      "fields": {
-        "storePath": "business.searchProjectsPagination.fields",
-        "limit": 10,
-        "offset": 0,
-        "currentPage": 0,
-        "maxPage": 1,
-        "nbItemsPerPage": 10
+      "pagination": {
+        "default": {
+          "offset": 0,
+          "limit": 10
+        },
+        "properties": {
+          "storePath": "business.searchProjects.pagination.properties",
+          "offset": 0,
+          "limit": 10,
+          "currentPage": 0,
+          "maxPage": 1,
+          "nbItemsPerPage": 10
+        }
       }
     }
   }

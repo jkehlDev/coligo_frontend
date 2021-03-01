@@ -40,11 +40,10 @@ SearchProjectsPagination.propTypes = {
  * @param {*} _ OwnProps (notuse)
  */
 const mapStateToProps = (state, _) => ({
-  fontSize: state.app.business.searchProjectsPagination.default.fontSize,
-  currentPage: state.app.business.searchProjectsPagination.fields.currentPage,
-  maxPage: state.app.business.searchProjectsPagination.fields.maxPage,
-  nbItemsPerPage:
-    state.app.business.searchProjectsPagination.fields.nbItemsPerPage,
+  fontSize: state.app.display.fontSize,
+  currentPage: state.app.business.searchProjects.pagination.properties.currentPage,
+  maxPage: state.app.business.searchProjects.pagination.properties.maxPage,
+  nbItemsPerPage: state.app.business.searchProjects.pagination.properties.nbItemsPerPage,
 });
 /**
  * @function mapDispatchToProps

@@ -6,7 +6,7 @@
 
 // =====================================
 /* MIDDLEWARE ACTIONS IMPORT */
-import { EXECUTE, getProjectFromListById } from './middleware';
+import { EXECUTE } from './middleware';
 /* STORE CONFIGURATION IMPORT */
 import config from './config.json';
 /* STATE ACTIONS TYPES */
@@ -39,18 +39,10 @@ const actions = {
           config.business.projectsList.fields.storePath
         ),
       },
-      projectItem: {
-        updateFields: updateFields(
-          config.business.projectItem.fields.storePath
-        ),
-      },
     },
   },
   execute: {
     business: {
-      projectItem: {
-        getProjectById: execute(getProjectFromListById),
-      },
     },
   },
 };

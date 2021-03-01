@@ -29,6 +29,10 @@ EmptyTemplate.propTypes = {
   /* Dispatch part */
 };
 
+/* PropTypes default value */
+EmptyTemplate.defaultProps = {
+};
+
 /**
  * @function mapStateToProps
  * @param {*} state Current redux state

@@ -6,7 +6,7 @@
 
 // =====================================
 /* MIDDLEWARE ACTIONS IMPORT */
-import { EXECUTE, searchProjects, loadPage } from './middleware';
+import { EXECUTE, searchProjects, searchProjectsPaginationLoadPage } from './middleware';
 /* STORE CONFIGURATION IMPORT */
 import config from './config.json';
 /* STATE ACTIONS TYPES */
@@ -33,8 +33,8 @@ const execute = (callable) => (payload) => ({
  */
 const actions = {
   store: {
-    setLoaderOn: () => updateFields('')({ loading: true }),
-    setLoaderOff: () => updateFields('')({ loading: false }),
+    setLoaderOn: () => updateFields(config.display.storePath)({ loading: true }),
+    setLoaderOff: () => updateFields(config.display.storePath)({ loading: false }),
     business: {
       searchProjects: {
         clearFields: clearFields(
@@ -60,7 +60,7 @@ const actions = {
         search: execute(searchProjects),
       },
       searchProjectsPagination: {
-        loadPage: execute(loadPage),
+        loadPage: execute(searchProjectsPaginationLoadPage),
       },
     },
   },

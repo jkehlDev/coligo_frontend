@@ -15,7 +15,7 @@ export const EXECUTE = 'APP_EXECUTE';
 /**
  * @function searchProjects Query data base with search values
  * and Call Update Store for ProjectsList state.
- * @param {*} store
+ * @param {import('redux').Store} store
  * @param {*} next
  * @param {*} action
  */
@@ -25,9 +25,9 @@ export const searchProjects = (store, next, _) => {
       business: {
         searchProjects: {
           fields: { location, perimeter, archived },
-        },
-        searchProjectsPagination: {
-          default: { offset, limit },
+          pagination: {
+            default: { offset, limit },
+          },
         },
       },
     },
@@ -59,14 +59,14 @@ export const searchProjects = (store, next, _) => {
 };
 
 /**
- * @function loadPage Query target page with search values
+ * @function searchProjectsPaginationLoadPage Query target page result with search values
  * and specific offset and limit parameters
  * and Call Update Store for ProjectsList state.
- * @param {*} store
+ * @param {import('redux').Store} store
  * @param {*} next
  * @param {*} action
  */
-export const loadPage = (store, next, action) => {};
+export const searchProjectsPaginationLoadPage = (store, next, action) => {};
 //
 // =====================================
 /* REDUX MIDDLEWARE */

@@ -19,11 +19,11 @@ const SearchProjects = ({
   fontSize,
   location,
   perimeter,
+  archived,
   perimeterUnit,
   perimeterMin,
   perimeterMax,
   perimeterStep,
-  archived,
   onSubmit,
   ctrlStringFields,
   ctrlNumberFields,
@@ -78,11 +78,11 @@ SearchProjects.propTypes = {
   fontSize: PropTypes.string.isRequired,
   location: PropTypes.string.isRequired,
   perimeter: PropTypes.number.isRequired,
+  archived: PropTypes.bool.isRequired,
   perimeterUnit: PropTypes.string.isRequired,
   perimeterMin: PropTypes.number.isRequired,
   perimeterMax: PropTypes.number.isRequired,
   perimeterStep: PropTypes.number.isRequired,
-  archived: PropTypes.bool.isRequired,
   /* Dispatch part */
   onSubmit: PropTypes.func.isRequired,
   ctrlStringFields: PropTypes.func.isRequired,
@@ -96,14 +96,14 @@ SearchProjects.propTypes = {
  * @param {*} _ OwnProps (notuse)
  */
 const mapStateToProps = (state, _) => ({
-  fontSize: state.app.business.searchProjects.default.fontSize,
+  fontSize: state.app.display.fontSize,
   location: state.app.business.searchProjects.fields.location,
   perimeter: state.app.business.searchProjects.fields.perimeter,
+  archived: state.app.business.searchProjects.fields.archived,
   perimeterUnit: state.app.business.searchProjects.default.perimeterUnit,
   perimeterMin: state.app.business.searchProjects.default.perimeterMin,
   perimeterMax: state.app.business.searchProjects.default.perimeterMax,
   perimeterStep: state.app.business.searchProjects.default.perimeterStep,
-  archived: state.app.business.searchProjects.fields.archived,
 });
 /**
  * @function mapDispatchToProps

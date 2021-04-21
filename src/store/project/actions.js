@@ -20,9 +20,9 @@ const updateFields = (path) => (payload) => ({
   payload,
 });
 /* EXECUTE MIDDLEWARE ACTION */
-const execute = (callable) => (payload) => ({
+const execute = (refAction) => (payload) => ({
   type: EXECUTE,
-  execute: callable,
+  refAction,
   payload,
 });
 // =====================================
@@ -36,7 +36,7 @@ const actions = {
     business: {
       projectsList: {
         updateFields: updateFields(
-          config.business.projectsList.fields.storePath
+          config.business.projectsList.data.storePath
         ),
       },
     },

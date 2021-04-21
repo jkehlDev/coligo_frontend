@@ -20,9 +20,9 @@ const updateFields = (path) => (payload) => ({
   payload,
 });
 /* EXECUTE MIDDLEWARE ACTION */
-const execute = (callable) => (payload) => ({
+const execute = (refAction) => (payload) => ({
   type: EXECUTE,
-  execute: callable,
+  refAction,
   payload,
 });
 // =====================================

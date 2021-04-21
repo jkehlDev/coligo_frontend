@@ -6,13 +6,15 @@
 /* ACTION KEY */
 export const EXECUTE = 'PROJECT_EXECUTE';
 // =====================================
-// == ACTIONS EXPORTS
+// == MIDDLEWARES ACTIONS PART
+//
+const middlewareAct = {};
 //
 // =====================================
 /* REDUX MIDDLEWARE */
 const middleware = (store) => (next) => (action) => {
   if (action.type === EXECUTE) {
-    action.execute(store, next, action);
+    middlewareAct[action.refAction](store, next, action);
   } else {
     next(action);
   }

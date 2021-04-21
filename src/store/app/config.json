@@ -41,6 +41,12 @@
           "nbItemsPerPage": 10
         }
       }
+    },
+    "searchProjectsPagination": {
+      "fields": { 
+        "storePath": "business.searchProjectsPagination.fields",
+        "maxPage": 1
+      }
     }
   }
 }

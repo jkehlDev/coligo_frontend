@@ -27,6 +27,7 @@
     "react-scripts": "4.0.2",
     "redux": "^4.0.5",
     "redux-devtools-extension": "^2.13.8",
+    "redux-store-factory": "^1.0.5",
     "typescript": "^4.2.2",
     "web-vitals": "^1.0.1"
   },
